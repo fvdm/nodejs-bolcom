@@ -1,0 +1,30 @@
+{
+  "author": {
+    "name":               "Franklin van de Meent",
+    "email":              "fr@nkl.in",
+    "url":                "https://frankl.in"
+  },
+  "name":                  "bolcom",
+  "description":           "Module for node.js to access Bol.com Open API service",
+  "version":               "1.0.0",
+  "repository": {
+      "type":              "git",
+      "url":               "git://github.com/fvdm/nodejs-bolcom.git"
+  },
+  "bugs": {
+    "url":                 "https://github.com/fvdm/nodejs-bolcom/issues"
+  },
+  "main":                  "bolcom.js",
+  "dependencies":          {},
+  "devDependencies":       {},
+  "optionalDependencies":  {},
+  "engines": {
+    "node":                "*"
+  },
+  "keywords":              ["bol.com", "bolcom", "openapi", "api", "unlicense"],
+  "license": {
+    "type":                "Public Domain",
+    "url":                 "https://github.com/fvdm/nodejs-bolcom/raw/master/LICENSE"
+  },
+  "scripts":               {}
+}
