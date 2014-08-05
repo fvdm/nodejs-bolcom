@@ -40,6 +40,19 @@ Methods
 
 Each method below takes a callback function like this: `function( err, [data] )`.
 In case of an error `err` is an instance of `Error` and `data` is not available.
+
+
+Errors
+------
+
+```
+missing apikey    Credentials are not set
+api error         The API returned an error, see err.code and err.api
+request failed    The request can not be build
+request timeout   The request took too long to complete
+request dropped   The request was cut off too early
+invalid response  The API response cannot be processed
+```
 License
 ---------
 
