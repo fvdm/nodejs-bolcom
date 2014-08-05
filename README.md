@@ -34,6 +34,12 @@ Example
 var bol = require('bolcom')('your_apikey')
 ```
 
+
+Methods
+-------
+
+Each method below takes a callback function like this: `function( err, [data] )`.
+In case of an error `err` is an instance of `Error` and `data` is not available.
 License
 ---------
 
