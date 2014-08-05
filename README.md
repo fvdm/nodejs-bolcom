@@ -31,7 +31,7 @@ Example
 -------
 
 ```js
-var bol = require('bolcom')('your_apikey')
+var bol = require('bolcom')('apikey')
 ```
 
 
@@ -71,6 +71,8 @@ request timeout   The request took too long to complete
 request dropped   The request was cut off too early
 invalid response  The API response cannot be processed
 ```
+
+
 License
 ---------
 
