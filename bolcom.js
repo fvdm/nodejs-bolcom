@@ -11,6 +11,7 @@ Service docs:     https://developers.bol.com
 */
 
 var https = require('https')
+var querystring = require('querystring')
 var api_key = null
 var api_timeout = 5000
 
