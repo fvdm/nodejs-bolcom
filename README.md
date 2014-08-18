@@ -119,6 +119,24 @@ Product lists, based on list type and category.
 * [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4productlists.html)
 
 
+catalog.products ( productId, [props], callback )
+----------------
+
+* **productId** - Comma-seperated IDs for the products to retrieve.
+* **props** - Optional arguments, see API documentation.
+
+Get details information for one or more products.
+
+```js
+bol.catalog.products( '9200000023292527', {includeattributes:true}, function( err, data ) {
+  var product = data.products[9]
+  console.log( products.title +' - '+ product.offerData.offers[0].price )
+})
+```
+
+* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4products.html)
+
+
 Errors
 ------
 
