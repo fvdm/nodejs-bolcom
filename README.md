@@ -107,6 +107,18 @@ bol.catalog.search( {q:'node.js'}, function( err, data ) {
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.search)
 * [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4search.html)
 
+
+catalog.lists ( [props], callback )
+-------------
+
+* **props** - see API documentation
+
+Product lists, based on list type and category.
+
+* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.lists)
+* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4productlists.html)
+
+
 Errors
 ------
 

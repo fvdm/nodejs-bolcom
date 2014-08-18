@@ -29,6 +29,18 @@ app.catalog.search = function( props, callback ) {
         data.products[p] = cleanProduct( data.products[p] )
       }
 
+app.catalog.lists = function( props, callback ) {
+  talk( 'catalog', 'lists', props, function( err, data ) {
+    if( !err && data.products instanceof Array ) {
+      for( var p=0; p < data.products.length; p++ ) {
+        data.products[p] = cleanProduct( data.products[p] )
+      }
+    }
+    callback( err, data )
+  })
+}
+
+
       }
     }
     callback( err, data )

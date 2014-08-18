@@ -101,5 +101,15 @@ queue.push( function() {
   })
 })
 
+
+queue.push( function() {
+  bol.catalog.lists( '', function( err, data ) {
+    doTest( err, 'catalog.lists', [
+      ['totalResultSize', data.totalResultSize >= 1],
+      ['list type', data.products instanceof Array],
+      ['item type', typeof data.products[0].id === 'string']
+    ])
+  })
+})
 // Start the tests
 queue[0]()
