@@ -62,6 +62,20 @@ app.catalog.products = function( productId, props, callback ) {
 }
 
 
+app.catalog.offers = function( productId, props, callback ) {
+  if( typeof props === 'function' ) {
+    var callback = props
+    var props = {}
+  }
+  talk( 'catalog', 'offers/'+ productId, props, function( err, data ) {
+    if( !err && data.offerData ) {
+      data = data.offerData
+    }
+    callback( err, data )
+  })
+}
+
+
 app.utils.ping = function( callback ) {
   talk( 'utils', 'ping', callback )
 }

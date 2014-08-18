@@ -138,6 +138,26 @@ bol.catalog.products( '9200000023292527', {includeattributes:true}, function( er
 * [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4products.html)
 
 
+catalog.offers ( productId, [props], callback )
+--------------
+
+* **productId** - Product ID to get offers for.
+* **props** - Optional arguments, see API documentation.
+
+Get available offers for a given product.
+
+```js
+bol.catalog.offers( '9200000023292527', function( err, data ) {
+  data.offers.forEach( function( offer ) {
+    console.log( offer.price +' - '+ offer.availabilityDescription )
+  })
+})
+```
+
+* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.offers)
+* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4offers.html)
+
+
 Errors
 ------
 

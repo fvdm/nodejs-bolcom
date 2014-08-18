@@ -120,6 +120,15 @@ queue.push( function() {
   })
 })
 
+queue.push( function() {
+  bol.catalog.offers( '9200000023292527', function( err, data ) {
+    doTest( err, 'catalog.offers', [
+      ['offers type', data.offers instanceof Array],
+      ['item id', typeof data.offers[0].id === 'string']
+    ])
+  })
+})
+
 // Start the tests
 queue[0]()
 
