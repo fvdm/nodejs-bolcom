@@ -32,6 +32,17 @@ Usage
 
 ```js
 var bol = require('bolcom')('apikey')
+
+bol.catalog.search( {q:'node.js'}, function( err, data ) {
+  if( err ) {
+    console.log('Search failed')
+    console.log(err)
+  } else {
+    data.products.forEach( function( product ) {
+      console.log( product.title +' - '+ product.summary )
+    })
+  }
+})
 ```
 
 
@@ -58,6 +69,8 @@ bol.utils.ping( function( err, data ) {
   } else {
     console.log('ouch')
   }
+})
+```
 
 
 account.sessions ( callback )
@@ -70,6 +83,25 @@ bol.acocunt.sessions( function( err, data ) {
   console.log( data.sessionId )
 })
 ```
+
+
+catalog.search ( props, callback )
+--------------
+
+* **props** - see [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4search.html)
+
+Search products in the catalog.
+
+The result `data` is modified to remove a few xml-style annoyances.
+See the Wiki for example data.
+
+```js
+var bol = require('bolcom')('apikey')
+
+bol.catalog.search( {q:'node.js'}, function( err, data ) {
+  data.products.forEach( function( product ) {
+    console.log( product.title +' - '+ product.summary )
+  })
 })
 ```
 

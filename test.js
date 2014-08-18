@@ -77,6 +77,8 @@ queue.push( function() {
 			console.log('utils.ping: \033[1mok\033[0m')
 			doNext()
 		}
+  })
+})
 
 queue.push( function() {
   bol.account.sessions( function( err, data ) {
@@ -85,6 +87,15 @@ queue.push( function() {
     ])
   })
 })
+
+queue.push( function() {
+  bol.catalog.search( {q:'node.js', includeattributes:true}, function( err, data ) {
+    doTest( err, 'catalog.search', [
+      ['totalResultSize', data.totalResultSize >= 1],
+      ['products array', data.products instanceof Array],
+      ['products length', data.products.length >= 1],
+      ['item type', data.products[0] instanceof Object],
+      ['item id', typeof data.products[0].id === 'string']
     ])
   })
 })
