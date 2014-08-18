@@ -113,7 +113,7 @@ function talk( cat, method, params, callback ) {
     path: '/'+ cat +'/v4/'+ method +'?'+ querystring.stringify(params),
     method: 'GET',
     headers: {
-      'User-Agent': 'bolcom.js (https://frankl.in)'
+      'User-Agent': 'bolcom.js (https://github.com/fvdm/nodejs-bolcom)'
     }
   }
 
