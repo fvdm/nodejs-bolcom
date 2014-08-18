@@ -56,6 +56,18 @@ bol.utils.ping( function( err, data ) {
       console.error('ouch')
     }
    }
+
+
+account.sessions ( callback )
+----------------
+
+Request a new anonymous session ID.
+
+```js
+bol.acocunt.sessions( function( err, data ) {
+  console.log( data.sessionId )
+})
+```
 })
 ```
 

@@ -26,6 +26,10 @@ app.utils.ping = function( callback ) {
   talk( 'utils', 'ping', callback )
 }
 
+app.account.sessions = function( callback ) {
+  talk( 'accounts', 'sessions', callback )
+}
+
 
 // Communicate
 function talk( cat, method, params, callback ) {

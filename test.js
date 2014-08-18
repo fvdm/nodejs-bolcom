@@ -77,6 +77,14 @@ queue.push( function() {
 			console.log('utils.ping: \033[1mok\033[0m')
 			doNext()
 		}
+
+queue.push( function() {
+  bol.account.sessions( function( err, data ) {
+    doTest( err, 'account.sessions', [
+      ['sessionId', typeof data.sessionId === 'string']
+    ])
+  })
+})
     ])
   })
 })
