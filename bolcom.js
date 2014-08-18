@@ -28,6 +28,7 @@ app.catalog.search = function( props, callback ) {
       for( var p=0; p < data.products.length; p++ ) {
         var product = data.products[p]
 
+        // urls
         var purls = {}
         for( var u=0; u < product.urls.length; u++ ) {
           var url = product.urls[u]
@@ -36,6 +37,7 @@ app.catalog.search = function( props, callback ) {
         data.products[p].urls = purls
         delete purls
 
+        // images
         var pimgs = {}
         for( var m=0; m < product.images.length; m++ ) {
           var image = product.images[m]
@@ -43,7 +45,8 @@ app.catalog.search = function( props, callback ) {
         }
         data.products[p].images = pimgs
         delete pimgs
-        
+
+        // includeattributes: true
         if( product.attributeGroups ) {
           var groups = {}
           for( var g=0; g < product.attributeGroups.length; g++ ) {
