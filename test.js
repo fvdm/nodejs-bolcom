@@ -67,8 +67,16 @@ function doTest( err, label, tests ) {
 // API ACCESS
 queue.push( function() {
   bol.utils.ping( function( err, data ) {
-    doTest( err, 'API access', [
-      ['ping', data.message === 'Hello world!']
+		if(err) {
+			console.log('utils.ping: failed ('+ err.message +')')
+			console.log()
+			console.log(err.stack)
+			errors++
+			process.exit(1)
+		} else {
+			console.log('utils.ping: \033[1mok\033[0m')
+			doNext()
+		}
     ])
   })
 })
