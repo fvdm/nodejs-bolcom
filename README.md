@@ -45,9 +45,11 @@ For readability error testing is not included in the following examples.
 See the [Usage](#Usage) section above for an example with proper error testing.
 
 
-Simple API access test.
 utils.ping ( callback )
 ----------
+
+Simple API access test. The result `data` should be an *object* with only one
+property named `message` with the exact value `Hello world!!`.
 
 ```js
 bol.utils.ping( function( err, data ) {
