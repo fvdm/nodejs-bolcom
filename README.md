@@ -42,10 +42,10 @@ Each method below takes a callback function like this: `function( err, [data] )`
 In case of an error `err` is an instance of `Error` and `data` is not available.
 
 
-utils.ping
----------
 
 Simple API access test.
+utils.ping ( callback )
+----------
 
 ```js
 bol.utils.ping( function( err, data ) {
