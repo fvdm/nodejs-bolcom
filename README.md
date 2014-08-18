@@ -88,12 +88,11 @@ bol.acocunt.sessions( function( err, data ) {
 catalog.search ( props, callback )
 --------------
 
-* **props** - see [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4search.html)
+* **props** - see API documentation
 
 Search products in the catalog.
 
 The result `data` is modified to remove a few xml-style annoyances.
-See the Wiki for example data.
 
 ```js
 var bol = require('bolcom')('apikey')
@@ -105,6 +104,8 @@ bol.catalog.search( {q:'node.js'}, function( err, data ) {
 })
 ```
 
+* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.search)
+* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4search.html)
 
 Errors
 ------
