@@ -89,7 +89,7 @@ queue.push( function() {
 })
 
 queue.push( function() {
-  bol.catalog.search( {q:'node.js', includeattributes:true}, function( err, data ) {
+  bol.catalog.search( {q:'node.js', limit: 1, includeattributes:true}, function( err, data ) {
     doTest( err, 'catalog.search', [
       ['totalResultSize', data.totalResultSize >= 1],
       ['products array', data.products instanceof Array],
