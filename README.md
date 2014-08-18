@@ -27,8 +27,8 @@ npm install git+https://github.com/fvdm/nodejs-bolcom
 ```
 
 
-Example
--------
+Usage
+-----
 
 ```js
 var bol = require('bolcom')('apikey')
