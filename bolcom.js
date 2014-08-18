@@ -21,9 +21,11 @@ var app = {
   account: {}
 }
 
+
 app.utils.ping = function( callback ) {
   talk( 'utils', 'ping', callback )
 }
+
 
 // Communicate
 function talk( cat, method, params, callback ) {
