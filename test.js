@@ -95,7 +95,8 @@ queue.push( function() {
       ['products array', data.products instanceof Array],
       ['products length', data.products.length >= 1],
       ['item type', data.products[0] instanceof Object],
-      ['item id', typeof data.products[0].id === 'string']
+      ['item id', typeof data.products[0].id === 'string'],
+      ['item attributes', data.products[0].attributeGroups instanceof Object]
     ])
   })
 })
