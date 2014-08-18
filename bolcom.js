@@ -26,44 +26,9 @@ app.catalog.search = function( props, callback ) {
   talk( 'catalog', 'search', props, function( err, data ) {
     if( !err && data.products instanceof Array ) {
       for( var p=0; p < data.products.length; p++ ) {
-        var product = data.products[p]
+        data.products[p] = cleanProduct( data.products[p] )
+      }
 
-        // urls
-        var purls = {}
-        for( var u=0; u < product.urls.length; u++ ) {
-          var url = product.urls[u]
-          purls[url.key] = url
-        }
-        data.products[p].urls = purls
-        delete purls
-
-        // images
-        var pimgs = {}
-        for( var m=0; m < product.images.length; m++ ) {
-          var image = product.images[m]
-          pimgs[image.key] = image
-        }
-        data.products[p].images = pimgs
-        delete pimgs
-
-        // includeattributes: true
-        if( product.attributeGroups ) {
-          var groups = {}
-          for( var g=0; g < product.attributeGroups.length; g++ ) {
-            var group = product.attributeGroups[g]
-            groups[group.title] = {title: group.title}
-
-            if( group.attributes ) {
-              groups[group.title].attributes = {}
-              for( var a=0; a < group.attributes.length; a++ ) {
-                var attrib = group.attributes[a]
-                groups[group.title].attributes[attrib.key] = attrib
-              }
-            }
-          }
-          data.products[p].attributeGroups = groups
-          delete groups
-        }
       }
     }
     callback( err, data )
@@ -79,6 +44,45 @@ app.account.sessions = function( callback ) {
   talk( 'accounts', 'sessions', callback )
 }
 
+
+// Clean up product
+function cleanProduct( product ) {
+  // urls
+  var purls = {}
+  for( var u=0; u < product.urls.length; u++ ) {
+    var url = product.urls[u]
+    purls[url.key] = url
+  }
+  product.urls = purls
+  
+  // images
+  var pimgs = {}
+  for( var m=0; m < product.images.length; m++ ) {
+    var image = product.images[m]
+    pimgs[image.key] = image
+  }
+  product.images = pimgs
+  
+  // includeattributes: true
+  if( product.attributeGroups ) {
+    var groups = {}
+    for( var g=0; g < product.attributeGroups.length; g++ ) {
+      var group = product.attributeGroups[g]
+      groups[group.title] = {title: group.title}
+  
+      if( group.attributes ) {
+        groups[group.title].attributes = {}
+        for( var a=0; a < group.attributes.length; a++ ) {
+          var attrib = group.attributes[a]
+          groups[group.title].attributes[attrib.key] = attrib
+        }
+      }
+    }
+    product.attributeGroups = groups
+  }
+  
+  return product
+}
 
 // Communicate
 function talk( cat, method, params, callback ) {
