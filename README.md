@@ -129,8 +129,9 @@ Get details information for one or more products.
 
 ```js
 bol.catalog.products( '9200000023292527', {includeattributes:true}, function( err, data ) {
-  var product = data.products[9]
-  console.log( products.title +' - '+ product.offerData.offers[0].price )
+  data.products.forEach( function( product ) {
+    console.log( products.title +' - '+ product.offerData.offers[0].price )
+  })
 })
 ```
 
