@@ -41,6 +41,8 @@ Methods
 Each method below takes a callback function like this: `function( err, [data] )`.
 In case of an error `err` is an instance of `Error` and `data` is not available.
 
+For readability error testing is not included in the following examples.
+See the [Usage](#Usage) section above for an example with proper error testing.
 
 
 Simple API access test.
@@ -49,13 +51,11 @@ utils.ping ( callback )
 
 ```js
 bol.utils.ping( function( err, data ) {
-  if( err ) { console.error(err) } else {
-    if( data.message === 'Hello world!!' ) {
-      console.log('pong')
-    } else {
-      console.error('ouch')
-    }
-   }
+  if( data.message === 'Hello world!!' ) {
+    console.log('pong')
+  } else {
+    console.log('ouch')
+  }
 
 
 account.sessions ( callback )
