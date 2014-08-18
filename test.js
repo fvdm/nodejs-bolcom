@@ -103,7 +103,6 @@ queue.push( function() {
 
 queue.push( function() {
   bol.catalog.products( '9200000023292527', function( err, data ) {
-  output(data)
     doTest( err, 'catalog.products', [
       ['item type', data.products[0] instanceof Object],
       ['item id', typeof data.products[0].id === 'string']
