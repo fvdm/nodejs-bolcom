@@ -129,6 +129,15 @@ queue.push( function() {
   })
 })
 
+queue.push( function() {
+  bol.catalog.recommendations( '9200000023292527', function( err, data ) {
+    doTest( err, 'catalog.recommendations', [
+      ['offers type', data instanceof Array],
+      ['item id', typeof data[0].id === 'string']
+    ])
+  })
+})
+
 // Start the tests
 queue[0]()
 

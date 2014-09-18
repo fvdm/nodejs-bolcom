@@ -76,6 +76,25 @@ app.catalog.offers = function( productId, props, callback ) {
 }
 
 
+app.catalog.recommendations = function( productId, props, callback ) {
+  if( typeof props === 'function' ) {
+    var callback = props
+    var props = {}
+  }
+  talk( 'catalog', 'recommendations/'+ productId, props, function( err, data ) {
+    if( !err && data.products ) {
+      data = data.products
+      if( data instanceof Array && data.length >= 1 ) {
+        for( var i=0; i < data.length; i++ ) {
+          data[i] = cleanProduct( data[i] )
+        }
+      }
+    }
+    callback( err, data )
+  })
+}
+
+
 app.utils.ping = function( callback ) {
   talk( 'utils', 'ping', callback )
 }

@@ -158,6 +158,26 @@ bol.catalog.offers( '9200000023292527', function( err, data ) {
 * [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4offers.html)
 
 
+catalog.recommendations ( productId, [props], callback )
+-----------------------
+
+* **productId** - Product ID to get catalog.recommendations for.
+* **props** - Optional arguments, see API documentation.
+
+Get available offers for a given product.
+
+```js
+bol.catalog.recommendations( '9200000023292527', function( err, data ) {
+  data.forEach( function( product ) {
+    console.log( product.title +' - '+ product.rating )
+  })
+})
+```
+
+* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.recommendations)
+* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4recommendations.html)
+
+
 Errors
 ------
 
