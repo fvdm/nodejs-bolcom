@@ -38,9 +38,10 @@ bol.catalog.search( {q:'node.js'}, function( err, data ) {
     console.log('Search failed')
     console.log(err)
   } else {
-    data.products.forEach( function( product ) {
-      console.log( product.title +' - '+ product.summary )
-    })
+    for( var p in data.products ) {
+        var product = data.products[p]
+        console.log( product.title +' - €'+ product.offerData.offers[0].price )
+    }
   }
 })
 ```
@@ -98,9 +99,10 @@ The result `data` is modified to remove a few xml-style annoyances.
 var bol = require('bolcom')('apikey')
 
 bol.catalog.search( {q:'node.js'}, function( err, data ) {
-  data.products.forEach( function( product ) {
+  for( var i in data.products ) {
+    var product = data.products[p]
     console.log( product.title +' - '+ product.summary )
-  })
+  }
 })
 ```
 
@@ -150,9 +152,10 @@ Get available offers for a given product.
 
 ```js
 bol.catalog.offers( '9200000023292527', function( err, data ) {
-  data.offers.forEach( function( offer ) {
+  for( var i in data.offers ) {
+    var offer = data.offers[i]
     console.log( offer.price +' - '+ offer.availabilityDescription )
-  })
+  }
 })
 ```
 
@@ -170,9 +173,10 @@ Get recommended products for a given product.
 
 ```js
 bol.catalog.recommendations( '9200000023292527', function( err, data ) {
-  data.forEach( function( product ) {
+  for( var i in data ) {
+    var product = data[i]
     console.log( product.title +' - '+ product.rating )
-  })
+  }
 })
 ```
 

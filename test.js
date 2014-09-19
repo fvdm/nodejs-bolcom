@@ -40,12 +40,13 @@ function doNext() {
 function doTest( err, label, tests ) {
 	if( !err ) {
 		var testErrors = []
-		tests.forEach( function( test ) {
+		for( var i=0; i < tests.length; i++ ) {
+		  var test = tests[i]
 			if( test[1] !== true ) {
 				testErrors.push(test[0])
 				errors++
 			}
-		})
+		}
 		
 		if( testErrors.length == 0 ) {
 			console.log( label +': \033[1mok\033[0m' )
