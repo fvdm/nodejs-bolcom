@@ -178,6 +178,29 @@ bol.catalog.recommendations( '9200000023292527', function( err, data ) {
 * [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4recommendations.html)
 
 
+catalog.relatedproducts ( productId, [props], callback )
+-----------------------
+
+* **productId** - Product ID to get related products for.
+* **props** - Optional arguments, see API documentation.
+
+Get related products for a given product.
+
+```js
+bol.catalog.relatedproducts( '9200000010839998', function( err, data ) {
+  if( data.BINDINGCODE && data.BINDINGCODE.productFamilyMembers ) {
+    for( var m in data.BINDINGCODE.productFamilyMembers ) {
+      var mem = data.BINDINGCODE.productFamilyMembers[m]
+      console.log( mem.label +' - '+ mem.productId )
+    }
+  }
+})
+```
+
+* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.relatedproducts)
+* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4relatedproducts.html)
+
+
 Errors
 ------
 

@@ -95,6 +95,34 @@ app.catalog.recommendations = function( productId, props, callback ) {
 }
 
 
+app.catalog.relatedproducts = function( productId, props, callback ) {
+  if( typeof props === 'function' ) {
+    var callback = props
+    var props = {}
+  }
+  talk( 'catalog', 'relatedproducts/'+ productId, props, function( err, data ) {
+    if( !err && data.productFamilies ) {
+      data = data.productFamilies
+      var tmp = {}
+      if( data instanceof Array && data.length >= 1 && data[0].key ) {
+        for( var i=0; i < data.length; i++ ) {
+          tmp[ data[i].key ] = data[i]
+          if( data[i].productFamilyMembers instanceof Array ) {
+            var tmp2 = {}
+            for( var m=0; m < data[i].productFamilyMembers.length; m++ ) {
+              tmp2[ data[i].productFamilyMembers[m].label ] = data[i].productFamilyMembers[m]
+            }
+            tmp[ data[i].key ].productFamilyMembers = tmp2
+          }
+        }
+        data = tmp
+      }
+    }
+    callback( err, data )
+  })
+}
+
+
 app.utils.ping = function( callback ) {
   talk( 'utils', 'ping', callback )
 }

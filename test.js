@@ -138,6 +138,17 @@ queue.push( function() {
   })
 })
 
+queue.push( function() {
+  bol.catalog.relatedproducts( '9200000010839998', function( err, data ) {
+    doTest( err, 'catalog.relatedproducts', [
+      ['type', data instanceof Object],
+      ['group type', data.BINDINGCODE instanceof Object],
+      ['items type', data.BINDINGCODE.productFamilyMembers instanceof Object],
+      ['productId', typeof data.BINDINGCODE.productFamilyMembers.Ebook.productId === 'string']
+    ])
+  })
+})
+
 // Start the tests
 queue[0]()
 
