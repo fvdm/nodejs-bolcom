@@ -136,6 +136,7 @@ bol.catalog.products( '9200000023292527', {includeattributes:true}, function( er
 })
 ```
 
+* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.products)
 * [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4products.html)
 
 
