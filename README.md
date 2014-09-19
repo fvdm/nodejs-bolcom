@@ -3,6 +3,8 @@ bolcom.js
 
 Unofficial module for node.js to access Bol.com Open API service.
 
+[![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-bolcom)
+
 
 Requirements
 ------------
