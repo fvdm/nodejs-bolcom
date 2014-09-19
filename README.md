@@ -161,10 +161,10 @@ bol.catalog.offers( '9200000023292527', function( err, data ) {
 catalog.recommendations ( productId, [props], callback )
 -----------------------
 
-* **productId** - Product ID to get catalog.recommendations for.
+* **productId** - Product ID to get recommendations for.
 * **props** - Optional arguments, see API documentation.
 
-Get available offers for a given product.
+Get recommended products for a given product.
 
 ```js
 bol.catalog.recommendations( '9200000023292527', function( err, data ) {
