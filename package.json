@@ -21,7 +21,7 @@
   "engines": {
     "node":                "*"
   },
-  "keywords":              ["bol.com", "bolcom", "openapi", "api", "unlicense"],
+  "keywords":              ["bol.com", "bolcom", "api", "unlicense"],
   "license": {
     "type":                "Public Domain",
     "url":                 "https://github.com/fvdm/nodejs-bolcom/raw/master/LICENSE"
