@@ -144,9 +144,11 @@ function cleanProduct( product ) {
   
   // images
   var pimgs = {}
-  for( var m=0; m < product.images.length; m++ ) {
-    var image = product.images[m]
-    pimgs[image.key] = image
+  if( product.images != null ) {
+    for( var m=0; m < product.images.length; m++ ) {
+      var image = product.images[m]
+      pimgs[image.key] = image
+    }
   }
   product.images = pimgs
   
