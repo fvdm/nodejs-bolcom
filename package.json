@@ -6,7 +6,7 @@
   },
   "name":                  "bolcom",
   "description":           "Module for node.js to access Bol.com Open API service",
-  "version":               "1.0.0",
+  "version":               "1.0.1",
   "repository": {
       "type":              "git",
       "url":               "git://github.com/fvdm/nodejs-bolcom.git"
