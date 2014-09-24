@@ -141,7 +141,7 @@ function cleanProduct( product ) {
     purls[url.key] = url
   }
   product.urls = purls
-  
+
   // images
   var pimgs = {}
   if( product.images != null ) {
@@ -151,7 +151,7 @@ function cleanProduct( product ) {
     }
   }
   product.images = pimgs
-  
+
   // includeattributes: true
   if( product.attributeGroups ) {
     var groups = {}
@@ -169,7 +169,7 @@ function cleanProduct( product ) {
     }
     product.attributeGroups = groups
   }
-  
+
   return product
 }
 
@@ -200,7 +200,7 @@ function talk( cat, method, params, callback ) {
 
   // build request
   params.format = 'json'
-  
+
   var options = {
     host: 'api.bol.com',
     path: '/'+ cat +'/v4/'+ method +'?'+ querystring.stringify(params),
@@ -234,7 +234,7 @@ function talk( cat, method, params, callback ) {
         error = new Error('invalid response')
         error.err = e
       }
-      
+
       if( error ) {
         error.code = response.statusCode
         error.headers = response.headers
@@ -266,7 +266,7 @@ function talk( cat, method, params, callback ) {
     error.err = err
     doCallback( error )
   })
-  
+
   // do it
   request.end()
 }
