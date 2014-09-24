@@ -135,40 +135,44 @@ app.account.sessions = function( callback ) {
 // Clean up product
 function cleanProduct( product ) {
   // urls
-  var purls = {}
-  for( var u=0; u < product.urls.length; u++ ) {
-    var url = product.urls[u]
-    purls[url.key] = url
-  }
-  product.urls = purls
+  try {
+    var purls = {}
+    for( var u=0; u < product.urls.length; u++ ) {
+      var url = product.urls[u]
+      purls[url.key] = url
+    }
+    product.urls = purls
+  } catch(e) {}
 
   // images
-  var pimgs = {}
-  if( product.images != null ) {
+  try {
+    var pimgs = {}
     for( var m=0; m < product.images.length; m++ ) {
       var image = product.images[m]
       pimgs[image.key] = image
     }
-  }
-  product.images = pimgs
+    product.images = pimgs
+  } catch(e) {}
 
   // includeattributes: true
-  if( product.attributeGroups ) {
-    var groups = {}
-    for( var g=0; g < product.attributeGroups.length; g++ ) {
-      var group = product.attributeGroups[g]
-      groups[group.title] = {title: group.title}
-  
-      if( group.attributes ) {
-        groups[group.title].attributes = {}
-        for( var a=0; a < group.attributes.length; a++ ) {
-          var attrib = group.attributes[a]
-          groups[group.title].attributes[attrib.key] = attrib
+  try {
+    if( product.attributeGroups ) {
+      var groups = {}
+      for( var g=0; g < product.attributeGroups.length; g++ ) {
+        var group = product.attributeGroups[g]
+        groups[group.title] = {title: group.title}
+
+        if( group.attributes ) {
+          groups[group.title].attributes = {}
+          for( var a=0; a < group.attributes.length; a++ ) {
+            var attrib = group.attributes[a]
+            groups[group.title].attributes[attrib.key] = attrib
+          }
         }
       }
+      product.attributeGroups = groups
     }
-    product.attributeGroups = groups
-  }
+  } catch(e) {}
 
   return product
 }
