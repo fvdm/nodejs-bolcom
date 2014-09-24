@@ -114,7 +114,7 @@ queue.push( function() {
 queue.push( function() {
   bol.catalog.products( '9200000009223738', function( err, data ) {
     doTest( err, 'incomplete product', [
-      ['item images', !(data.products[0].images instanceof Array)],
+      ['item images', data.products[0].images === undefined],
       ['item id', typeof data.products[0].id === 'string']
     ])
   })
