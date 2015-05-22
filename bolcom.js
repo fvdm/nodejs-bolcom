@@ -10,273 +10,277 @@ Service name:     Bol.com
 Service docs:     https://developers.bol.com
 */
 
-var https = require('https')
-var querystring = require('querystring')
-var api_key = null
-var api_timeout = 5000
+var https = require ('https');
+var querystring = require ('querystring');
+var api_key = null;
+var api_timeout = 5000;
 
-var app = {
+app = {
   catalog: {},
   utils: {},
   account: {}
-}
+};
 
 
-app.catalog.search = function( props, callback ) {
-  talk( 'catalog', 'search', props, function( err, data ) {
-    if( !err && data.products instanceof Array ) {
-      for( var p=0; p < data.products.length; p++ ) {
-        data.products[p] = cleanProduct( data.products[p] )
+app.catalog.search = function (props, callback) {
+  talk ('catalog', 'search', props, function (err, data) {
+    if (!err && data.products instanceof Array) {
+      for (var i = 0; i < data.products.length; i++) {
+        data.products [i] = cleanProduct (data.products [i]);
       }
     }
-    callback( err, data )
-  })
-}
+    callback (err, data);
+  });
+};
 
 
-app.catalog.lists = function( props, callback ) {
-  talk( 'catalog', 'lists', props, function( err, data ) {
-    if( !err && data.products instanceof Array ) {
-      for( var p=0; p < data.products.length; p++ ) {
-        data.products[p] = cleanProduct( data.products[p] )
+app.catalog.lists = function (props, callback) {
+  talk ('catalog', 'lists', props, function (err, data) {
+    if (!err && data.products instanceof Array) {
+      for (var i = 0; i < data.products.length; i++) {
+        data.products [i] = cleanProduct (data.products [i]);
       }
     }
-    callback( err, data )
-  })
-}
+    callback (err, data);
+  });
+};
 
 
-app.catalog.products = function( productId, props, callback ) {
-  if( typeof props === 'function' ) {
-    var callback = props
-    var props = {}
+app.catalog.products = function (productId, props, callback) {
+  if (typeof props === 'function') {
+    var callback = props;
+    var props = {};
   }
-  talk( 'catalog', 'products/'+ productId, props, function( err, data ) {
-    if( !err && data.products instanceof Array ) {
-      for( var i=0; i < data.products.length; i++ ) {
-        data.products[i] = cleanProduct( data.products[i] )
+  talk ('catalog', 'products/'+ productId, props, function (err, data) {
+    if (!err && data.products instanceof Array) {
+      for (var i = 0; i < data.products.length; i++) {
+        data.products [i] = cleanProduct (data.products [i]);
       }
     }
-    callback( err, data )
-  })
-}
+    callback (err, data);
+  });
+};
 
 
-app.catalog.offers = function( productId, props, callback ) {
-  if( typeof props === 'function' ) {
-    var callback = props
-    var props = {}
+app.catalog.offers = function (productId, props, callback) {
+  if (typeof props === 'function') {
+    var callback = props;
+    var props = {};
   }
-  talk( 'catalog', 'offers/'+ productId, props, function( err, data ) {
-    if( !err && data.offerData ) {
-      data = data.offerData
+  talk ('catalog', 'offers/'+ productId, props, function (err, data) {
+    if (!err && data.offerData) {
+      data = data.offerData;
     }
-    callback( err, data )
-  })
-}
+    callback (err, data);
+  });
+};
 
 
-app.catalog.recommendations = function( productId, props, callback ) {
-  if( typeof props === 'function' ) {
-    var callback = props
-    var props = {}
+app.catalog.recommendations = function (productId, props, callback) {
+  if (typeof props === 'function') {
+    var callback = props;
+    var props = {};
   }
-  talk( 'catalog', 'recommendations/'+ productId, props, function( err, data ) {
-    if( !err && data.products ) {
-      data = data.products
-      if( data instanceof Array && data.length >= 1 ) {
-        for( var i=0; i < data.length; i++ ) {
-          data[i] = cleanProduct( data[i] )
+  talk ('catalog', 'recommendations/'+ productId, props, function (err, data) {
+    if (!err && data.products) {
+      data = data.products;
+      if (data instanceof Array && data.length >= 1) {
+        for (var i = 0; i < data.length; i++) {
+          data [i] = cleanProduct (data [i]);
         }
       }
     }
-    callback( err, data )
-  })
-}
+    callback (err, data);
+  });
+};
 
 
-app.catalog.relatedproducts = function( productId, props, callback ) {
-  if( typeof props === 'function' ) {
-    var callback = props
-    var props = {}
+app.catalog.relatedproducts = function (productId, props, callback) {
+  if (typeof props === 'function') {
+    var callback = props;
+    var props = {};
   }
-  talk( 'catalog', 'relatedproducts/'+ productId, props, function( err, data ) {
-    if( !err && data.productFamilies ) {
-      data = data.productFamilies
-      var tmp = {}
-      if( data instanceof Array && data.length >= 1 && data[0].key ) {
-        for( var i=0; i < data.length; i++ ) {
-          tmp[ data[i].key ] = data[i]
-          if( data[i].productFamilyMembers instanceof Array ) {
-            var tmp2 = {}
-            for( var m=0; m < data[i].productFamilyMembers.length; m++ ) {
-              tmp2[ data[i].productFamilyMembers[m].label ] = data[i].productFamilyMembers[m]
+  talk ('catalog', 'relatedproducts/'+ productId, props, function (err, data) {
+    if (!err && data.productFamilies) {
+      data = data.productFamilies;
+      var tmp = {};
+      if (data instanceof Array && data.length >= 1 && data [0] .key) {
+        for (var i = 0; i < data.length; i++) {
+          tmp [data [i] .key] = data [i];
+          if (data [i] .productFamilyMembers instanceof Array) {
+            var tmp2 = {};
+            for (var m = 0; m < data [i] .productFamilyMembers.length; m++) {
+              tmp2 [data [i] .productFamilyMembers [m] .label] = data [i] .productFamilyMembers [m];
             }
-            tmp[ data[i].key ].productFamilyMembers = tmp2
+            tmp [data [i] .key] .productFamilyMembers = tmp2;
           }
         }
-        data = tmp
+        data = tmp;
       }
     }
-    callback( err, data )
-  })
-}
+    callback (err, data);
+  });
+};
 
 
-app.utils.ping = function( callback ) {
-  talk( 'utils', 'ping', callback )
-}
+app.utils.ping = function (callback) {
+  talk ('utils', 'ping', callback);
+};
 
-app.account.sessions = function( callback ) {
-  talk( 'accounts', 'sessions', callback )
-}
+app.account.sessions = function (callback) {
+  talk ('accounts', 'sessions', callback);
+};
 
 
 // Clean up product
-function cleanProduct( product ) {
+function cleanProduct (product) {
   // urls
   try {
-    var purls = {}
-    for( var u=0; u < product.urls.length; u++ ) {
-      var url = product.urls[u]
-      purls[url.key] = url
+    var purls = {};
+    for (var i = 0; u < product.urls.length; u++) {
+      var url = product.urls [i];
+      purls [url.key] = url;
     }
-    product.urls = purls
-  } catch(e) {}
+    product.urls = purls;
+  } catch (e) {}
 
   // images
   try {
-    var pimgs = {}
-    for( var m=0; m < product.images.length; m++ ) {
-      var image = product.images[m]
-      pimgs[image.key] = image
+    var pimgs = {};
+    for (var i = 0; m < product.images.length; m++) {
+      var image = product.images [i];
+      pimgs [image.key] = image;
     }
-    product.images = pimgs
-  } catch(e) {}
+    product.images = pimgs;
+  } catch (e) {}
 
   // includeattributes: true
   try {
-    if( product.attributeGroups ) {
-      var groups = {}
-      for( var g=0; g < product.attributeGroups.length; g++ ) {
-        var group = product.attributeGroups[g]
-        groups[group.title] = {title: group.title}
+    if (product.attributeGroups) {
+      var groups = {};
+      for (var i = 0; g < product.attributeGroups.length; g++) {
+        var group = product.attributeGroups [i];
+        groups [group.title] = {title: group.title};
 
-        if( group.attributes ) {
-          groups[group.title].attributes = {}
-          for( var a=0; a < group.attributes.length; a++ ) {
-            var attrib = group.attributes[a]
-            groups[group.title].attributes[attrib.key] = attrib
+        if (group.attributes) {
+          groups [group.title] .attributes = {};
+          for (var a = 0; a < group.attributes.length; a++) {
+            var attrib = group.attributes [a];
+            groups [group.title] .attributes [attrib.key] = attrib;
           }
         }
       }
-      product.attributeGroups = groups
+      product.attributeGroups = groups;
     }
-  } catch(e) {}
+  } catch (e) {}
 
   return product
 }
 
 // Communicate
-function talk( cat, method, params, callback ) {
-  if( typeof params === 'function' ) {
-    var callback = params
-    var params = {}
+function talk (cat, method, params, callback) {
+  if (typeof params === 'function') {
+    var callback = params;
+    var params = {};
   }
-  params = params instanceof Object ? params : {}
-
-  // check api key
-  if( typeof api_key === 'string' && api_key.length > 0 ) {
-    params.apikey = api_key
-  } else {
-    doCallback( new Error('missing apikey') )
-    return
-  }
+  params = params instanceof Object ? params : {};
 
   // prevent multiple callbacks
-  var complete = false
-  function doCallback( err, data ) {
-    if( !complete ) {
-      complete = true
-      callback( err, data || null )
+  var complete = false;
+  function doCallback (err, data) {
+    if (!complete) {
+      complete = true;
+      callback (err, data || null);
     }
   }
 
+  // check api key
+  if (typeof api_key === 'string' && api_key.length > 0) {
+    params.apikey = api_key;
+  } else {
+    return doCallback (new Error ('missing apikey'));
+  }
+
   // build request
-  params.format = 'json'
+  params.format = 'json';
 
   var options = {
     host: 'api.bol.com',
-    path: '/'+ cat +'/v4/'+ method +'?'+ querystring.stringify(params),
+    path: '/'+ cat +'/v4/'+ method +'?'+ querystring.stringify (params),
     method: 'GET',
     headers: {
       'User-Agent': 'bolcom.js (https://github.com/fvdm/nodejs-bolcom)'
     }
-  }
+  };
 
-  var request = https.request(options)
+  var request = https.request (options);
 
   // process response
-  request.on( 'response', function(response) {
-    var data = ''
+  request.on ('response', function (response) {
+    var data = [];
+    var size = 0;
 
-    response.on( 'data', function(ch) { data += ch })
+    response.on ('data', function (ch) {
+      data.push (ch);
+      size += ch.length;
+    });
 
-    response.on( 'close', function() {
-      doCallback(new Error('request dropped'))
-    })
+    response.on ('close', function () {
+      doCallback (new Error ('request dropped'));
+    });
 
-    response.on( 'end', function() {
-      var error = null
-      if( response.statusCode != 200 ) {
-        error = new Error('API error')
+    response.on ('end', function () {
+      var error = null;
+      if (response.statusCode != 200) {
+        error = new Error ('API error');
       }
+
+      data = Buffer.concat (data, size) .toString () .trim ();
 
       try {
-        data = JSON.parse( data )
-      } catch(e) {
-        error = new Error('invalid response')
-        error.err = e
+        data = JSON.parse (data);
+      } catch (e) {
+        error = new Error ('invalid response');
+        error.err = e;
       }
 
-      if( error ) {
-        error.code = response.statusCode
-        error.headers = response.headers
-        error.api = data instanceof Object ? data : {}
-        error.body = data instanceof Object ? null : data
+      if (error) {
+        error.code = response.statusCode;
+        error.headers = response.headers;
+        error.api = data instanceof Object ? data : {};
+        error.body = data instanceof Object ? null : data;
       }
 
-      doCallback( error, data )
-    })
-  })
+      doCallback (error, data);
+    });
+  });
 
   // timeout
-  request.on( 'socket', function( socket ) {
-    if( api_timeout ) {
-      socket.setTimeout( api_timeout )
-      socket.on( 'timeout', function() {
-        request.abort()
-      })
+  request.on ('socket', function (socket) {
+    if (api_timeout) {
+      socket.setTimeout (parseInt (api_timeout));
+      socket.on ('timeout', function () {
+        request.abort ();
+      });
     }
-  })
+  });
 
   // error
-  request.on( 'error', function( err ) {
-    if( err == 'ECONNRESET' ) {
-      var error = new Error('request timeout')
-    } else {
-      var error = new Error('request failed')
+  request.on ('error', function (err) {
+    var error = new Error ('request failed');
+    if (err === 'ECONNRESET') {
+      error = new Error ('request timeout');
     }
-    error.err = err
-    doCallback( error )
+    error.err = err;
+    doCallback (error);
   })
 
   // do it
-  request.end()
+  request.end ();
 }
 
-module.exports = function(apikey, timeout) {
-  api_key = apikey
-  api_timeout = timeout || api_timeout
-  return app
-}
+module.exports = function (apikey, timeout) {
+  api_key = apikey;
+  api_timeout = timeout || api_timeout;
+  return app;
+};

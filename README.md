@@ -1,9 +1,29 @@
-bolcom.js
-=========
+bolcom
+======
 
-Unofficial module for node.js to access Bol.com Open API service.
+Access Bol.com Open API service with node.js
 
 [![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-bolcom)
+
+
+Usage
+-----
+
+```js
+var bol = require ('bolcom') ('apikey');
+
+bol.catalog.search ({q: 'node.js'}, function (err, data) {
+  if (err) {
+    console.log ('Search failed');
+    console.log (err);
+  } else {
+    for (var p in data.products) {
+      var product = data.products [p]
+      console.log (product.title +' - €'+ product.offerData.offers [0] .price);
+    }
+  }
+});
+```
 
 
 Requirements
@@ -16,43 +36,13 @@ Requirements
 Installation
 ------------
 
-Latest stable release:
-
-```bash
-npm install bolcom
-```
-
-Most recent code, can be unstable:
-
-```bash
-npm install git+https://github.com/fvdm/nodejs-bolcom
-```
-
-
-Usage
------
-
-```js
-var bol = require('bolcom')('apikey')
-
-bol.catalog.search( {q:'node.js'}, function( err, data ) {
-  if( err ) {
-    console.log('Search failed')
-    console.log(err)
-  } else {
-    for( var p in data.products ) {
-        var product = data.products[p]
-        console.log( product.title +' - €'+ product.offerData.offers[0].price )
-    }
-  }
-})
-```
+`npm install bolcom`
 
 
 Methods
 -------
 
-Each method below takes a callback function like this: `function( err, [data] )`.
+Each method below takes a callback function like this: `function (err, [data])`.
 In case of an error `err` is an instance of `Error` and `data` is not available.
 
 For readability error testing is not included in the following examples.
@@ -66,13 +56,13 @@ Simple API access test. The result `data` should be an *object* with only one
 property named `message` with the exact value `Hello world!!`.
 
 ```js
-bol.utils.ping( function( err, data ) {
-  if( data.message === 'Hello world!!' ) {
-    console.log('pong')
+bol.utils.ping (function (err, data) {
+  if (data.message === 'Hello world!!') {
+    console.log ('pong');
   } else {
-    console.log('ouch')
+    console.log ('ouch');
   }
-})
+});
 ```
 
 
@@ -82,8 +72,8 @@ account.sessions ( callback )
 Request a new anonymous session ID.
 
 ```js
-bol.acocunt.sessions( function( err, data ) {
-  console.log( data.sessionId )
+bol.acocunt.sessions (function (err, data) {
+  console.log (data.sessionId);
 })
 ```
 
@@ -91,21 +81,19 @@ bol.acocunt.sessions( function( err, data ) {
 catalog.search ( props, callback )
 --------------
 
-* **props** - see API documentation
+* `props` - see API documentation
 
 Search products in the catalog.
 
 The result `data` is modified to remove a few xml-style annoyances.
 
 ```js
-var bol = require('bolcom')('apikey')
-
-bol.catalog.search( {q:'node.js'}, function( err, data ) {
-  for( var i in data.products ) {
-    var product = data.products[p]
-    console.log( product.title +' - '+ product.summary )
+bol.catalog.search ({q: 'node.js'}, function (err, data) {
+  for (var i in data.products) {
+    var product = data.products [p];
+    console.log (product.title +' - '+ product.summary);
   }
-})
+});
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.search)
@@ -115,7 +103,7 @@ bol.catalog.search( {q:'node.js'}, function( err, data ) {
 catalog.lists ( [props], callback )
 -------------
 
-* **props** - see API documentation
+* `props` - see API documentation
 
 Product lists, based on list type and category.
 
@@ -126,8 +114,8 @@ Product lists, based on list type and category.
 catalog.products ( productId, [props], callback )
 ----------------
 
-* **productId** - Comma-seperated IDs for the products to retrieve.
-* **props** - Optional arguments, see API documentation.
+* `productId` - Comma-seperated IDs for the products to retrieve.
+* `props` - Optional arguments, see API documentation.
 
 Get details information for one or more products.
 
@@ -147,8 +135,8 @@ bol.catalog.products( '9200000023292527', {includeattributes:true}, function( er
 catalog.offers ( productId, [props], callback )
 --------------
 
-* **productId** - Product ID to get offers for.
-* **props** - Optional arguments, see API documentation.
+* `productId` - Product ID to get offers for.
+* `props` - Optional arguments, see API documentation.
 
 Get available offers for a given product.
 
@@ -168,8 +156,8 @@ bol.catalog.offers( '9200000023292527', function( err, data ) {
 catalog.recommendations ( productId, [props], callback )
 -----------------------
 
-* **productId** - Product ID to get recommendations for.
-* **props** - Optional arguments, see API documentation.
+* `productId` - Product ID to get recommendations for.
+* `props` - Optional arguments, see API documentation.
 
 Get recommended products for a given product.
 
@@ -189,20 +177,20 @@ bol.catalog.recommendations( '9200000023292527', function( err, data ) {
 catalog.relatedproducts ( productId, [props], callback )
 -----------------------
 
-* **productId** - Product ID to get related products for.
-* **props** - Optional arguments, see API documentation.
+* `productId` - Product ID to get related products for.
+* `props` - Optional arguments, see API documentation.
 
 Get related products for a given product.
 
 ```js
-bol.catalog.relatedproducts( '9200000010839998', function( err, data ) {
-  if( data.BINDINGCODE && data.BINDINGCODE.productFamilyMembers ) {
-    for( var m in data.BINDINGCODE.productFamilyMembers ) {
-      var mem = data.BINDINGCODE.productFamilyMembers[m]
-      console.log( mem.label +' - '+ mem.productId )
+bol.catalog.relatedproducts ('9200000010839998', function (err, data) {
+  if (data.BINDINGCODE && data.BINDINGCODE.productFamilyMembers) {
+    for (var m in data.BINDINGCODE.productFamilyMembers) {
+      var mem = data.BINDINGCODE.productFamilyMembers [m];
+      console.log (mem.label +' - '+ mem.productId);
     }
   }
-})
+});
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.relatedproducts)
@@ -212,18 +200,48 @@ bol.catalog.relatedproducts( '9200000010839998', function( err, data ) {
 Errors
 ------
 
-```
-missing apikey    Credentials are not set
-api error         The API returned an error, see err.code and err.api
-request failed    The request can not be build
-request timeout   The request took too long to complete
-request dropped   The request was cut off too early
-invalid response  The API response cannot be processed
+message          | description
+-----------------|--------------------------------------------------------
+missing apikey   | Credentials are not set
+api error        | The API returned an error, see `err.code` and `err.api`
+request failed   | The request can not be build
+request timeout  | The request took too long to complete
+request dropped  | The request was cut off too early
+invalid response | The API response cannot be processed
+
+
+Development
+-----------
+
+To only use the most recent (pre-release) code:
+
+`npm install fvdm/nodejs-bolcom#develop`
+
+Or to work on the code:
+
+`git clone https://github.com/fvdm/nodejs-bolcom bolcom`
+
+
+#### Pull Request guidelines:
+
+* Only work with the `develop` branch to be compatible with the next release.
+* [Test](#testing) your changes.
+* Use the same code and documentation style.
+* Short but descriptive commit titles.
+* One commit per tackled problem.
+
+
+#### Testing
+
+```sh
+cd bolcom
+export BOLCOM_APIKEY=Your_key
+npm test
 ```
 
 
-License
----------
+Unlicense
+-------
 
 This is free and unencumbered software released into the public domain.
 
@@ -249,3 +267,11 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org/>
+
+
+Author
+------
+
+Franklin van de Meent
+| [Website](https://frankl.in)
+| [Github](https://github.com/fvdm)
