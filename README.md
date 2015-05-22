@@ -120,12 +120,12 @@ catalog.products ( productId, [props], callback )
 Get details information for one or more products.
 
 ```js
-bol.catalog.products( '9200000023292527', {includeattributes:true}, function( err, data ) {
-  for( var p in data.products ) {
-    var product = data.products[p]
-    console.log( product.title +' - €'+ product.offerData.offers[0].price )
+bol.catalog.products ('9200000023292527', {includeattributes: true}, function (err, data) {
+  for (var p in data.products) {
+    var product = data.products [p];
+    console.log (product.title +' - €'+ product.offerData.offers [0] .price);
   }
-})
+});
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.products)
@@ -141,12 +141,12 @@ catalog.offers ( productId, [props], callback )
 Get available offers for a given product.
 
 ```js
-bol.catalog.offers( '9200000023292527', function( err, data ) {
-  for( var i in data.offers ) {
-    var offer = data.offers[i]
-    console.log( offer.price +' - '+ offer.availabilityDescription )
+bol.catalog.offers ('9200000023292527', function (err, data) {
+  for (var i in data.offers) {
+    var offer = data.offers [i];
+    console.log (offer.price +' - '+ offer.availabilityDescription);
   }
-})
+});
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.offers)
@@ -162,12 +162,12 @@ catalog.recommendations ( productId, [props], callback )
 Get recommended products for a given product.
 
 ```js
-bol.catalog.recommendations( '9200000023292527', function( err, data ) {
+bol.catalog.recommendations ('9200000023292527', function (err, data) {
   for( var i in data ) {
-    var product = data[i]
-    console.log( product.title +' - '+ product.rating )
+    var product = data [i];
+    console.log (product.title +' - '+ product.rating);
   }
-})
+});
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.recommendations)
