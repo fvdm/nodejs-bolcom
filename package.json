@@ -5,7 +5,7 @@
     "url":                "https://frankl.in"
   },
   "name":                  "bolcom",
-  "description":           "Module for node.js to access Bol.com Open API service",
+  "description":           "Access Bol.com Open API service",
   "version":               "1.0.1",
   "repository": {
       "type":              "git",
