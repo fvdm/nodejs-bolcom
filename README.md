@@ -229,6 +229,7 @@ Or to work on the code:
 * Use the same code and documentation style.
 * Short but descriptive commit titles.
 * One commit per tackled problem.
+* Code is released without copyright ([Unlicense](#Unlicense))
 
 
 #### Testing
