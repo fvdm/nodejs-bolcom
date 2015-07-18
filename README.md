@@ -205,8 +205,6 @@ message          | description
 missing apikey   | Credentials are not set
 api error        | The API returned an error, see `err.code` and `err.api`
 request failed   | The request can not be build
-request timeout  | The request took too long to complete
-request dropped  | The request was cut off too early
 invalid response | The API response cannot be processed
 
 
