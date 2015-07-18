@@ -10,8 +10,7 @@ Service name:     Bol.com
 Service docs:     https://developers.bol.com
 */
 
-var https = require ('https');
-var querystring = require ('querystring');
+var http = require ('httpreq');
 var api_key = null;
 var api_timeout = 5000;
 
@@ -177,6 +176,7 @@ function cleanProduct (product) {
   return product
 }
 
+
 // Communicate
 function talk (cat, method, params, callback) {
   if (typeof params === 'function') {
@@ -185,98 +185,57 @@ function talk (cat, method, params, callback) {
   }
   params = params instanceof Object ? params : {};
 
-  // prevent multiple callbacks
-  var complete = false;
-  function doCallback (err, data) {
-    if (!complete) {
-      complete = true;
-      callback (err, data || null);
-    }
-  }
-
   // check api key
   if (typeof api_key === 'string' && api_key.length > 0) {
     params.apikey = api_key;
   } else {
-    return doCallback (new Error ('missing apikey'));
+    callback (new Error ('missing apikey'));
+    return;
   }
 
   // build request
   params.format = 'json';
 
+  var url = 'https://api.bol.com/'+ cat +'/v4/'+ method;
   var options = {
-    host: 'api.bol.com',
-    path: '/'+ cat +'/v4/'+ method +'?'+ querystring.stringify (params),
-    method: 'GET',
+    parameters: params,
     headers: {
-      'User-Agent': 'bolcom.js (https://github.com/fvdm/nodejs-bolcom)'
+      'User-Agent': 'npmjs.com/package/bolcom'
     }
   };
 
-  var request = https.request (options);
-
   // process response
-  request.on ('response', function (response) {
-    var data = [];
-    var size = 0;
+  http.get (url, options, function (err, res) {
+    var data = res && res.body || null;
+    var error = null;
 
-    response.on ('data', function (ch) {
-      data.push (ch);
-      size += ch.length;
-    });
-
-    response.on ('close', function () {
-      doCallback (new Error ('request dropped'));
-    });
-
-    response.on ('end', function () {
-      var error = null;
-      if (response.statusCode != 200) {
-        error = new Error ('API error');
-      }
-
-      data = Buffer.concat (data, size) .toString () .trim ();
-
-      try {
-        data = JSON.parse (data);
-      } catch (e) {
-        error = new Error ('invalid response');
-        error.err = e;
-      }
-
-      if (error) {
-        error.code = response.statusCode;
-        error.headers = response.headers;
-        error.api = data instanceof Object ? data : {};
-        error.body = data instanceof Object ? null : data;
-      }
-
-      doCallback (error, data);
-    });
-  });
-
-  // timeout
-  request.on ('socket', function (socket) {
-    if (api_timeout) {
-      socket.setTimeout (parseInt (api_timeout));
-      socket.on ('timeout', function () {
-        request.abort ();
-      });
+    if (err) {
+      error = new Error ('request failed');
+      error.err = err;
+      callback (error);
+      return;
     }
-  });
 
-  // error
-  request.on ('error', function (err) {
-    var error = new Error ('request failed');
-    if (err === 'ECONNRESET') {
-      error = new Error ('request timeout');
+    if (res.statusCode !== 200) {
+      error = new Error ('API error');
     }
-    error.err = err;
-    doCallback (error);
-  })
 
-  // do it
-  request.end ();
+    try {
+      data = JSON.parse (data);
+    } catch (e) {
+      error = new Error ('invalid response');
+      error.err = e;
+    }
+
+    if (error) {
+      error.code = res && res.statusCode || null;
+      error.headers = res && res.headers || null;
+      error.api = data instanceof Object ? data : {};
+      error.body = data instanceof Object ? null : data;
+    }
+
+    callback (error, data);
+  });
 }
 
 module.exports = function (apikey, timeout) {
