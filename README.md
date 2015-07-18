@@ -3,7 +3,7 @@ bolcom
 
 Access Bol.com Open API service with node.js
 
-[![Circle CI](https://circleci.com/gh/fvdm/nodejs-bolcom/tree/master.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-bolcom/tree/master)
+[![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-bolcom)
 
 
 Usage
@@ -211,7 +211,9 @@ invalid response | The API response cannot be processed
 Development
 -----------
 
-[![Circle CI](https://circleci.com/gh/fvdm/nodejs-bolcom/tree/develop.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-bolcom/tree/develop)
+* Travis CI [![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=develop)](https://travis-ci.org/fvdm/nodejs-bolcom)
+* Circle CI [![Circle CI](https://circleci.com/gh/fvdm/nodejs-bolcom/tree/develop.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-bolcom/tree/develop)
+
 
 To only use the most recent (pre-release) code:
 
