@@ -1,4 +1,3 @@
-var util = require ('util');
 /*
 Name:           bolcom - test.js
 Description:    Module for node.js to access Bol.com Open API service
@@ -43,8 +42,8 @@ var next = 0;
 
 function doNext () {
   next++;
-  if (queue[next]) {
-    queue[next] ();
+  if (queue [next]) {
+    queue [next] ();
   }
 }
 
@@ -53,25 +52,25 @@ function doNext () {
 // ])
 function doTest (err, label, tests) {
   if (err instanceof Error) {
-    console.error (label +': \033[1m\033[31mERROR\033[0m\n');
-    console.error (util.inspect (err, {depth: 10, colors: true}));
+    console.error ('\033[1m\033[31mERROR\033[0m - '+ label +'\n');
+    console.dir (err, { depth: null, colors: true });
     console.log ();
     console.error (err.stack);
     console.log ();
     errors++;
   } else {
     var testErrors = [];
-    tests.forEach (function (test) {
-      if (test[1] !== true) {
-        testErrors.push (test[0]);
+    for (var i = 0; i < tests.length; i++) {
+      if (tests [i] [1] !== true) {
+        testErrors.push (tests [i] [0]);
         errors++;
       }
-    });
+    }
 
-    if (testErrors.length === 0) {
-      console.log (label +': \033[1m\033[32mok\033[0m');
+    if(testErrors.length === 0) {
+      console.log ('\033[1m\033[32mgood\033[0m - '+ label);
     } else {
-      console.error (label +': \033[1m\033[31mfailed\033[0m ('+ testErrors.join (', ') +')');
+      console.error ('\033[1m\033[31mFAIL\033[0m - '+ label +' ('+ testErrors.join (', ') +')');
     }
   }
 
@@ -82,16 +81,15 @@ function doTest (err, label, tests) {
 // API ACCESS
 queue.push (function () {
   bol.utils.ping (function (err, data) {
-		if (err) {
-			console.log ('utils.ping: failed  ('+ err.message +')');
-			console.log ();
-			console.log (err.stack);
-			errors++;
-			process.exit (1);
-		} else {
-			console.log ('utils.ping: \033[1m\033[32mok\033[0m');
-			doNext ();
-		}
+    if (err) {
+      console.log ('\033[1m\033[31mFAIL\033[0m - API access ('+ err.message +')');
+      console.log (err.stack);
+      errors++;
+      process.exit (1);
+    } else {
+      console.log ('\033[1m\033[32mgood\033[0m - API access');
+      doNext ();
+    }
   });
 });
 
