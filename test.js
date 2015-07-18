@@ -1,4 +1,13 @@
 var util = require ('util');
+/*
+Name:           bolcom - test.js
+Description:    Module for node.js to access Bol.com Open API service
+Author:         Franklin van de Meent (https://frankl.in)
+Source & docs:  https://github.com/fvdm/nodejs-bolcom
+Feedback:       https://github.com/fvdm/nodejs-bolcom/issues
+License:        Unlicense (Public Domain, see LICENSE file)
+                (https://github.com/fvdm/nodejs-bolcom/raw/develop/LICENSE)
+*/
 
 // Setup
 // set env BOLCOM_APIKEY  (Travis CI)
@@ -166,7 +175,3 @@ queue.push (function () {
 
 // Start the tests
 queue [0] ();
-
-function output (err, data) {
-  console.log (require ('util') .inspect (err || data, {depth: 10, colors: true}));
-}
