@@ -199,6 +199,7 @@ function talk (cat, method, params, callback) {
   var url = 'https://api.bol.com/'+ cat +'/v4/'+ method;
   var options = {
     parameters: params,
+    timeout: parseInt (api_timeout, 10),
     headers: {
       'User-Agent': 'npmjs.com/package/bolcom'
     }
