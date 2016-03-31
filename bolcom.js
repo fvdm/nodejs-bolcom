@@ -431,6 +431,14 @@ function methodCatalogRelatedProducts (productId, props, callback) {
 }
 
 
+/**
+ * Method: account.wishlists
+ *
+ * @callback callback
+ * @param callback {function} - `function (err, data) {}`
+ * @returns {void}
+ */
+
 function methodAccountWishlists (callback) {
   talk ('accounts', 'wishlists', callback);
 }
