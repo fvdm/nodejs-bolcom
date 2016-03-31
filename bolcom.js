@@ -425,6 +425,8 @@ function methodCatalogRelatedProducts (productId, props, callback) {
 }
 
 
+function methodAccountWishlists (callback) {
+  talk ('accounts', 'wishlists', callback);
 }
 
 
@@ -453,7 +455,8 @@ module.exports = function (apikey, timeout) {
       ping: methodUtilsPing
     },
     account: {
-      sessions: methodAccountSessions
+      sessions: methodAccountSessions,
+      wishlists: methodAccountWishlists
     }
   };
 };
