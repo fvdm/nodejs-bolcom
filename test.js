@@ -13,10 +13,10 @@ var app = require ('./');
 
 // Setup
 // set env BOLCOM_APIKEY  (Travis CI)
-var bol = app (
-  process.env.BOLCOM_APIKEY || null,
-  process.env.BOLCOM_TIMEOUT || null
-);
+var apikey = process.env.BOLCOM_APIKEY || null;
+var timeout = process.env.BOLCOM_TIMEOUT || null;
+
+var bol = app (apikey, timeout);
 
 
 // API ACCESS
