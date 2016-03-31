@@ -208,41 +208,6 @@ request failed   | The request can not be build
 invalid response | The API response cannot be processed
 
 
-Development
------------
-
-* Travis CI [![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=develop)](https://travis-ci.org/fvdm/nodejs-bolcom)
-* Circle CI [![Circle CI](https://circleci.com/gh/fvdm/nodejs-bolcom/tree/develop.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-bolcom/tree/develop)
-
-
-To only use the most recent (pre-release) code:
-
-`npm install fvdm/nodejs-bolcom#develop`
-
-Or to work on the code:
-
-`git clone https://github.com/fvdm/nodejs-bolcom bolcom`
-
-
-#### Pull Request guidelines:
-
-* Only work with the `develop` branch to be compatible with the next release.
-* [Test](#testing) your changes.
-* Use the same code and documentation style.
-* Short but descriptive commit titles.
-* One commit per tackled problem.
-* Code is released without copyright ([Unlicense](#Unlicense))
-
-
-#### Testing
-
-```sh
-cd bolcom
-export BOLCOM_APIKEY=Your_key
-npm test
-```
-
-
 Unlicense
 ---------
 
