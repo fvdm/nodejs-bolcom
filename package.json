@@ -16,7 +16,7 @@
   },
   "main": "bolcom.js",
   "dependencies": {
-    "httpreq": "0.4.x"
+    "httpreq": "^0.4.16"
   },
   "devDependencies": {},
   "optionalDependencies": {},
@@ -32,4 +32,5 @@
   "license": "Unlicense",
   "scripts": {
     "test": "node test.js"
+  }
 }
