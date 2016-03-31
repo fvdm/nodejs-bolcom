@@ -15,6 +15,9 @@
     "url": "https://github.com/fvdm/nodejs-bolcom/issues"
   },
   "main": "bolcom.js",
+  "files": [
+    "bolcom.js"
+  ],
   "dependencies": {
     "httpreq": "^0.4.16"
   },
