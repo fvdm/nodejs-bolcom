@@ -14,6 +14,7 @@ var http = require ('httpreq');
 
 var settings = {
   apikey: null,
+  sessionId: null,
   timeout: 5000
 };
 
@@ -169,6 +170,11 @@ function talk (cat, method, params, callback) {
   if (!settings.apikey) {
     callback (new Error ('missing apikey'));
     return;
+  }
+
+  // check session ID
+  if (settings.sessionId) {
+    options.headers ['X-OpenAPI-Session-ID'] = settings.sessionId;
   }
 
   params = params instanceof Object ? params : {};
@@ -438,8 +444,14 @@ function methodAccountWishlists (callback) {
  * @returns {object} - Module interface
  */
 
-module.exports = function (apikey, timeout) {
+module.exports = function (apikey, sessionId, timeout) {
+  if (typeof sessionId === 'number') {
+    timeout = sessionId;
+    sessionId = null;
+  }
+
   settings.apikey = apikey;
+  settings.sessionId = sessionId;
   settings.timeout = timeout || settings.timeout;
 
   return {
