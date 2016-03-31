@@ -128,9 +128,12 @@ function processResponse (err, res, callback) {
     error.code = res.statusCode;
     error.api = data instanceof Object ? data : {};
     error.body = data instanceof Object ? null : res.body;
+
+    callback (error);
+    return;
   }
 
-  callback (error, data);
+  callback (null, data);
 }
 
 
