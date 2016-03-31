@@ -420,6 +420,15 @@ function methodAccountSessions (callback) {
   talk ('accounts', 'sessions', callback);
 }
 
+
+/**
+ * Module setup
+ *
+ * @param apikey {string} - Your Bol.com API key
+ * @param [timeout] {number=5000} - Request time out in ms
+ * @returns {object} - Module interface
+ */
+
 module.exports = function (apikey, timeout) {
   settings.apikey = apikey;
   settings.timeout = timeout || settings.timeout;
