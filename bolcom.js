@@ -11,6 +11,7 @@ Service docs:     https://developers.bol.com
 */
 
 var http = require ('httpreq');
+
 var settings = {
   apikey: null,
   timeout: 5000
@@ -179,6 +180,31 @@ function talk (cat, method, params, callback) {
   http.doRequest (options, function (err, res) {
     processResponse (err, res, callback);
   });
+}
+
+
+/**
+ * Method: utils.ping
+ *
+ * @callback callback
+ * @param callback {function} - `function (err, data) {}`
+ * @returns {void}
+ */
+
+function methodUtilsPing (callback) {
+  talk ('utils', 'ping', callback);
+}
+
+
+/**
+ * Method: account.sessions
+ *
+ * @callback callback
+ * @returns {void}
+ */
+
+function methodAccountSessions (callback) {
+  talk ('accounts', 'sessions', callback);
 }
 
 
@@ -399,28 +425,6 @@ function methodCatalogRelatedProducts (productId, props, callback) {
 }
 
 
-/**
- * Method: utils.ping
- *
- * @callback callback
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
- */
-
-function methodUtilsPing (callback) {
-  talk ('utils', 'ping', callback);
-}
-
-
-/**
- * Method: account.sessions
- *
- * @callback callback
- * @returns {void}
- */
-
-function methodAccountSessions (callback) {
-  talk ('accounts', 'sessions', callback);
 }
 
 
