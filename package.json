@@ -22,6 +22,7 @@
     "httpreq": "^0.4.16"
   },
   "devDependencies": {
+    "eslint": "^2.5.3",
     "dotest": "^1.3.0"
   },
   "optionalDependencies": {},
@@ -36,6 +37,6 @@
   ],
   "license": "Unlicense",
   "scripts": {
-    "test": "node test.js"
+    "test": "eslint . && node test.js"
   }
 }
