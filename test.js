@@ -53,60 +53,75 @@ dotest.add ('catalog.search', function () {
   };
 
   bol.catalog.search (params, function (err, data) {
+    var products = data && data.products;
+    var item = products && products[0];
+
     dotest.test (err)
       .isObject ('fail', 'data', data)
       .isCondition ('fail', 'data.totalResultSize', data && data.totalResultSize, '>=', 1)
-      .isArray ('fail', 'data.products', data && data.products)
-      .isNotEmpty ('fail', 'data.products', data && data.products)
-      .isObject ('fail', 'data.products[0]', data && data.products && data.products [0])
-      .isString ('fail', 'data.products[0].id', data && data.products && data.products [0] .id)
-      .isObject ('fail', 'data.products[0].attributeGroups', data && data.products && data.products [0] .attributeGroups)
+      .isArray ('fail', 'data.products', products)
+      .isNotEmpty ('fail', 'data.products', products)
+      .isObject ('fail', 'data.products[0]', item)
+      .isString ('fail', 'data.products[0].id', item && item.id)
+      .isObject ('fail', 'data.products[0].attributeGroups', item && item.attributeGroups)
       .done ();
   });
 });
 
 dotest.add ('catalog.products', function () {
   bol.catalog.products ('9200000023292527', function (err, data) {
+    var products = data && data.products;
+    var item = products && products[0];
+
     dotest.test (err)
       .isObject ('fail', 'data', data)
-      .isArray ('fail', 'data.products', data && data.products)
-      .isObject ('fail', 'data.products[0]', data && data.products && data.products [0])
-      .isString ('fail', 'data.products[0].id', data && data.products && data.products [0] .id)
+      .isArray ('fail', 'data.products', products)
+      .isObject ('fail', 'data.products[0]', item)
+      .isString ('fail', 'data.products[0].id', item && item.id)
       .done ();
   });
 });
 
 dotest.add ('incomplete product', function () {
   bol.catalog.products ('9200000009223738', function (err, data) {
+    var products = data && data.products;
+    var item = products && products[0];
+
     dotest.test (err)
       .isObject ('fail', 'data', data)
-      .isArray ('fail', 'data.products', data && data.products)
-      .isObject ('fail', 'data.products[0]', data && data.products && data.products [0])
-      .isUndefined ('fail', 'data.products[0].images', data && data.products && data.products [0] && data.products [0] .images)
-      .isString ('fail', 'data.products[0].id', data && data.products && data.products [0] && data.products [0] .id)
+      .isArray ('fail', 'data.products', products)
+      .isObject ('fail', 'data.products[0]', item)
+      .isUndefined ('fail', 'data.products[0].images', item && item.images)
+      .isString ('fail', 'data.products[0].id', item && item.id)
       .done ();
   });
 });
 
 dotest.add ('catalog.lists', function () {
   bol.catalog.lists ('', function (err, data) {
+    var products = data && data.products;
+    var item = products && products[0];
+
     dotest.test (err)
       .isObject ('fail', 'data', data)
       .isCondition ('fail', 'data.totalResultSize', data && data.totalResultSize, '>=', 1)
-      .isArray ('fail', 'data.products', data && data.products)
-      .isNotEmpty ('fail', 'data.products', data && data.products)
-      .isString ('fail', 'data.products[0].id', data && data.products && data.products [0] && data.products [0] .id)
+      .isArray ('fail', 'data.products', products)
+      .isNotEmpty ('fail', 'data.products', products)
+      .isString ('fail', 'data.products[0].id', item && item.id)
       .done ();
   });
 });
 
 dotest.add ('catalog.offers', function () {
   bol.catalog.offers ('9200000023292527', function (err, data) {
+    var offers = data && data.offers;
+    var item = offers && offers[0];
+
     dotest.test (err)
       .isObject ('fail', 'data', data)
-      .isArray ('fail', 'data.offers', data && data.offers)
-      .isObject ('fail', 'data.offers[0]', data && data.offers && data.offers [0])
-      .isString ('fail', 'data.offers[0[.id', data && data.offers && data.offers [0] && data.offers [0] .id)
+      .isArray ('fail', 'data.offers', offers)
+      .isObject ('fail', 'data.offers[0]', item)
+      .isString ('fail', 'data.offers[0[.id', item && item.id)
       .done ();
   });
 });
