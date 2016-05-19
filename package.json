@@ -19,13 +19,12 @@
     "bolcom.js"
   ],
   "dependencies": {
-    "httpreq": "^0.4.16"
+    "httpreq": "^0.4.22"
   },
   "devDependencies": {
-    "eslint": "^2.5.3",
-    "dotest": "^1.3.0"
+    "eslint": "^2.10.2",
+    "dotest": "^1.11.0"
   },
-  "optionalDependencies": {},
   "engines": {
     "node": ">=0.12.0"
   },
