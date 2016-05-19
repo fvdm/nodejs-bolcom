@@ -4,6 +4,7 @@ bolcom
 Access Bol.com Open API service with node.js
 
 [![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-bolcom)
+[![Dependency Status](https://gemnasium.com/badges/github.com/fvdm/nodejs-bolcom.svg)](https://gemnasium.com/github.com/fvdm/nodejs-bolcom#runtime-dependencies)
 
 
 Usage
