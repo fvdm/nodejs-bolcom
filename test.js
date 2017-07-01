@@ -50,6 +50,7 @@ dotest.add ('utils.ping', (test) => {
   });
 });
 
+
 dotest.add ('account.sessions', (test) => {
   bol.account.sessions ((err, data) => {
     test (err)
@@ -58,6 +59,7 @@ dotest.add ('account.sessions', (test) => {
       .done ();
   });
 });
+
 
 dotest.add ('catalog.search', (test) => {
   const params = {
@@ -73,12 +75,14 @@ dotest.add ('catalog.search', (test) => {
   });
 });
 
+
 dotest.add ('catalog.products', (test) => {
   bol.catalog.products ('9200000023292527', (err, data) => {
     dataProducts (err, data)
       .done ();
   });
 });
+
 
 dotest.add ('incomplete product', (test) => {
   bol.catalog.products ('9200000009223738', (err, data) => {
@@ -88,12 +92,14 @@ dotest.add ('incomplete product', (test) => {
   });
 });
 
+
 dotest.add ('catalog.lists', (test) => {
   bol.catalog.lists ('', (err, data) => {
     dataProducts (err, data)
       .done ();
   });
 });
+
 
 dotest.add ('catalog.offers', (test) => {
   bol.catalog.offers ('9200000023292527', (err, data) => {
@@ -109,6 +115,7 @@ dotest.add ('catalog.offers', (test) => {
   });
 });
 
+
 dotest.add ('catalog.recommendations', (test) => {
   bol.catalog.recommendations ('9200000023292527', (err, data) => {
     test (err)
@@ -119,6 +126,7 @@ dotest.add ('catalog.recommendations', (test) => {
   });
 });
 
+
 dotest.add ('catalog.relatedproducts', (test) => {
   bol.catalog.relatedproducts ('9200000010839998', (err, data) => {
     test (err)
@@ -128,6 +136,7 @@ dotest.add ('catalog.relatedproducts', (test) => {
       .done ();
   });
 });
+
 
 // Start the tests
 dotest.run ();
