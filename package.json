@@ -31,9 +31,10 @@
     "node": ">=4.0.0"
   },
   "keywords": [
+    "api",
     "bol.com",
     "bolcom",
-    "api",
+    "shopping",
     "unlicense"
   ],
   "license": "Unlicense",
