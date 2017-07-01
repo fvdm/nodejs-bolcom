@@ -256,6 +256,36 @@ function methodAccountSessions (callback) {
 
 
 /**
+ * Generic catalog request handler
+ *
+ * @callback  callback
+ * @param     {string}    name      Catalog method name
+ * @param     {object}    props     Request parameters
+ * @param     {function}  callback  `(err, data)`
+ * @return    {void}
+ */
+
+function catalogTalk (name, props, callback) {
+  talk ('catalog', name, props, (err, data) => {
+    let i;
+
+    if (err) {
+      callback (err);
+      return;
+    }
+
+    if (data.products && data.products instanceof Array) {
+      for (i = 0; i < data.products.length; i++) {
+        data.products [i] = cleanProduct (data.products [i]);
+      }
+    }
+
+    callback (err, data);
+  });
+}
+
+
+/**
  * Method: catalog.search
  *
  * @callback  callback
@@ -265,22 +295,7 @@ function methodAccountSessions (callback) {
  */
 
 function methodCatalogSearch (props, callback) {
-  talk ('catalog', 'search', props, (err, data) => {
-    let i;
-
-    if (err) {
-      callback (err);
-      return;
-    }
-
-    if (data.products instanceof Array) {
-      for (i = 0; i < data.products.length; i++) {
-        data.products [i] = cleanProduct (data.products [i]);
-      }
-    }
-
-    callback (err, data);
-  });
+  catalogTalk ('search', props, callback);
 }
 
 
@@ -294,22 +309,7 @@ function methodCatalogSearch (props, callback) {
  */
 
 function methodCatalogLists (props, callback) {
-  talk ('catalog', 'lists', props, (err, data) => {
-    let i;
-
-    if (err) {
-      callback (err);
-      return;
-    }
-
-    if (data.products instanceof Array) {
-      for (i = 0; i < data.products.length; i++) {
-        data.products [i] = cleanProduct (data.products [i]);
-      }
-    }
-
-    callback (err, data);
-  });
+  catalogTalk ('lists', props, callback);
 }
 
 
@@ -329,22 +329,7 @@ function methodCatalogProducts (productId, props, callback) {
     props = {};
   }
 
-  talk ('catalog', 'products/' + productId, props, (err, data) => {
-    let i;
-
-    if (err) {
-      callback (err);
-      return;
-    }
-
-    if (data.products instanceof Array) {
-      for (i = 0; i < data.products.length; i++) {
-        data.products [i] = cleanProduct (data.products [i]);
-      }
-    }
-
-    callback (err, data);
-  });
+  catalogTalk ('products/' + productId, props, callback);
 }
 
 
@@ -395,26 +380,7 @@ function methodCatalogRecommendations (productId, props, callback) {
     props = {};
   }
 
-  talk ('catalog', 'recommendations/' + productId, props, (err, data) => {
-    let i;
-
-    if (err) {
-      callback (err);
-      return;
-    }
-
-    if (data.products) {
-      data = data.products;
-
-      if (data instanceof Array && data.length >= 1) {
-        for (i = 0; i < data.length; i++) {
-          data [i] = cleanProduct (data [i]);
-        }
-      }
-    }
-
-    callback (err, data);
-  });
+  catalogTalk ('recommendations/' + productId, props, callback);
 }
 
 
