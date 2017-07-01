@@ -20,48 +20,69 @@ const settings = {
 
 
 /**
- * Clean up product data
+ * Clean up product URLs
  *
- * @param   {object}  product  Object to clean
- * @return  {object}           Cleaned object
+ * @param   {object}  product  Product to clean
+ * @return  {object}           Cleaned product
  */
 
-function cleanProduct (product) {
-  let purls = {};
-  let pimgs = {};
-  let groups = {};
-
-  let group;
-  let image;
-  let attrib;
+function cleanProductUrls (product) {
+  let urls = {};
   let url;
   let i;
-  let a;
 
-  // urls
   try {
     for (i = 0; i < product.urls.length; i++) {
       url = product.urls [i];
-      purls [url.key] = url;
+      urls [url.key] = url;
     }
-    product.urls = purls;
+    product.urls = urls;
   } catch (e) {
     // skip
   }
 
-  // images
+  return product;
+}
+
+
+/**
+ * Clean up product images
+ *
+ * @param   {object}  product  Product to clean
+ * @return  {object}           Cleaned product
+ */
+
+function cleanProductImages (product) {
+  let imgs = {};
+  let i;
+
   try {
     for (i = 0; i < product.images.length; i++) {
-      image = product.images [i];
-      pimgs [image.key] = image;
+      imgs [image.key] = product.images [i];
     }
 
-    product.images = pimgs;
+    product.images = imgs;
   } catch (e) {
     // skip
   }
 
-  // includeattributes: true
+  return imgs;
+}
+
+
+/**
+ * Clean up product attributeGroups
+ *
+ * @param   {object}  product  Product to clean
+ * @return  {object}           Cleaned product
+ */
+
+function cleanProductAttrGroups (product) {
+  let groups = {};
+  let group;
+  let i;
+  let a;
+
   try {
     if (product.attributeGroups) {
       for (i = 0; i < product.attributeGroups.length; i++) {
@@ -85,6 +106,22 @@ function cleanProduct (product) {
   } catch (e) {
     // skip
   }
+
+  return product;
+}
+
+
+/**
+ * Clean up product data
+ *
+ * @param   {object}  product  Object to clean
+ * @return  {object}           Cleaned object
+ */
+
+function cleanProduct (product) {
+  product = cleanProductUrls (product);
+  product = cleanProductImages (product);
+  product = cleanProductAttrGroups (product);
 
   return product;
 }
