@@ -8,15 +8,15 @@ License:        Unlicense (Public Domain, see LICENSE file)
                 (https://github.com/fvdm/nodejs-bolcom/raw/develop/LICENSE)
 */
 
-var dotest = require ('dotest');
-var app = require ('./');
+const dotest = require ('dotest');
+const app = require ('./');
 
 // Setup
 // set env BOLCOM_APIKEY  (Travis CI)
-var apikey = process.env.BOLCOM_APIKEY || null;
-var timeout = process.env.BOLCOM_TIMEOUT || null;
+const apikey = process.env.BOLCOM_APIKEY || null;
+const timeout = process.env.BOLCOM_TIMEOUT || null;
 
-var bol = app (apikey, timeout);
+const bol = app (apikey, timeout);
 
 
 // API ACCESS
@@ -36,8 +36,8 @@ if (!process.env.BOLCOM_APIKEY) {
  */
 
 function dataProducts (test, err, data) {
-  var products = data && data.products;
-  var item = products && products[0];
+  const products = data && data.products;
+  const item = products && products[0];
 
   return test (err)
     .isObject ('fail', 'data', data)
@@ -48,8 +48,8 @@ function dataProducts (test, err, data) {
 }
 
 
-dotest.add ('utils.ping', function (test) {
-  bol.utils.ping (function (err, data) {
+dotest.add ('utils.ping', (test) => {
+  bol.utils.ping ((err, data) => {
     test (err)
       .isObject ('fail', 'data', data)
       .isExactly ('fail', 'data.messages', data && data.message, 'Hello world!')
@@ -57,8 +57,8 @@ dotest.add ('utils.ping', function (test) {
   });
 });
 
-dotest.add ('account.sessions', function (test) {
-  bol.account.sessions (function (err, data) {
+dotest.add ('account.sessions', (test) => {
+  bol.account.sessions ((err, data) => {
     test (err)
       .isObject ('fail', 'data', data)
       .isString ('fail', 'data.sessionId', data && data.sessionId)
@@ -66,46 +66,46 @@ dotest.add ('account.sessions', function (test) {
   });
 });
 
-dotest.add ('catalog.search', function (test) {
-  var params = {
+dotest.add ('catalog.search', (test) => {
+  const params = {
     q: 'node.js',
     limit: 1,
     includeattributes: true
   };
 
-  bol.catalog.search (params, function (err, data) {
+  bol.catalog.search (params, (err, data) => {
     dataProducts (err, data)
       .isObject ('fail', 'data.products[0].attributeGroups', item && item.attributeGroups)
       .done ();
   });
 });
 
-dotest.add ('catalog.products', function (test) {
-  bol.catalog.products ('9200000023292527', function (err, data) {
+dotest.add ('catalog.products', (test) => {
+  bol.catalog.products ('9200000023292527', (err, data) => {
     dataProducts (err, data)
       .done ();
   });
 });
 
-dotest.add ('incomplete product', function (test) {
-  bol.catalog.products ('9200000009223738', function (err, data) {
+dotest.add ('incomplete product', (test) => {
+  bol.catalog.products ('9200000009223738', (err, data) => {
     dataProducts (err, data)
       .isUndefined ('fail', 'data.products[0].images', item && item.images)
       .done ();
   });
 });
 
-dotest.add ('catalog.lists', function (test) {
-  bol.catalog.lists ('', function (err, data) {
+dotest.add ('catalog.lists', (test) => {
+  bol.catalog.lists ('', (err, data) => {
     dataProducts (err, data)
       .done ();
   });
 });
 
-dotest.add ('catalog.offers', function (test) {
-  bol.catalog.offers ('9200000023292527', function (err, data) {
-    var offers = data && data.offers;
-    var item = offers && offers[0];
+dotest.add ('catalog.offers', (test) => {
+  bol.catalog.offers ('9200000023292527', (err, data) => {
+    const offers = data && data.offers;
+    const item = offers && offers[0];
 
     test (err)
       .isObject ('fail', 'data', data)
@@ -116,8 +116,8 @@ dotest.add ('catalog.offers', function (test) {
   });
 });
 
-dotest.add ('catalog.recommendations', function (test) {
-  bol.catalog.recommendations ('9200000023292527', function (err, data) {
+dotest.add ('catalog.recommendations', (test) => {
+  bol.catalog.recommendations ('9200000023292527', (err, data) => {
     test (err)
       .isArray ('fail', 'data', data)
       .isObject ('fail', 'data[0]', data && data [0])
@@ -126,8 +126,8 @@ dotest.add ('catalog.recommendations', function (test) {
   });
 });
 
-dotest.add ('catalog.relatedproducts', function (test) {
-  bol.catalog.relatedproducts ('9200000010839998', function (err, data) {
+dotest.add ('catalog.relatedproducts', (test) => {
+  bol.catalog.relatedproducts ('9200000010839998', (err, data) => {
     test (err)
       .isObject ('fail', 'data', data)
       .isObject ('fail', 'data.BINDINGCODE', data && data.BINDINGCODE)
