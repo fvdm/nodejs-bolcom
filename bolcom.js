@@ -22,8 +22,8 @@ const settings = {
 /**
  * Clean up product data
  *
- * @param product {object} - Object to clean
- * @returns product {object} - Cleaned object
+ * @param   {object}  product  Object to clean
+ * @return  {object}           Cleaned object
  */
 
 function cleanProduct (product) {
@@ -93,11 +93,11 @@ function cleanProduct (product) {
 /**
  * Process HTTP response
  *
- * @callback callback
- * @param err {Error,null} - Error instance
- * @param res {object} - Response object
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {Error|null}  err       Error instance
+ * @param     {object}      res       Response object
+ * @param     {function}    callback  `(err, data)`
+ * @return    {void}
  */
 
 function processResponse (err, res, callback) {
@@ -143,12 +143,12 @@ function processResponse (err, res, callback) {
 /**
  * Communication with API
  *
- * @callback callback
- * @param cat {string} - api.bol.com/:CAT/v4/method
- * @param method {string} - api.bol.com/cat/v4/:METHOD
- * @param [params] {object} - Request paramaters
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {string}    cat       api.bol.com/:CAT/v4/method
+ * @param     {string}    method    api.bol.com/cat/v4/:METHOD
+ * @param     {object}    [params]  Request paramaters
+ * @param     {function}  callback  `(err, data)`
+ * @return    {void}
  */
 
 function talk (cat, method, params, callback) {
@@ -193,9 +193,9 @@ function talk (cat, method, params, callback) {
 /**
  * Method: utils.ping
  *
- * @callback callback
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {function}  callback  `(err, data)`
+ * @return    {void}
  */
 
 function methodUtilsPing (callback) {
@@ -206,8 +206,8 @@ function methodUtilsPing (callback) {
 /**
  * Method: account.sessions
  *
- * @callback callback
- * @returns {void}
+ * @callback  callback
+ * @return    {void}
  */
 
 function methodAccountSessions (callback) {
@@ -218,10 +218,10 @@ function methodAccountSessions (callback) {
 /**
  * Method: catalog.search
  *
- * @callback callback
- * @param props {object} - Method parameters
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {object}    props     Method parameters
+ * @param     {function}  callback  `(err, data)`
+ * @return    {void}
  */
 
 function methodCatalogSearch (props, callback) {
@@ -247,10 +247,10 @@ function methodCatalogSearch (props, callback) {
 /**
  * Method: catalog.lists
  *
- * @callback callback
- * @param props {object} - Method parameters
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {object}    props     Method parameters
+ * @param     {function}  callback  `(err, data)`
+ * @return    {void}
  */
 
 function methodCatalogLists (props, callback) {
@@ -276,11 +276,11 @@ function methodCatalogLists (props, callback) {
 /**
  * Method: catalog.products
  *
- * @callback callback
- * @param productId {string} - Product ID
- * @param [props] {object} - Method parameters
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {string}    productId  Product ID
+ * @param     {object}    [props]    Method parameters
+ * @param     {function}  callback   `(err, data)`
+ * @return    {void}
  */
 
 function methodCatalogProducts (productId, props, callback) {
@@ -311,11 +311,11 @@ function methodCatalogProducts (productId, props, callback) {
 /**
  * Method: catalog.offers
  *
- * @callback callback
- * @param productId {string} - Product ID
- * @param [props] {object} - Method parameters
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {string}    productId  Product ID
+ * @param     {object}    [props]    Method parameters
+ * @param     {function}  callback  `(err, data)`
+ * @return    {void}
  */
 
 function methodCatalogOffers (productId, props, callback) {
@@ -342,11 +342,11 @@ function methodCatalogOffers (productId, props, callback) {
 /**
  * Method: catalog.recommendations
  *
- * @callback callback
- * @param productId {string} - Product ID
- * @param [props] {object} - Method parameters
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {string}    productId  Product ID
+ * @param     {object}    [props]    Method parameters
+ * @param     {function}  callback  `(err, data)`
+ * @return    {void}
  */
 
 function methodCatalogRecommendations (productId, props, callback) {
@@ -381,11 +381,11 @@ function methodCatalogRecommendations (productId, props, callback) {
 /**
  * Method: catalog.relatedproducts
  *
- * @callback callback
- * @param productId {string} - Product ID
- * @param [props] {object} - Method parameters
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {string}    productId  Product ID
+ * @param     {object}    [props]    Method parameters
+ * @param     {function}  callback   `(err, data)`
+ * @return    {void}
  */
 
 function methodCatalogRelatedProducts (productId, props, callback) {
@@ -435,9 +435,9 @@ function methodCatalogRelatedProducts (productId, props, callback) {
 /**
  * Method: account.wishlists
  *
- * @callback callback
- * @param callback {function} - `function (err, data) {}`
- * @returns {void}
+ * @callback  callback
+ * @param     {function}  callback  `(err, data)`
+ * @return    {void}
  */
 
 function methodAccountWishlists (callback) {
@@ -448,9 +448,9 @@ function methodAccountWishlists (callback) {
 /**
  * Module setup
  *
- * @param apikey {string} - Your Bol.com API key
- * @param [timeout] {number=5000} - Request time out in ms
- * @returns {object} - Module interface
+ * @param   {string}       apikey     Your Bol.com API key
+ * @param   {number=5000}  [timeout]  Request time out in ms
+ * @return  {object}                  Module interface
  */
 
 module.exports = (apikey, sessionId, timeout) => {
