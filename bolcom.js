@@ -54,10 +54,12 @@ function cleanProductUrls (product) {
 
 function cleanProductImages (product) {
   let imgs = {};
+  let image;
   let i;
 
   try {
     for (i = 0; i < product.images.length; i++) {
+      image = product.images [i];
       imgs [image.key] = product.images [i];
     }
 
@@ -80,6 +82,7 @@ function cleanProductImages (product) {
 function cleanProductAttrGroups (product) {
   let groups = {};
   let group;
+  let attrib;
   let i;
   let a;
 
