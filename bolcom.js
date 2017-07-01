@@ -10,9 +10,9 @@ Service name:     Bol.com
 Service docs:     https://developers.bol.com
 */
 
-var http = require ('httpreq');
+const http = require ('httpreq');
 
-var settings = {
+const settings = {
   apikey: null,
   sessionId: null,
   timeout: 5000
@@ -27,15 +27,16 @@ var settings = {
  */
 
 function cleanProduct (product) {
-  var purls = {};
-  var pimgs = {};
-  var groups = {};
-  var group;
-  var image;
-  var attrib;
-  var url;
-  var i;
-  var a;
+  let purls = {};
+  let pimgs = {};
+  let groups = {};
+
+  let group;
+  let image;
+  let attrib;
+  let url;
+  let i;
+  let a;
 
   // urls
   try {
@@ -100,8 +101,8 @@ function cleanProduct (product) {
  */
 
 function processResponse (err, res, callback) {
-  var data = '';
-  var error = null;
+  let data = '';
+  let error = null;
 
   res = res || {
     body: '',
@@ -151,7 +152,7 @@ function processResponse (err, res, callback) {
  */
 
 function talk (cat, method, params, callback) {
-  var options = {
+  const options = {
     url: 'https://api.bol.com/' + cat + '/v4/' + method,
     method: 'GET',
     timeout: settings.timeout,
@@ -183,7 +184,7 @@ function talk (cat, method, params, callback) {
   options.parameters = params;
 
   // process response
-  http.doRequest (options, function (err, res) {
+  http.doRequest (options, (err, res) => {
     processResponse (err, res, callback);
   });
 }
@@ -224,8 +225,8 @@ function methodAccountSessions (callback) {
  */
 
 function methodCatalogSearch (props, callback) {
-  talk ('catalog', 'search', props, function (err, data) {
-    var i;
+  talk ('catalog', 'search', props, (err, data) => {
+    let i;
 
     if (err) {
       callback (err);
@@ -253,8 +254,8 @@ function methodCatalogSearch (props, callback) {
  */
 
 function methodCatalogLists (props, callback) {
-  talk ('catalog', 'lists', props, function (err, data) {
-    var i;
+  talk ('catalog', 'lists', props, (err, data) => {
+    let i;
 
     if (err) {
       callback (err);
@@ -288,8 +289,8 @@ function methodCatalogProducts (productId, props, callback) {
     props = {};
   }
 
-  talk ('catalog', 'products/' + productId, props, function (err, data) {
-    var i;
+  talk ('catalog', 'products/' + productId, props, (err, data) => {
+    let i;
 
     if (err) {
       callback (err);
@@ -323,7 +324,7 @@ function methodCatalogOffers (productId, props, callback) {
     props = {};
   }
 
-  talk ('catalog', 'offers/' + productId, props, function (err, data) {
+  talk ('catalog', 'offers/' + productId, props, (err, data) => {
     if (err) {
       callback (err);
       return;
@@ -354,8 +355,8 @@ function methodCatalogRecommendations (productId, props, callback) {
     props = {};
   }
 
-  talk ('catalog', 'recommendations/' + productId, props, function (err, data) {
-    var i;
+  talk ('catalog', 'recommendations/' + productId, props, (err, data) => {
+    let i;
 
     if (err) {
       callback (err);
@@ -393,11 +394,11 @@ function methodCatalogRelatedProducts (productId, props, callback) {
     props = {};
   }
 
-  talk ('catalog', 'relatedproducts/' + productId, props, function (err, data) {
-    var tmp = {};
-    var tmp2 = {};
-    var i;
-    var m;
+  talk ('catalog', 'relatedproducts/' + productId, props, (err, data) => {
+    let tmp = {};
+    let tmp2 = {};
+    let i;
+    let m;
 
     if (err) {
       callback (err);
@@ -452,7 +453,7 @@ function methodAccountWishlists (callback) {
  * @returns {object} - Module interface
  */
 
-module.exports = function (apikey, sessionId, timeout) {
+module.exports = (apikey, sessionId, timeout) => {
   if (typeof sessionId === 'number') {
     timeout = sessionId;
     sessionId = null;
