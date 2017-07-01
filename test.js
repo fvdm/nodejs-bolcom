@@ -26,7 +26,27 @@ if (!process.env.BOLCOM_APIKEY) {
 }
 
 
-// TESTS
+/**
+ * Check data and products result
+ *
+ * @param   {Error|null}  err   Callback error
+ * @param   {object}      data  Callback data
+ * @return  {Test}              doTest.test() chain
+ */
+
+function dataProducts (err, data) {
+  var products = data && data.products;
+  var item = products && products[0];
+
+  return dotest.test (err)
+    .isObject ('fail', 'data', data)
+    .isCondition ('fail', 'data.totalResultSize', data && data.totalResultSize, '>=', 1)
+	  .isArray ('fail', 'data.products', products)
+	  .isObject ('fail', 'data.products[0]', item)
+	  .isString ('fail', 'data.products[0].id', item && item.id);
+}
+
+
 dotest.add ('utils.ping', function () {
   bol.utils.ping (function (err, data) {
     dotest.test (err)
@@ -53,16 +73,7 @@ dotest.add ('catalog.search', function () {
   };
 
   bol.catalog.search (params, function (err, data) {
-    var products = data && data.products;
-    var item = products && products[0];
-
-    dotest.test (err)
-      .isObject ('fail', 'data', data)
-      .isCondition ('fail', 'data.totalResultSize', data && data.totalResultSize, '>=', 1)
-      .isArray ('fail', 'data.products', products)
-      .isNotEmpty ('fail', 'data.products', products)
-      .isObject ('fail', 'data.products[0]', item)
-      .isString ('fail', 'data.products[0].id', item && item.id)
+    dataProducts (err, data)
       .isObject ('fail', 'data.products[0].attributeGroups', item && item.attributeGroups)
       .done ();
   });
@@ -70,44 +81,22 @@ dotest.add ('catalog.search', function () {
 
 dotest.add ('catalog.products', function () {
   bol.catalog.products ('9200000023292527', function (err, data) {
-    var products = data && data.products;
-    var item = products && products[0];
-
-    dotest.test (err)
-      .isObject ('fail', 'data', data)
-      .isArray ('fail', 'data.products', products)
-      .isObject ('fail', 'data.products[0]', item)
-      .isString ('fail', 'data.products[0].id', item && item.id)
+    dataProducts (err, data)
       .done ();
   });
 });
 
 dotest.add ('incomplete product', function () {
   bol.catalog.products ('9200000009223738', function (err, data) {
-    var products = data && data.products;
-    var item = products && products[0];
-
-    dotest.test (err)
-      .isObject ('fail', 'data', data)
-      .isArray ('fail', 'data.products', products)
-      .isObject ('fail', 'data.products[0]', item)
+    dataProducts (err, data)
       .isUndefined ('fail', 'data.products[0].images', item && item.images)
-      .isString ('fail', 'data.products[0].id', item && item.id)
       .done ();
   });
 });
 
 dotest.add ('catalog.lists', function () {
   bol.catalog.lists ('', function (err, data) {
-    var products = data && data.products;
-    var item = products && products[0];
-
-    dotest.test (err)
-      .isObject ('fail', 'data', data)
-      .isCondition ('fail', 'data.totalResultSize', data && data.totalResultSize, '>=', 1)
-      .isArray ('fail', 'data.products', products)
-      .isNotEmpty ('fail', 'data.products', products)
-      .isString ('fail', 'data.products[0].id', item && item.id)
+    dataProducts (err, data)
       .done ();
   });
 });
