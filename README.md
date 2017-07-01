@@ -18,17 +18,17 @@ Usage
 -----
 
 ```js
-var bol = require ('bolcom') ('apikey');
+const bol = require ('bolcom') ('apikey');
 
-bol.catalog.search ({ q: 'node.js' }, function (err, data) {
+bol.catalog.search ({ q: 'node.js' }, (err, data) => {
   if (err) {
-    console.log ('Search failed');
-    console.log (err);
+    console.error ('Search failed');
+    console.error (err);
     return;
   }
 
-  for (var p in data.products) {
-    var product = data.products[p];
+  for (let p in data.products) {
+    let  product = data.products[p];
     console.log (product.title + ' - €' + product.offerData.offers[0].price);
   }
 });
@@ -51,11 +51,8 @@ Installation
 Methods
 -------
 
-Each method below takes a callback function like this: `function (err, [data])`.
-In case of an error `err` is an instance of `Error` and `data` is not available.
-
-For readability error testing is not included in the following examples.
-See the [Usage](#usage) section above for an example with proper error testing.
+For readability error handling is not included in the following examples.
+See the [Usage](#usage) section above for an example with proper error handling.
 
 
 utils.ping
@@ -68,11 +65,11 @@ property named `message` with the exact value `Hello world!!`.
 
 param    | type     | required | description
 :--------|:---------|:---------|:-----------
-callback | function | yes      | `function (err, data) {}`
+callback | function | yes      | `(err, data)`
 
 
 ```js
-bol.utils.ping (function (err, data) {
+bol.utils.ping ((err, data) => {
   if (data.message === 'Hello world!!') {
     console.log ('pong');
   } else {
@@ -91,11 +88,11 @@ Request a new anonymous session ID.
 
 param    | type     | required | description
 :--------|:---------|:---------|:-----------
-callback | function | yes      | `function (err, data) {}`
+callback | function | yes      | `(err, data)`
 
 
 ```js
-bol.acocunt.sessions (function (err, data) {
+bol.acocunt.sessions ((err, data) => {
   console.log (data.sessionId);
 })
 ```
@@ -113,13 +110,13 @@ The result `data` is modified to remove a few xml-style annoyances.
 param    | type     | required | description
 :--------|:---------|:---------|:-----------
 prope    | object   | yes      | search paramaters
-callback | function | yes      | `function (err, data) {}`
+callback | function | yes      | `(err, data)`
 
 
 ```js
-bol.catalog.search ({ q: 'node.js' }, function (err, data) {
-  for (var i in data.products) {
-    var product = data.products[p];
+bol.catalog.search ({ q: 'node.js' }, (err, data) => {
+  for (let i in data.products) {
+    let product = data.products[p];
     console.log (product.title + ' - ' + product.summary);
   }
 });
@@ -139,7 +136,7 @@ Product lists, based on list type and category.
 param     | type     | required | description
 :---------|:---------|:---------|:-----------
 props     | object   | no       | Arguments, see API documentation
-callback  | function | yes      | `function (err, data) {}`
+callback  | function | yes      | `(err, data)`
 
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.lists)
@@ -157,13 +154,13 @@ param     | type     | required | description
 :---------|:---------|:---------|:-----------
 productId | string   | yes      | Product ID
 props     | object   | no       | Arguments, see API documentation
-callback  | function | yes      | `function (err, data) {}`
+callback  | function | yes      | `(err, data)`
 
 
 ```js
-bol.catalog.products ('9200000023292527', {includeattributes: true}, function (err, data) {
-  for (var p in data.products) {
-    var product = data.products[p];
+bol.catalog.products ('9200000023292527', {includeattributes: true}, (err, data) => {
+  for (let p in data.products) {
+    let product = data.products[p];
     console.log (product.title + ' - €' + product.offerData.offers[0].price);
   }
 });
@@ -184,13 +181,13 @@ param     | type     | required | description
 :---------|:---------|:---------|:-----------
 productId | string   | yes      | Product ID
 props     | object   | no       | Arguments, see API documentation
-callback  | function | yes      | `function (err, data) {}`
+callback  | function | yes      | `(err, data)`
 
 
 ```js
-bol.catalog.offers ('9200000023292527', function (err, data) {
-  for (var i in data.offers) {
-    var offer = data.offers[i];
+bol.catalog.offers ('9200000023292527', (err, data) => {
+  for (let i in data.offers) {
+    let offer = data.offers[i];
     console.log (offer.price + ' - ' + offer.availabilityDescription);
   }
 });
@@ -211,13 +208,13 @@ param     | type     | required | description
 :---------|:---------|:---------|:-----------
 productId | string   | yes      | Product ID
 props     | object   | no       | Arguments, see API documentation
-callback  | function | yes      | `function (err, data) {}`
+callback  | function | yes      | `(err, data)`
 
 
 ```js
-bol.catalog.recommendations ('9200000023292527', function (err, data) {
-  for (var i in data) {
-    var product = data[i];
+bol.catalog.recommendations ('9200000023292527', (err, data) => {
+  for (let i in data) {
+    let product = data[i];
     console.log (product.title + ' - ' + product.rating);
   }
 });
@@ -241,10 +238,10 @@ props     | object | no       | Arguments, see API documentation
 
 
 ```js
-bol.catalog.relatedproducts ('9200000010839998', function (err, data) {
+bol.catalog.relatedproducts ('9200000010839998', (err, data) => {
   if (data.BINDINGCODE && data.BINDINGCODE.productFamilyMembers) {
-    for (var m in data.BINDINGCODE.productFamilyMembers) {
-      var mem = data.BINDINGCODE.productFamilyMembers[m];
+    for (let m in data.BINDINGCODE.productFamilyMembers) {
+      let mem = data.BINDINGCODE.productFamilyMembers[m];
 
       console.log (mem.label + ' - ' + mem.productId);
     }
