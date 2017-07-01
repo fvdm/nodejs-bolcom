@@ -35,9 +35,9 @@ function dataProducts (test, err, data) {
   return test (err)
     .isObject ('fail', 'data', data)
     .isCondition ('fail', 'data.totalResultSize', data && data.totalResultSize, '>=', 1)
-	  .isArray ('fail', 'data.products', products)
-	  .isObject ('fail', 'data.products[0]', item)
-	  .isString ('fail', 'data.products[0].id', item && item.id);
+    .isArray ('fail', 'data.products', products)
+    .isObject ('fail', 'data.products[0]', item)
+    .isString ('fail', 'data.products[0].id', item && item.id);
 }
 
 
@@ -69,7 +69,10 @@ dotest.add ('catalog.search', (test) => {
   };
 
   bol.catalog.search (params, (err, data) => {
-    dataProducts (err, data)
+    const products = data && data.products;
+    const item = products && products[0];
+
+    dataProducts (test, err, data)
       .isObject ('fail', 'data.products[0].attributeGroups', item && item.attributeGroups)
       .done ();
   });
@@ -78,7 +81,7 @@ dotest.add ('catalog.search', (test) => {
 
 dotest.add ('catalog.products', (test) => {
   bol.catalog.products ('9200000023292527', (err, data) => {
-    dataProducts (err, data)
+    dataProducts (test, err, data)
       .done ();
   });
 });
@@ -86,7 +89,10 @@ dotest.add ('catalog.products', (test) => {
 
 dotest.add ('incomplete product', (test) => {
   bol.catalog.products ('9200000009223738', (err, data) => {
-    dataProducts (err, data)
+    const products = data && data.products;
+    const item = products && products[0];
+
+    dataProducts (test, err, data)
       .isUndefined ('fail', 'data.products[0].images', item && item.images)
       .done ();
   });
@@ -94,7 +100,7 @@ dotest.add ('incomplete product', (test) => {
 
 
 dotest.add ('catalog.lists', (test) => {
-  bol.catalog.lists ('', (err, data) => {
+  bol.catalog.lists (test, '', (err, data) => {
     dataProducts (err, data)
       .done ();
   });
