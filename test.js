@@ -19,13 +19,6 @@ const timeout = process.env.BOLCOM_TIMEOUT || null;
 const bol = app (apikey, timeout);
 
 
-// API ACCESS
-if (!process.env.BOLCOM_APIKEY) {
-  dotest.log ('fail', 'API access required, set BOLCOM_APIKEY');
-  process.exit ();
-}
-
-
 /**
  * Check data and products result
  *
