@@ -68,7 +68,7 @@ function cleanProductImages (product) {
     // skip
   }
 
-  return imgs;
+  return product;
 }
 
 
