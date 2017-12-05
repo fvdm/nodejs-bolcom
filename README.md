@@ -1,6 +1,8 @@
 bolcom
 ======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/fvdm/nodejs-bolcom.svg)](https://greenkeeper.io/)
+
 Access Bol.com Open API service with node.js
 
 [![npm](https://img.shields.io/npm/v/bolcom.svg?maxAge=3600)](https://github.com/fvdm/nodejs-bolcom/blob/master/CHANGELOG.md)
