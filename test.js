@@ -99,8 +99,8 @@ dotest.add ('incomplete product', (test) => {
 
 
 dotest.add ('catalog.lists', (test) => {
-  bol.catalog.lists (test, '', (err, data) => {
-    dataProducts (err, data)
+  bol.catalog.lists ('', (err, data) => {
+    dataProducts (test, err, data)
       .done ();
   });
 });
