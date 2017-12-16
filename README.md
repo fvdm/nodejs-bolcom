@@ -1,7 +1,7 @@
 bolcom
 ======
 
-Access Bol.com Open API service with node.js
+Access the Bol.com Partner Open API with Node.js (unofficial)
 
 [![npm](https://img.shields.io/npm/v/bolcom.svg?maxAge=3600)](https://github.com/fvdm/nodejs-bolcom/blob/master/CHANGELOG.md)
 [![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-bolcom/branches)
@@ -40,7 +40,7 @@ Requirements
 ------------
 
 * [node.js](https://nodejs.org)
-* Bol.com API key ([read here](https://developers.bol.com/documentatie/aan-de-slag/))
+* Bol.com API key ([read here](https://partnerblog.bol.com/documentatie/open-api/aan-de-slag-2/)) (Dutch)
 
 
 Installation
