@@ -34,7 +34,6 @@ function dataProducts (test, err, data) {
 
   return test (err)
     .isObject ('fail', 'data', data)
-    .isCondition ('fail', 'data.totalResultSize', data && data.totalResultSize, '>=', 1)
     .isArray ('fail', 'data.products', products)
     .isObject ('fail', 'data.products[0]', item)
     .isString ('fail', 'data.products[0].id', item && item.id);
