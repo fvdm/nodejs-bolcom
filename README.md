@@ -12,7 +12,7 @@ Access Bol.com Open API service with node.js
 
 * [Node.js](https://nodejs.org/)
 * [Bol.com](https://bol.com/)
-* [API documentation](https://developers.bol.com/documentatie/aan-de-slag/))
+* [API documentation](https://partnerblog.bol.com/documentatie/open-api/)
 
 
 Usage
