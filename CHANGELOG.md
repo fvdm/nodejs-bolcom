@@ -1,3 +1,12 @@
+#### 1.2.3 (2017-12-16)
+
+##### Documentation Changes
+
+* **readme:**
+  * Fixed links to new API docs ([93283147](https://github.com/fvdm/nodejs-bolcom/commit/932831470414f93ee98727ba86d5223edc17150a))
+  * Fix API key link and minor edit ([53516e3b](https://github.com/fvdm/nodejs-bolcom/commit/53516e3b4ddb7bb85150456de5a697e067350d48))
+* **badges:** Limit URLs to master branch ([b8bf519a](https://github.com/fvdm/nodejs-bolcom/commit/b8bf519a246b6592aa198161828c9a11fe00f79e))
+
 #### 1.2.2 (2017-12-16)
 
 ##### Chores
