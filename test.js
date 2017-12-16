@@ -123,10 +123,14 @@ dotest.add ('catalog.offers', (test) => {
 
 dotest.add ('catalog.recommendations', (test) => {
   bol.catalog.recommendations ('9200000023292527', (err, data) => {
+    const products = data && data.products;
+    const item = products && products[0];
+
     test (err)
-      .isArray ('fail', 'data', data)
-      .isObject ('fail', 'data[0]', data && data [0])
-      .isString ('fail', 'data[0].id', data && data [0] && data [0] .id)
+      .isObject ('fail', 'data', data)
+      .isArray ('fail', 'data.products', products)
+      .isObject ('fail', 'data.products[0]', item)
+      .isString ('fail', 'data.products[0].id', item && item.id)
       .done ();
   });
 });
