@@ -124,7 +124,7 @@ bol.catalog.search ({ q: 'node.js' }, (err, data) => {
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.search)
-* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4search.html)
+* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4search/)
 
 
 catalog.lists
@@ -141,7 +141,7 @@ callback  | function | yes      | `(err, data)`
 
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.lists)
-* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4productlists.html)
+* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4lists/)
 
 
 catalog.products
@@ -168,7 +168,7 @@ bol.catalog.products ('9200000023292527', {includeattributes: true}, (err, data)
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.products)
-* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4products.html)
+* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4products/)
 
 
 catalog.offers
@@ -195,7 +195,7 @@ bol.catalog.offers ('9200000023292527', (err, data) => {
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.offers)
-* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4offers.html)
+* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4offers/)
 
 
 catalog.recommendations
@@ -222,7 +222,7 @@ bol.catalog.recommendations ('9200000023292527', (err, data) => {
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.recommendations)
-* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4recommendations.html)
+* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4recommendations/)
 
 
 catalog.relatedproducts
@@ -251,7 +251,7 @@ bol.catalog.relatedproducts ('9200000010839998', (err, data) => {
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.relatedproducts)
-* [API documentation](https://developers.bol.com/handleiding/v4/Catalog/files/GETcatalogv4relatedproducts.html)
+* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4relatedproducts/)
 
 
 Errors
