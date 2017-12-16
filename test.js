@@ -22,10 +22,11 @@ const bol = app (apikey, timeout);
 /**
  * Check data and products result
  *
+ * @return  {Test}              Processed doTest.test() chain
+ *
  * @param   {Test}        test  doTest.test() chain
  * @param   {Error|null}  err   Callback error
  * @param   {object}      data  Callback data
- * @return  {Test}              Processed doTest.test() chain
  */
 
 function dataProducts (test, err, data) {

@@ -368,10 +368,11 @@ function methodCatalogOffers (productId, props, callback) {
  * Method: catalog.recommendations
  *
  * @callback  callback
+ * @return    {void}
+ *
  * @param     {string}    productId  Product ID
  * @param     {object}    [props]    Method parameters
  * @param     {function}  callback  `(err, data)`
- * @return    {void}
  */
 
 function methodCatalogRecommendations (productId, props, callback) {
@@ -388,10 +389,11 @@ function methodCatalogRecommendations (productId, props, callback) {
  * Method: catalog.relatedproducts
  *
  * @callback  callback
+ * @return    {void}
+ *
  * @param     {string}    productId  Product ID
  * @param     {object}    [props]    Method parameters
  * @param     {function}  callback   `(err, data)`
- * @return    {void}
  */
 
 function methodCatalogRelatedProducts (productId, props, callback) {
@@ -442,8 +444,9 @@ function methodCatalogRelatedProducts (productId, props, callback) {
  * Method: account.wishlists
  *
  * @callback  callback
- * @param     {function}  callback  `(err, data)`
  * @return    {void}
+ *
+ * @param     {function}  callback  `(err, data)`
  */
 
 function methodAccountWishlists (callback) {
@@ -454,9 +457,10 @@ function methodAccountWishlists (callback) {
 /**
  * Module setup
  *
+ * @return  {object}                  Module interface
+ *
  * @param   {string}       apikey     Your Bol.com API key
  * @param   {number=5000}  [timeout]  Request time out in ms
- * @return  {object}                  Module interface
  */
 
 module.exports = (apikey, sessionId, timeout) => {
