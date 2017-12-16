@@ -138,10 +138,12 @@ dotest.add ('catalog.recommendations', (test) => {
 
 dotest.add ('catalog.relatedproducts', (test) => {
   bol.catalog.relatedproducts ('9200000010839998', (err, data) => {
+    const bind = data && data.BINDINGCODE;
+
     test (err)
       .isObject ('fail', 'data', data)
-      .isObject ('fail', 'data.BINDINGCODE', data && data.BINDINGCODE)
-      .isObject ('fail', 'data.BINDINGCODE.productFamilyMembers', data && data.BINDINGCODE && data.BINDINGCODE.productFamilyMembers)
+      .isObject ('fail', 'data.BINDINGCODE', bind)
+      .isObject ('fail', 'data.BINDINGCODE.productFamilyMembers', bind && bind.productFamilyMembers)
       .done ();
   });
 });
