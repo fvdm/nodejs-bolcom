@@ -29,7 +29,7 @@ bol.catalog.search ({ q: 'node.js' }, (err, data) => {
   }
 
   for (let p in data.products) {
-    let  product = data.products[p];
+    let product = data.products[p];
     console.log (product.title + ' - €' + product.offerData.offers[0].price);
   }
 });
@@ -95,7 +95,7 @@ callback | function | yes      | `(err, data)`
 ```js
 bol.acocunt.sessions ((err, data) => {
   console.log (data.sessionId);
-})
+});
 ```
 
 
