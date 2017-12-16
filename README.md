@@ -4,10 +4,10 @@ bolcom
 Access Bol.com Open API service with node.js
 
 [![npm](https://img.shields.io/npm/v/bolcom.svg?maxAge=3600)](https://github.com/fvdm/nodejs-bolcom/blob/master/CHANGELOG.md)
-[![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-bolcom)
+[![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-bolcom/branches)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-bolcom/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-bolcom?branch=master)
-[![bitHound Dependencies](https://www.bithound.io/github/fvdm/nodejs-bolcom/badges/dependencies.svg)](https://www.bithound.io/github/fvdm/nodejs-bolcom/develop/dependencies/npm)
-[![bitHound Code](https://www.bithound.io/github/fvdm/nodejs-bolcom/badges/code.svg)](https://www.bithound.io/github/fvdm/nodejs-bolcom)
+[![bitHound Dependencies](https://www.bithound.io/github/fvdm/nodejs-bolcom/badges/master/dependencies.svg)](https://www.bithound.io/github/fvdm/nodejs-bolcom/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/fvdm/nodejs-bolcom/badges/master/code.svg)](https://www.bithound.io/github/fvdm/nodejs-bolcom/master/files)
 [![Greenkeeper](https://badges.greenkeeper.io/fvdm/nodejs-bolcom.svg)](https://greenkeeper.io/)
 
 * [Node.js](https://nodejs.org/)
