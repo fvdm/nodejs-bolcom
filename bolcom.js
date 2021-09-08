@@ -191,9 +191,9 @@ module.exports = class BolcomAPI {
       for (let i = 0; i < data.products.length; i++) {
         data.products[i] = this._cleanProduct (data.products[i]);
       }
-
-      return data;
     }
+
+    return data;
   }
 
 
@@ -307,9 +307,9 @@ module.exports = class BolcomAPI {
 
         data = tmp;
       }
-
-      return data;
     }
+
+    return data;
   }
 
 
