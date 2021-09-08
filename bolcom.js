@@ -194,7 +194,7 @@ module.exports = class BolcomAPI {
       }
   
       return data;
-    });
+    }
   }
   
   
@@ -310,7 +310,7 @@ module.exports = class BolcomAPI {
       }
   
       return data;
-    });
+    }
   }
   
   
