@@ -42,12 +42,12 @@ function dataProducts (test, err, data) {
 }
 
 
-dotest.add ('utils.ping', async test => {
+dotest.add ('ping', async test => {
   let error;
   let data;
 
   try {
-    data = await bol.utils.ping ();
+    data = await bol.ping ();
   }
   catch (err) {
     error = err;
@@ -61,12 +61,12 @@ dotest.add ('utils.ping', async test => {
 });
 
 
-dotest.add ('account.sessions', async test => {
+dotest.add ('accountSessions', async test => {
   let error;
   let data;
 
   try {
-    data = await bol.account.sessions ();
+    data = await bol.accountSessions ();
   }
   catch (err) {
     error = err;
@@ -80,7 +80,7 @@ dotest.add ('account.sessions', async test => {
 });
 
 
-dotest.add ('catalog.search', async test => {
+dotest.add ('catalogSearch', async test => {
   let error;
   let data;
 
@@ -91,7 +91,7 @@ dotest.add ('catalog.search', async test => {
   };
 
   try {
-    data = await bol.catalog.search (params);
+    data = await bol.catalogSearch (params);
   }
   catch (err) {
     error = err;
@@ -107,12 +107,12 @@ dotest.add ('catalog.search', async test => {
 });
 
 
-dotest.add ('catalog.products', async test => {
+dotest.add ('catalogProducts', async test => {
   let error;
   let data;
 
   try {
-    data = await bol.catalog.products ('9200000023292527');
+    data = await bol.catalogProducts ('9200000023292527');
   }
   catch (err) {
     error = err;
@@ -127,7 +127,7 @@ dotest.add ('incomplete product', async test => {
   let data;
 
   try {
-    data = await bol.catalog.products ('9200000009223738');
+    data = await bol.catalogProducts ('9200000009223738');
   }
   catch (err) {
     error = err;
@@ -143,12 +143,12 @@ dotest.add ('incomplete product', async test => {
 });
 
 
-dotest.add ('catalog.lists', async test => {
+dotest.add ('catalogLists', async test => {
   let error;
   let data;
 
   try {
-    data = await bol.catalog.lists ('');
+    data = await bol.catalogLists ('');
   }
   catch (err) {
     error = err;
@@ -158,12 +158,12 @@ dotest.add ('catalog.lists', async test => {
 });
 
 
-dotest.add ('catalog.offers', async test => {
+dotest.add ('catalogOffers', async test => {
   let error;
   let data;
 
   try {
-    data = await bol.catalog.offers ('9200000023292527');
+    data = await bol.catalogOffers ('9200000023292527');
   }
   catch (err) {
     error = err;
@@ -182,12 +182,12 @@ dotest.add ('catalog.offers', async test => {
 });
 
 
-dotest.add ('catalog.recommendations', async test => {
+dotest.add ('catalogRecommendations', async test => {
   let error;
   let data;
 
   try {
-    data = await bol.catalog.recommendations ('9200000023292527');
+    data = await bol.catalogRecommendations ('9200000023292527');
   }
   catch (err) {
     error = err;
@@ -206,12 +206,12 @@ dotest.add ('catalog.recommendations', async test => {
 });
 
 
-dotest.add ('catalog.relatedproducts', async test => {
+dotest.add ('catalogRelatedproducts', async test => {
   let error;
   let data;
 
   try {
-    data = await bol.catalog.relatedproducts ('9200000010839998');
+    data = await bol.catalogRelatedproducts ('9200000010839998');
   }
   catch (err) {
     error = err;

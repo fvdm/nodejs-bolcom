@@ -30,7 +30,7 @@ module.exports = class BolcomAPI {
    * @return  {object}           Cleaned product
    */
 
-  async cleanProductUrls (product) {
+  async _cleanProductUrls (product) {
     let urls = {};
     let url;
 
@@ -51,7 +51,7 @@ module.exports = class BolcomAPI {
    * @return  {object}           Cleaned product
    */
 
-  async cleanProductImages (product) {
+  async _cleanProductImages (product) {
     let imgs = {};
     let image;
 
@@ -72,7 +72,7 @@ module.exports = class BolcomAPI {
    * @return  {object}           Cleaned product
    */
 
-  async cleanProductAttrGroups (product) {
+  async _cleanProductAttrGroups (product) {
     let groups = {};
     let group;
     let attrib;
@@ -108,10 +108,10 @@ module.exports = class BolcomAPI {
    * @return  {object}           Cleaned object
    */
 
-  async cleanProduct (product) {
-    return cleanProductUrls (product)
-      .then (cleanProductImages)
-      .then (cleanProductAttrGroups)
+  async _cleanProduct (product) {
+    return this._cleanProductUrls (product)
+      .then (this._cleanProductImages)
+      .then (this._cleanProductAttrGroups)
     ;
   }
 
@@ -154,12 +154,12 @@ module.exports = class BolcomAPI {
 
 
   /**
-   * Method: utils.ping
+   * Method: ping
    *
    * @return    {Promise<object>}
    */
 
-  async methodUtilsPing () {
+  async ping () {
     return this._talk ('utils', 'ping');
   }
 
@@ -170,7 +170,7 @@ module.exports = class BolcomAPI {
    * @return    {Promise<object>}
    */
 
-  async methodAccountSessions () {
+  async accountSessions () {
     return this._talk ('accounts', 'sessions');
   }
 
@@ -189,7 +189,7 @@ module.exports = class BolcomAPI {
 
     if (data.products && Array.isArray (data.products)) {
       for (let i = 0; i < data.products.length; i++) {
-        data.products[i] = cleanProduct (data.products[i]);
+        data.products[i] = this._cleanProduct (data.products[i]);
       }
 
       return data;
@@ -205,7 +205,7 @@ module.exports = class BolcomAPI {
    * @return    {Promise<object>}
    */
 
-  async methodCatalogSearch (props) {
+  async catalogSearch (props) {
     return this._catalogTalk ('search', props);
   }
 
@@ -218,7 +218,7 @@ module.exports = class BolcomAPI {
    * @return    {Promise<object>}
    */
 
-  async methodCatalogLists (props) {
+  async catalogLists (props) {
     return this._catalogTalk ('lists', props);
   }
 
@@ -232,7 +232,7 @@ module.exports = class BolcomAPI {
    * @return    {Promise<object>}
    */
 
-  async methodCatalogProducts (productId, props) {
+  async catalogProducts (productId, props) {
     return this._catalogTalk (`products/${productId}`, props);
   }
 
@@ -246,7 +246,7 @@ module.exports = class BolcomAPI {
    * @return    {Promise<object>}
    */
 
-  async methodCatalogOffers (productId, props) {
+  async catalogOffers (productId, props) {
     const data = await this._talk ('catalog', `offers/${productId}`, props);
 
     if (data.offerData) {
@@ -266,7 +266,7 @@ module.exports = class BolcomAPI {
    * @param     {object}    [props]    Method parameters
    */
 
-  async methodCatalogRecommendations (productId, props) {
+  async catalogRecommendations (productId, props) {
     return this._catalogTalk (`recommendations/${productId}`, props);
   }
 
@@ -280,7 +280,7 @@ module.exports = class BolcomAPI {
    * @param     {object}    [props]    Method parameters
    */
 
-  async methodCatalogRelatedProducts (productId, props) {
+  async catalogRelatedProducts (productId, props) {
     let data = await this._talk ('catalog', `relatedproducts/${productId}`, props);
     let tmp = {};
     let tmp2 = {};
@@ -319,7 +319,7 @@ module.exports = class BolcomAPI {
    * @return    {Promise<object>}
    */
 
-  async methodAccountWishlists () {
+  async accountWishlists () {
     return this._talk ('accounts', 'wishlists');
   }
 
