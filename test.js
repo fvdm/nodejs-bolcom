@@ -148,7 +148,7 @@ dotest.add ('catalogLists', async test => {
   let data;
 
   try {
-    data = await bol.catalogLists ('');
+    data = await bol.catalogLists ();
   }
   catch (err) {
     error = err;
