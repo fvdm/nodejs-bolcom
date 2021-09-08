@@ -1,8 +1,8 @@
 {
   "author": {
-    "name": "Franklin van de Meent",
-    "email": "fr@nkl.in",
-    "url": "https://frankl.in"
+    "name": "Franklin",
+    "email": "info@fvdm.com",
+    "url": "https://fvdm.com"
   },
   "name": "bolcom",
   "description": "Access Bol.com Open API service",
@@ -22,10 +22,10 @@
     "httpreq": "^0.5.1"
   },
   "devDependencies": {
-    "dotest": "^2.3.0"
+    "dotest": "^2.9.0"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=12"
   },
   "keywords": [
     "api",
