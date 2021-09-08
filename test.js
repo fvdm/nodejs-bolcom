@@ -53,10 +53,10 @@ dotest.add ('utils.ping', async test => {
     error = err;
   }
 
-  test (err)
+  test (error)
     .isObject ('fail', 'data', data)
     .isExactly ('fail', 'data.messages', data && data.message, 'Hello world!')
-    .done ();
+    .done ()
   ;
 });
 
