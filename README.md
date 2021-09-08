@@ -1,5 +1,4 @@
-bolcom
-======
+# bolcom
 
 Access the Bol.com Partner Open API with Node.js (unofficial)
 
@@ -12,258 +11,243 @@ Access the Bol.com Partner Open API with Node.js (unofficial)
 * [API documentation](https://partnerblog.bol.com/documentatie/open-api/)
 
 
-Usage
------
+## Usage
 
 ```js
-const bol = require ('bolcom') ('apikey');
-
-bol.catalog.search ({ q: 'node.js' }, (err, data) => {
-  if (err) {
-    console.error ('Search failed');
-    console.error (err);
-    return;
-  }
-
-  for (let p in data.products) {
-    let product = data.products[p];
-    console.log (product.title + ' - €' + product.offerData.offers[0].price);
-  }
+const BolAPI = require ('bolcom');
+const bol = new BolAPI ({
+  apikey: 'abc123',
 });
+
+bol.catalog.search ({ q: 'node.js' })
+  .then (data => {
+    for (let p in data.products) {
+      product = data.products[p];
+      console.log (`${product.title} - € ${product.offerData.offers[0].price}`);
+    }
+  })
+  .catch (err => {
+    console.log ('Search failed');
+    console.log (err);
+  })
+;
 ```
 
 
-Requirements
-------------
+## Requirements
 
 * [node.js](https://nodejs.org)
 * Bol.com API key ([read here](https://partnerblog.bol.com/documentatie/open-api/aan-de-slag-2/)) (Dutch)
 
 
-Installation
-------------
+## Installation
 
 `npm install bolcom`
 
 
-Methods
--------
+## Methods
 
-For readability error handling is not included in the following examples.
+Error handling is not included in the following examples.
 See the [Usage](#usage) section above for an example with proper error handling.
 
 
-utils.ping
-----------
-**( callback )**
+### utils.ping
+**( )**
 
 Simple API access test. The result `data` should be an _object_ with only one
 property named `message` with the exact value `Hello world!!`.
 
 
-param    | type     | required | description
-:--------|:---------|:---------|:-----------
-callback | function | yes      | `(err, data)`
-
-
 ```js
-bol.utils.ping ((err, data) => {
+bol.utils.ping().then (data => {
   if (data.message === 'Hello world!!') {
     console.log ('pong');
-  } else {
+  }
+  else {
     console.log ('ouch');
   }
 });
 ```
 
 
-account.sessions
-----------------
-**( callback )**
+### account.sessions
+**( )**
 
 Request a new anonymous session ID.
 
 
-param    | type     | required | description
-:--------|:---------|:---------|:-----------
-callback | function | yes      | `(err, data)`
-
-
 ```js
-bol.acocunt.sessions ((err, data) => {
-  console.log (data.sessionId);
-});
+bol.account.sessions()
+  .then (data => data.sessionId)
+  .then (console.log)
+;
 ```
 
 
-catalog.search
---------------
-**( props, callback )**
+### catalog.search
+**( props )**
 
 Search products in the catalog.
 
 The result `data` is modified to remove a few xml-style annoyances.
 
 
-param    | type     | required | description
-:--------|:---------|:---------|:-----------
-prope    | object   | yes      | search paramaters
-callback | function | yes      | `(err, data)`
+param    | type     | description
+:--------|:---------|:-----------
+props    | object   | search paramaters
 
 
 ```js
-bol.catalog.search ({ q: 'node.js' }, (err, data) => {
-  for (let i in data.products) {
-    let product = data.products[p];
-    console.log (product.title + ' - ' + product.summary);
-  }
-});
+bol.catalog.search ({ q: 'node.js' })
+  .then (data => {
+    for (let i in data.products) {
+      let product = data.products[p];
+      console.log (`${product.title} - ${product.summary}`);
+    }
+  })
+;
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.search)
 * [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4search/)
 
 
-catalog.lists
--------------
-**( [props], callback )**
+### catalog.lists
+**( [props] )**
 
 Product lists, based on list type and category.
 
 
-param     | type     | required | description
-:---------|:---------|:---------|:-----------
-props     | object   | no       | Arguments, see API documentation
-callback  | function | yes      | `(err, data)`
+param    | type     | description
+:--------|:---------|:-----------
+[props]  | object   | Arguments, see API documentation
 
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.lists)
 * [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4lists/)
 
 
-catalog.products
-----------------
-**( productId, [props], callback )**
+### catalog.products
+**( productId, [props] )**
 
 Get details information for one or more products.
 
 
-param     | type     | required | description
-:---------|:---------|:---------|:-----------
-productId | string   | yes      | Product ID
-props     | object   | no       | Arguments, see API documentation
-callback  | function | yes      | `(err, data)`
+param     | type     | description
+:---------|:---------|:-----------
+productId | string   | Product ID
+[props]   | object   | Arguments, see API documentation
 
 
 ```js
-bol.catalog.products ('9200000023292527', {includeattributes: true}, (err, data) => {
-  for (let p in data.products) {
-    let product = data.products[p];
-    console.log (product.title + ' - €' + product.offerData.offers[0].price);
-  }
-});
+bol.catalog.products ('9200000023292527', {
+  includeattributes: true,
+})
+  .then (data => {
+    for (let p in data.products) {
+      let product = data.products[p];
+      console.log (product.title + ' - €' + product.offerData.offers[0].price);
+    }
+  })
+;
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.products)
 * [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4products/)
 
 
-catalog.offers
---------------
-**( productId, [props], callback )**
+### catalog.offers
+**( productId, [props] )**
 
 Get available offers for a given product.
 
 
-param     | type     | required | description
-:---------|:---------|:---------|:-----------
-productId | string   | yes      | Product ID
-props     | object   | no       | Arguments, see API documentation
-callback  | function | yes      | `(err, data)`
+param     | type     | description
+:---------|:---------|:-----------
+productId | string   | Product ID
+[props]   | object   | Arguments, see API documentation
 
 
 ```js
-bol.catalog.offers ('9200000023292527', (err, data) => {
-  for (let i in data.offers) {
-    let offer = data.offers[i];
-    console.log (offer.price + ' - ' + offer.availabilityDescription);
-  }
-});
+bol.catalog.offers ('9200000023292527')
+  .then (data => {
+    for (let i in data.offers) {
+      let offer = data.offers[i];
+      console.log (offer.price + ' - ' + offer.availabilityDescription);
+    }
+  })
+;
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.offers)
 * [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4offers/)
 
 
-catalog.recommendations
------------------------
-**( productId, [props], callback )**
+### catalog.recommendations
+**( productId, [props] )**
 
 Get recommended products for a given product.
 
 
-param     | type     | required | description
-:---------|:---------|:---------|:-----------
-productId | string   | yes      | Product ID
-props     | object   | no       | Arguments, see API documentation
-callback  | function | yes      | `(err, data)`
+param     | type     | description
+:---------|:---------|:-----------
+productId | string   | Product ID
+[props]   | object   | Arguments, see API documentation
 
 
 ```js
-bol.catalog.recommendations ('9200000023292527', (err, data) => {
-  for (let i in data) {
-    let product = data[i];
-    console.log (product.title + ' - ' + product.rating);
-  }
-});
+bol.catalog.recommendations ('9200000023292527')
+  .then (data => {
+    for (let i in data) {
+      let product = data[i];
+      console.log (product.title + ' - ' + product.rating);
+    }
+  })
+;
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.recommendations)
 * [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4recommendations/)
 
 
-catalog.relatedproducts
------------------------
-**( productId, [props], callback )**
+### catalog.relatedproducts
+**( productId, [props] )**
 
 Get related products for a given product.
 
 
-param     | type   | required | description
-:---------|:-------|:---------|:-----------
-productId | string | yes      | Product ID
-props     | object | no       | Arguments, see API documentation
+param     | type   | description
+:---------|:-------|:-----------
+productId | string | Product ID
+[props]   | object | Arguments, see API documentation
 
 
 ```js
-bol.catalog.relatedproducts ('9200000010839998', (err, data) => {
-  if (data.BINDINGCODE && data.BINDINGCODE.productFamilyMembers) {
-    for (let m in data.BINDINGCODE.productFamilyMembers) {
-      let mem = data.BINDINGCODE.productFamilyMembers[m];
+bol.catalog.relatedproducts ('9200000010839998')
+  .then (data => data.BINDINGCODE)
+  .then (data => data.productFamilyMembers)
+  .then (data => {
+    for (let m in data) {
+      let mem = data[m];
 
       console.log (mem.label + ' - ' + mem.productId);
     }
-  }
-});
+  })
+;
 ```
 
 * [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.relatedproducts)
 * [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4relatedproducts/)
 
 
-Errors
-------
+## Errors
 
 message          | description
-:----------------|:-------------------------------------------------------
+:----------------|:-----------
 missing apikey   | Credentials are not set
-api error        | The API returned an error, see `err.code` and `err.api`
-request failed   | The request can not be build
-invalid response | The API response cannot be processed
 
 
-Unlicense
----------
+## Unlicense
 
 This is free and unencumbered software released into the public domain.
 
@@ -288,12 +272,10 @@ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-For more information, please refer to <http://unlicense.org/>
+For more information, please refer to <https://unlicense.org/>
 
 
-Author
-------
+## Author
 
-[Franklin van de Meent](https://frankl.in)
-
-[![Buy me a coffee](https://frankl.in/u/kofi/kofi-readme.png)](https://ko-fi.com/franklin)
+[Franklin](https://fvdm.com)
+| [Buy me a coffee](https://fvdm.com/donating)
