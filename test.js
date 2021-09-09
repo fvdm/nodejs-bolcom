@@ -206,12 +206,12 @@ dotest.add ('catalogRecommendations', async test => {
 });
 
 
-dotest.add ('catalogRelatedproducts', async test => {
+dotest.add ('catalogRelatedProducts', async test => {
   let error;
   let data;
 
   try {
-    data = await bol.catalogRelatedproducts ('9200000010839998');
+    data = await bol.catalogRelatedProducts ('9200000010839998');
   }
   catch (err) {
     error = err;

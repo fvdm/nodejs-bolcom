@@ -55,6 +55,10 @@ module.exports = class BolcomAPI {
     let imgs = {};
     let image;
 
+    if (!product.images) {
+      return product;
+    }
+
     for (let i = 0; i < product.images.length; i++) {
       image = product.images[i];
       imgs[image.key] = product.images[i];
@@ -257,7 +261,7 @@ module.exports = class BolcomAPI {
    */
 
   async catalogOffers (productId, props) {
-    const data = await this._talk ('catalog', `offers/${productId}`, props);
+    let data = await this._talk ('catalog', `offers/${productId}`, props);
 
     if (data.offerData) {
       data = data.offerData;
