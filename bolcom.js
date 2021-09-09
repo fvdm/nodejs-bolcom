@@ -146,16 +146,16 @@ module.exports = class BolcomAPI {
     }
 
     // send request
-    const data = await doRequest (options)
-      .then (res => res.body)
-      .then (JSON.parse)
-    ;
+    const res = await doRequest (options);
+    const body = res.body.match (/<!DOCTYPE html>.+<pre [^>]+>(.+)<\/pre>/);
+    const data = JSON.parse (body ? body[1] : res.body);
 
     if (data.status) {
       const error = new Error (data.title);
 
       error.status = data.status;
       error.detail = data.detail;
+
       throw error;
     }
 
