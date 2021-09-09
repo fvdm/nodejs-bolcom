@@ -217,13 +217,13 @@ dotest.add ('catalogRelatedProducts', async test => {
     error = err;
   }
 
-  const bind = data && data.BINDINGCODE;
+  const bind = data && data.Binding;
 
   test (error)
     .info (data)
     .isObject ('fail', 'data', data)
-    .isObject ('fail', 'data.BINDINGCODE', bind)
-    .isObject ('fail', 'data.BINDINGCODE.productFamilyMembers', bind && bind.productFamilyMembers)
+    .isObject ('fail', 'data.Binding', bind)
+    .isObject ('fail', 'data.Binding.productFamilyMembers', bind && bind.productFamilyMembers)
     .done ()
   ;
 });
