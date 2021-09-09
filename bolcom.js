@@ -133,6 +133,7 @@ module.exports = class BolcomAPI {
       timeout: this._config.timeout,
       parameters: params,
       headers: {
+        'Accept': 'application/json',
         'User-Agent': 'bolcom.js (https://www.npmjs.com/package/bolcom)',
       },
     };
@@ -147,11 +148,7 @@ module.exports = class BolcomAPI {
 
     // send request
     const res = await doRequest (options);
-    console.log (res);
-    let data = res.body.replace (/.+>(([\{\[]).+\2)<.+/, '$1');
-console.log ('\n\n');
-console.log (data);
-    data = JSON.parse (data);
+    const data = JSON.parse (data);
 
     if (data.status) {
       const error = new Error (data.title);
