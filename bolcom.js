@@ -199,7 +199,7 @@ module.exports = class BolcomAPI {
 
     if (data.products && Array.isArray (data.products)) {
       for (let i = 0; i < data.products.length; i++) {
-        data.products[i] = this._cleanProduct (data.products[i]);
+        data.products[i] = await this._cleanProduct (data.products[i]);
       }
     }
 
