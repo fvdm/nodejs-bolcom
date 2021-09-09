@@ -228,5 +228,30 @@ dotest.add ('catalogRelatedproducts', async test => {
 });
 
 
+dotest.add ('API error', async test => {
+  const tmp = new app ({
+    apikey: '',
+    timeout,
+  });
+
+  let error;
+  let data;
+
+  try {
+    data = await tmp.ping();
+  }
+  catch (err) {
+    error = err;
+  }
+
+  test()
+    .isError ('fail', 'error', error)
+    .isNumber ('fail', 'error.status', error && error.status)
+    .isUndefined ('fail', 'data', data)
+    .done()
+  ;
+});
+
+
 // Start the tests
 dotest.run ();
