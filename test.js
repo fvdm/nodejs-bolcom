@@ -55,7 +55,7 @@ dotest.add ('ping', async test => {
 
   test (error)
     .isObject ('fail', 'data', data)
-    .isExactly ('fail', 'data.messages', data && data.message, 'Hello world!')
+    .isExactly ('warn', 'data.Message', data && data.Message, 'Hello World!')
     .done ()
   ;
 });
