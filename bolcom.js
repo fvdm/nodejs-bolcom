@@ -179,17 +179,6 @@ module.exports = class BolcomAPI {
 
 
   /**
-   * Method: account.sessions
-   *
-   * @return    {Promise<object>}
-   */
-
-  async accountSessions () {
-    return this._talk ('accounts', 'sessions');
-  }
-
-
-  /**
    * Generic catalog request handler
    *
    * @param     {string}    name      Catalog method name

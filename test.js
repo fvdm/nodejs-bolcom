@@ -61,25 +61,6 @@ dotest.add ('ping', async test => {
 });
 
 
-dotest.add ('accountSessions', async test => {
-  let error;
-  let data;
-
-  try {
-    data = await bol.accountSessions ();
-  }
-  catch (err) {
-    error = err;
-  }
-
-  test (error)
-    .isObject ('fail', 'data', data)
-    .isString ('fail', 'data.sessionId', data && data.sessionId)
-    .done ()
-  ;
-});
-
-
 dotest.add ('catalogSearch', async test => {
   let error;
   let data;
