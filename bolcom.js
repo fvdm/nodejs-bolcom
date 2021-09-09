@@ -147,8 +147,8 @@ module.exports = class BolcomAPI {
 
     // send request
     const res = await doRequest (options);
-    const body = res.body.match (/<html>.+<pre [^>]+>(.+)<\/pre>/);
-    const data = JSON.parse (body ? body[1] : res.body);
+    const body = res.body.match (/>(([\{\[]).+\1)</);
+    const data = JSON.parse (body ? body[2] : res.body);
 
     if (data.status) {
       const error = new Error (data.title);
