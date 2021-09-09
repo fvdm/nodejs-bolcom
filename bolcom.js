@@ -145,11 +145,21 @@ module.exports = class BolcomAPI {
       options.headers['X-OpenAPI-Session-ID'] = this._config.sessionId;
     }
 
-    // process response
-    return doRequest (options)
+    // send request
+    const data = await doRequest (options)
       .then (res => res.body)
       .then (JSON.parse)
     ;
+
+    if (data.status) {
+      const error = new Error (data.title);
+
+      error.status = data.status;
+      error.detail = data.detail;
+      throw error;
+    }
+
+    return data;
   }
 
 
