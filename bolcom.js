@@ -148,7 +148,7 @@ module.exports = class BolcomAPI {
 
     // send request
     const data = await doRequest (options)
-      .then (res => JSON.parse (res.body)
+      .then (res => JSON.parse (res.body))
     ;
 
     if (data.status) {
