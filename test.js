@@ -220,6 +220,7 @@ dotest.add ('catalogRelatedProducts', async test => {
   const bind = data && data.BINDINGCODE;
 
   test (error)
+    .info (data)
     .isObject ('fail', 'data', data)
     .isObject ('fail', 'data.BINDINGCODE', bind)
     .isObject ('fail', 'data.BINDINGCODE.productFamilyMembers', bind && bind.productFamilyMembers)
