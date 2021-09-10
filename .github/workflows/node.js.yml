@@ -50,11 +50,11 @@ jobs:
   finish:
     name: "Finish"
     needs: build
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
-        if: ${{ always() }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
