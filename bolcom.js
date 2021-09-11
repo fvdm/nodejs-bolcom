@@ -250,13 +250,9 @@ module.exports = class BolcomAPI {
    */
 
   async catalogOffers (productId, props) {
-    let data = await this._talk ('catalog', `offers/${productId}`, props);
-
-    if (data.offerData) {
-      data = data.offerData;
-    }
-
-    return data;
+    return this._talk ('catalog', `offers/${productId}`, props)
+      .then (data => data.offerData)
+    ;
   }
 
 
