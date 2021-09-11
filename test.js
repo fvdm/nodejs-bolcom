@@ -78,11 +78,8 @@ dotest.add ('catalogSearch', async test => {
     error = err;
   }
 
-  const products = data && data.products;
-  const item = products && products[0];
-
   dataProducts (test, error, data)
-    .isObject ('fail', 'data.products[0].attributeGroups', item && item.attributeGroups)
+    .isArray ('fail', 'data.products', data && data.products)
     .done ()
   ;
 });
