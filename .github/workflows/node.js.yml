@@ -48,9 +48,11 @@ jobs:
           parallel: true
 
   good_build:
-    name: "Build successful"
+    name: "Good build"
     needs: build
     runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build was sucessfull"
 
   finish:
     name: "Finish"
