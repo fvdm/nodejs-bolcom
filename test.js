@@ -199,7 +199,7 @@ dotest.add ('catalogRelatedProducts', async test => {
   }
 
   test (error)
-    .isArray ('fail', 'data', data)
+    .isObject ('fail', 'data', data)
     .done ()
   ;
 });
