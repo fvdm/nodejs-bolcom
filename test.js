@@ -198,12 +198,8 @@ dotest.add ('catalogRelatedProducts', async test => {
     error = err;
   }
 
-  const bind = data && data.Binding;
-
   test (error)
-    .isObject ('fail', 'data', data)
-    .isObject ('fail', 'data.Binding', bind)
-    .isObject ('fail', 'data.Binding.productFamilyMembers', bind && bind.productFamilyMembers)
+    .isArray ('fail', 'data', data)
     .done ()
   ;
 });
