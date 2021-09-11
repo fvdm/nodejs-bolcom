@@ -12,12 +12,10 @@ module.exports = class BolcomAPI {
 
   constructor ({
     apikey,
-    sessionId = null,
     timeout = 5000,
   }) {
     this._config = {
       apikey,
-      sessionId,
       timeout,
     };
   }
@@ -144,11 +142,6 @@ module.exports = class BolcomAPI {
 
     options.parameters.apikey = this._config.apikey;
     options.parameters.format = 'json';
-
-    // check session ID
-    if (this._config.sessionId) {
-      options.headers['X-OpenAPI-Session-ID'] = this._config.sessionId;
-    }
 
     // send request
     const res = await doRequest (options);
