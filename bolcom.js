@@ -278,35 +278,7 @@ module.exports = class BolcomAPI {
    */
 
   async catalogRelatedProducts (productId, props) {
-    let data = await this._talk ('catalog', `relatedproducts/${productId}`, props);
-    let tmp = {};
-    let tmp2 = {};
-
-    if (data.productFamilies) {
-      data = data.productFamilies;
-
-      if (!Array.isArray (data) && !data.length && !data[0].key) {
-        return data;
-      }
-
-      for (let i = 0; i < data.length; i++) {
-        tmp[data[i].key] = data[i];
-
-        if (Array.isArray (data[i].productFamilyMembers)) {
-          tmp2 = {};
-
-          for (let m = 0; m < data[i].productFamilyMembers.length; m++) {
-            tmp2[data[i].productFamilyMembers[m].label] = data[i].productFamilyMembers[m];
-          }
-
-          tmp[data[i].key].productFamilyMembers = tmp2;
-        }
-
-        data = tmp;
-      }
-    }
-
-    return data;
+    return this._talk ('catalog', `relatedproducts/${productId}`, props);
   }
 
 
