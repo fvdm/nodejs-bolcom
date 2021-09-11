@@ -190,11 +190,9 @@ module.exports = class BolcomAPI {
   async _catalogTalk (name, props) {
     const data = await this._talk ('catalog', name, props);
 
-    if (data.products && Array.isArray (data.products)) {
-      for (let i = 0; i < data.products.length; i++) {
-        data.products[i] = await this._cleanProduct (data.products[i]);
-      }
-    }
+    data.forEach ((itm, i) => {
+      data.products[i] = await this._cleanProduct (itm);
+    });
 
     return data;
   }
