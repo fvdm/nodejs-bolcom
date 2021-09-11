@@ -283,15 +283,4 @@ module.exports = class BolcomAPI {
     return this._talk ('catalog', `relatedproducts/${productId}`, props);
   }
 
-
-  /**
-   * Method: account.wishlists
-   *
-   * @return    {Promise<object>}
-   */
-
-  async accountWishlists () {
-    return this._talk ('accounts', 'wishlists');
-  }
-
 };
