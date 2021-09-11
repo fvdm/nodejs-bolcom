@@ -205,7 +205,6 @@ dotest.add ('catalogRelatedProducts', async test => {
 dotest.add ('API error', async test => {
   const tmp = new app ({
     apikey: '',
-    timeout,
   });
 
   let error;
