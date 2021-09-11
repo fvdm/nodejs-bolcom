@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: set-matrix
-        run: echo "::set-output name=matrix::$(curl -s https://raw.githubusercontent.com/fvdm/nodejs-versions/main/lts.json)"
+        run: echo "::set-output name=matrix::$(curl -s https://raw.githubusercontent.com/fvdm/nodejs-versions/main/lts-current.json)"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
@@ -38,10 +38,11 @@ jobs:
           BOLCOM_APIKEY: ${{ secrets.BOLCOM_APIKEY }}
           BOLCOM_TIMEOUT: ${{ secrets.BOLCOM_TIMEOUT }}
           DOTEST_NOCOV: ${{ secrets.DOTEST_NOCOV }}
+          DOTEST_MINCOV: ${{ secrets.DOTEST_MINCOV }}
       - run: npm audit --production
       - name: Coveralls Parallel
         uses: coverallsapp/github-action@master
-        if: ${{ always() }}
+        if: always()
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           flag-name: node-${{ matrix.node-version }}
@@ -57,7 +58,7 @@ jobs:
   finish:
     name: "Finish"
     needs: build
-    if: ${{ always() }}
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Coveralls Finished
