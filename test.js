@@ -90,7 +90,9 @@ dotest.add ('catalogProducts', async test => {
   let data;
 
   try {
-    data = await bol.catalogProducts ('9200000023292527');
+    data = await bol.catalogProducts ({
+      productId: '9200000023292527',
+    });
   }
   catch (err) {
     error = err;
@@ -105,7 +107,9 @@ dotest.add ('incomplete product', async test => {
   let data;
 
   try {
-    data = await bol.catalogProducts ('9200000009223738');
+    data = await bol.catalogProducts ({
+      productId: '9200000009223738',
+    });
   }
   catch (err) {
     error = err;
@@ -141,7 +145,9 @@ dotest.add ('catalogOffers', async test => {
   let data;
 
   try {
-    data = await bol.catalogOffers ('9200000023292527');
+    data = await bol.catalogOffers ({
+      productId: '9200000023292527',
+    });
   }
   catch (err) {
     error = err;
@@ -165,7 +171,9 @@ dotest.add ('catalogRecommendations', async test => {
   let data;
 
   try {
-    data = await bol.catalogRecommendations ('9200000023292527');
+    data = await bol.catalogRecommendations ({
+      productId: '9200000023292527',
+    });
   }
   catch (err) {
     error = err;
@@ -189,7 +197,9 @@ dotest.add ('catalogRelatedProducts', async test => {
   let data;
 
   try {
-    data = await bol.catalogRelatedProducts ('9200000010839998');
+    data = await bol.catalogRelatedProducts ({
+      productId: '9200000010839998',
+    });
   }
   catch (err) {
     error = err;
