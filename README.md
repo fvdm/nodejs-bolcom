@@ -51,7 +51,7 @@ Error handling is not included in the following examples.
 See the [Usage](#usage) section above for an example with proper error handling.
 
 
-### utils.ping
+### ping
 **( )**
 
 Simple API access test. The result `data` should be an _object_ with only one
@@ -59,7 +59,7 @@ property named `message` with the exact value `Hello world!!`.
 
 
 ```js
-bol.utils.ping().then (data => {
+bol.ping().then (data => {
   if (data.message === 'Hello world!!') {
     console.log ('pong');
   }
@@ -70,35 +70,21 @@ bol.utils.ping().then (data => {
 ```
 
 
-### account.sessions
-**( )**
-
-Request a new anonymous session ID.
-
-
-```js
-bol.account.sessions()
-  .then (data => data.sessionId)
-  .then (console.log)
-;
-```
-
-
-### catalog.search
-**( props )**
+### catalogSearch
+**({ ... })**
 
 Search products in the catalog.
 
 The result `data` is modified to remove a few xml-style annoyances.
 
 
-param    | type     | description
-:--------|:---------|:-----------
-props    | object   | search paramaters
+param  | type   | description
+:------|:-------|:-----------
+...    | object | search paramaters
 
 
 ```js
-bol.catalog.search ({ q: 'node.js' })
+bol.catalogSearch ({ q: 'node.js' })
   .then (data => {
     for (let i in data.products) {
       let product = data.products[p];
@@ -108,27 +94,25 @@ bol.catalog.search ({ q: 'node.js' })
 ;
 ```
 
-* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.search)
-* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4search/)
+[API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4search/)
 
 
-### catalog.lists
-**( [props] )**
+### catalogLists
+**({ [...] })**
 
 Product lists, based on list type and category.
 
 
-param    | type     | description
-:--------|:---------|:-----------
-[props]  | object   | Arguments, see API documentation
+param | type   | description
+:-----|:-------|:-----------
+[...] | object | Arguments, see API documentation
 
 
-* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.lists)
-* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4lists/)
+[API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4lists/)
 
 
-### catalog.products
-**( productId, [props] )**
+### catalogProducts
+**({ productId, [...] })**
 
 Get details information for one or more products.
 
@@ -136,11 +120,12 @@ Get details information for one or more products.
 param     | type     | description
 :---------|:---------|:-----------
 productId | string   | Product ID
-[props]   | object   | Arguments, see API documentation
+[...]     | object   | Arguments, see API documentation
 
 
 ```js
-bol.catalog.products ('9200000023292527', {
+bol.catalogProducts ({
+  productId: '9200000023292527',
   includeattributes: true,
 })
   .then (data => {
@@ -152,24 +137,25 @@ bol.catalog.products ('9200000023292527', {
 ;
 ```
 
-* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.products)
-* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4products/)
+[API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4products/)
 
 
-### catalog.offers
-**( productId, [props] )**
+### catalogOffers
+**({ productId, [...] })**
 
 Get available offers for a given product.
 
 
-param     | type     | description
-:---------|:---------|:-----------
-productId | string   | Product ID
-[props]   | object   | Arguments, see API documentation
+param     | type   | description
+:---------|:-------|:-----------
+productId | string | Product ID
+[...]     | object | Arguments, see API documentation
 
 
 ```js
-bol.catalog.offers ('9200000023292527')
+bol.catalogOffers ({
+  productId: '9200000023292527',
+})
   .then (data => {
     for (let i in data.offers) {
       let offer = data.offers[i];
@@ -179,24 +165,25 @@ bol.catalog.offers ('9200000023292527')
 ;
 ```
 
-* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.offers)
-* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4offers/)
+[API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4offers/)
 
 
-### catalog.recommendations
-**( productId, [props] )**
+### catalogRecommendations
+**({ productId, [...] })**
 
 Get recommended products for a given product.
 
 
-param     | type     | description
-:---------|:---------|:-----------
-productId | string   | Product ID
-[props]   | object   | Arguments, see API documentation
+param     | type   | description
+:---------|:-------|:-----------
+productId | string | Product ID
+[...]     | object | Arguments, see API documentation
 
 
 ```js
-bol.catalog.recommendations ('9200000023292527')
+bol.catalogRecommendations ({
+  productId: '9200000023292527',
+})
   .then (data => {
     for (let i in data) {
       let product = data[i];
@@ -206,12 +193,11 @@ bol.catalog.recommendations ('9200000023292527')
 ;
 ```
 
-* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.recommendations)
-* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4recommendations/)
+[API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4recommendations/)
 
 
-### catalog.relatedproducts
-**( productId, [props] )**
+### catalogRelatedproducts
+**({ productId, [...] })**
 
 Get related products for a given product.
 
@@ -223,7 +209,9 @@ productId | string | Product ID
 
 
 ```js
-bol.catalog.relatedproducts ('9200000010839998')
+bol.catalogRelatedproducts ({
+  productId: '9200000010839998',
+})
   .then (data => data.BINDINGCODE)
   .then (data => data.productFamilyMembers)
   .then (data => {
@@ -236,8 +224,7 @@ bol.catalog.relatedproducts ('9200000010839998')
 ;
 ```
 
-* [Example data](https://github.com/fvdm/nodejs-bolcom/wiki/catalog.relatedproducts)
-* [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4relatedproducts/)
+[API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4relatedproducts/)
 
 
 ## Errors
