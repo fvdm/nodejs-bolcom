@@ -1,9 +1,9 @@
 /*
-Name:             bolcom.js
-Description:      Module for node.js to access Bol.com Open API service
-Author:           Franklin (https://fvdm.com)
-Source:           https://github.com/fvdm/nodejs-bolcom
-License:          Unlicense
+Name:         bolcom.js
+Description:  Module for node.js to access Bol.com Open API service
+Author:       Franklin (https://fvdm.com)
+Source:       https://github.com/fvdm/nodejs-bolcom
+License:      Unlicense
 */
 
 const { doRequest } = require ('httpreq');
