@@ -3,7 +3,7 @@
 Access the Bol.com Partner Open API with Node.js (unofficial)
 
 [![npm](https://img.shields.io/npm/v/bolcom.svg?maxAge=3600)](https://github.com/fvdm/nodejs-bolcom/blob/master/CHANGELOG.md)
-[![Build Status](https://travis-ci.org/fvdm/nodejs-bolcom.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-bolcom/branches)
+[![Build Status](https://github.com/fvdm/nodejs-bolcom/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/fvdm/nodejs-bolcom/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-bolcom/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-bolcom?branch=master)
 
 * [Node.js](https://nodejs.org/)
