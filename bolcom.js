@@ -119,6 +119,50 @@ module.exports = class BolcomAPI {
 
 
   /**
+  * Method: search suggestions
+  *
+  * @return  {Promise<object>}
+  *
+  * @param   {string}  term
+  */
+
+  async searchSuggestions ({
+    term,
+    xcat = 'media_all',
+  }) {
+    const options = {
+      url: `https://zoeksuggesties.s-bol.com/extern/qs/OpenSearch/${xcat}/${term}`,
+      method: 'GET',
+      timeout: this._config.timeout,
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'bolcom.js (https://www.npmjs.com/package/bolcom)',
+      },
+    };
+
+    const res = await doRequest (options);
+    let data = res.body;
+
+    data = data.replace ('{terms:', '{"terms":');
+    data = data.replace (',categories:', ',"categories":');
+    data = data.replace (',brands:', ',"brands":');
+
+    data = JSON.parse (data);
+
+    if (data.status) {
+      const error = new Error (data.title);
+
+      error.status = data.status;
+      error.detail = data.type;
+
+      throw error;
+    }
+
+    return data;
+  }
+
+
+  /**
    * Communication with API
    *
    * @param     {string}    cat       api.bol.com/:CAT/v4/method
