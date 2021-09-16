@@ -120,7 +120,9 @@ module.exports = class BolcomAPI {
   *
   * @return  {Promise<object>}
   *
-  * @param   {string}  term
+  * @param   {object}  o
+  * @param   {string}  o.term  Search term (fuzzy)
+  * @param   {string}  o.xcat  Product catagory
   */
 
   async searchSuggestions ({
@@ -162,19 +164,24 @@ module.exports = class BolcomAPI {
   /**
    * Communication with API
    *
-   * @param     {string}    cat       api.bol.com/:CAT/v4/method
-   * @param     {string}    method    api.bol.com/cat/v4/:METHOD
-   * @param     {object}    [params]  Request paramaters
+   * @param   {object}  o
+   * @param   {string}  o.cat           api.bol.com/:CAT/v4/method
+   * @param   {string}  o.method        api.bol.com/cat/v4/:METHOD
+   * @param   {object}  [o.parameters]  Request paramaters
    *
-   * @return    {Promise<object>}
+   * @return  {Promise<object>}
    */
 
-  async _talk (cat, method, params = {}) {
+  async _talk ({
+    cat,
+    method,
+    parameters = {},
+  }) {
     const options = {
       url: `https://api.bol.com/${cat}/v4/${method}`,
       method: 'GET',
       timeout: this._config.timeout,
-      parameters: params,
+      parameters,
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'bolcom.js (https://www.npmjs.com/package/bolcom)',
@@ -204,25 +211,36 @@ module.exports = class BolcomAPI {
   /**
    * Method: ping
    *
-   * @return    {Promise<object>}
+   * @return  {Promise<object>}
    */
 
   async ping () {
-    return this._talk ('utils', 'ping');
+    return this._talk ({
+      cat: 'utils',
+      method: 'ping',
+    });
   }
 
 
   /**
    * Generic catalog request handler
    *
-   * @param     {string}    name      Catalog method name
-   * @param     {object}    props     Request parameters
+   * @param   {object}  props         Parameters
+   * @param   {string}  props.method  Catalog method name
    *
-   * @return    {Promise<object>}
+   * @return  {Promise<object>}
    */
 
-  async _catalogTalk (name, props) {
-    const data = await this._talk ('catalog', name, props);
+  async _catalogTalk ({
+    method,
+  }) {
+    delete arguments[0].method;
+
+    const data = await this._talk ({
+      cat: 'catalog',
+      method,
+      parameters: arguments[0],
+    });
 
     data.products.forEach (async (itm, i) => {
       data.products[i] = await this._cleanProduct (itm);
@@ -235,54 +253,75 @@ module.exports = class BolcomAPI {
   /**
    * Method: catalog.search
    *
-   * @param     {object}    props     Method parameters
+   * @param   {object}  props  Method parameters
    *
-   * @return    {Promise<object>}
+   * @return  {Promise<object>}
    */
 
   async catalogSearch (props) {
-    return this._catalogTalk ('search', props);
+    return this._catalogTalk ({
+      method: 'lists',
+      parameters: props,
+    });
   }
 
 
   /**
    * Method: catalog.lists
    *
-   * @param     {object}    props     Method parameters
+   * @param   {object}  props  Method parameters
    *
-   * @return    {Promise<object>}
+   * @return  {Promise<object>}
    */
 
   async catalogLists (props) {
-    return this._catalogTalk ('lists', props);
+    return this._catalogTalk ({
+      method: 'lists',
+      parameters: props,
+    });
   }
 
 
   /**
    * Method: catalog.products
    *
-   * @param     {string}    productId  Product ID
-   * @param     {object}    [props]    Method parameters
+   * @param   {object}  props            Parameters
+   * @param   {string}  props.productId  Product ID
    *
-   * @return    {Promise<object>}
+   * @return  {Promise<object>}
    */
 
-  async catalogProducts (productId, props) {
-    return this._catalogTalk (`products/${productId}`, props);
+  async catalogProducts ({
+    productId,
+  }) {
+    delete arguments[0].productId;
+
+    return this._catalogTalk ({
+      method: `products/${productId}`,
+      parameters: arguments[0],
+    });
   }
 
 
   /**
    * Method: catalog.offers
    *
-   * @param     {string}    productId  Product ID
-   * @param     {object}    [props]    Method parameters
+   * @param   {object}  props            Parameters
+   * @param   {string}  props.productId  Product ID
    *
-   * @return    {Promise<object>}
+   * @return  {Promise<object>}
    */
 
-  async catalogOffers (productId, props) {
-    return this._talk ('catalog', `offers/${productId}`, props)
+  async catalogOffers ({
+    productId,
+  }) {
+    delete arguments[0].productId;
+
+    return this._talk ({
+      cat: 'catalog',
+      method: `offers/${productId}`,
+      parameters: arguments[0],
+    })
       .then (data => data.offerData)
     ;
   }
@@ -291,28 +330,43 @@ module.exports = class BolcomAPI {
   /**
    * Method: catalog.recommendations
    *
-   * @return    {Promise<object>}
+   * @param   {object}  props            Parameters
+   * @param   {string}  props.productId  Product ID
    *
-   * @param     {string}    productId  Product ID
-   * @param     {object}    [props]    Method parameters
+   * @return  {Promise<object>}
    */
 
-  async catalogRecommendations (productId, props) {
-    return this._catalogTalk (`recommendations/${productId}`, props);
+  async catalogRecommendations ({
+    productId,
+  }) {
+    delete arguments[0].productId;
+
+    return this._catalogTalk ({
+      method: `recommendations/${productId}`,
+      parameters: arguments[0],
+    });
   }
 
 
   /**
    * Method: catalog.relatedproducts
    *
-   * @return    {Promise<object>}
+   * @param   {object}  props            Parameters
+   * @param   {string}  props.productId  Product ID
    *
-   * @param     {string}    productId  Product ID
-   * @param     {object}    [props]    Method parameters
+   * @return  {Promise<object>}
    */
 
-  async catalogRelatedProducts (productId, props) {
-    return this._talk ('catalog', `relatedproducts/${productId}`, props);
+  async catalogRelatedProducts ({
+    productId,
+  }) {
+    delete arguments[0].productId;
+
+    return this._talk ({
+      cat: 'catalog',
+      method: `relatedproducts/${productId}`,
+      parameters: arguments[0],
+    });
   }
 
 };
