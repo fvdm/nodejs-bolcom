@@ -1,3 +1,76 @@
+## 2.0.0 (2021-09-16)
+
+##### Breaking Changes
+
+*  Rewritten interface ([a32a0b57](https://github.com/fvdm/nodejs-bolcom/commit/a32a0b57e259b2cd8b5a8e21225c7b11d747ac30))
+
+##### Chores
+
+* **license:**  Updated https link ([4fb29ebd](https://github.com/fvdm/nodejs-bolcom/commit/4fb29ebd4b414e8b971736d61ce126d140ee8adb))
+* **package:**
+  *  Update deps and meta ([d99a1056](https://github.com/fvdm/nodejs-bolcom/commit/d99a105687ef9e548f8456b4ec53b5f51060088e))
+  *  Dev deps replaced by dotest ([ffd361ba](https://github.com/fvdm/nodejs-bolcom/commit/ffd361baf5cd0b52c99848a01f6e286cc0b559e8))
+* **dev:**
+  *  Clean up gitignore ([2e1c501a](https://github.com/fvdm/nodejs-bolcom/commit/2e1c501a7345ee2e64a2b3105837cd01576aa129))
+  *  Github basics ([e6b13756](https://github.com/fvdm/nodejs-bolcom/commit/e6b137560ac9c4ca2fd9d03e6bdd2a906cfb10a5))
+  *  Added .editorconfig ([1ee46525](https://github.com/fvdm/nodejs-bolcom/commit/1ee46525da27e507772cb262fe5700712bbdeaec))
+*  Delete bitHound and Travis ([75c65f82](https://github.com/fvdm/nodejs-bolcom/commit/75c65f82f7833b648102da47b1ee1f7dfcbe7d51))
+
+##### Bug Fixes
+
+*  data.products array in _catalogTalk ([f7953667](https://github.com/fvdm/nodejs-bolcom/commit/f7953667fe4b95a61bb7baf7c11e4354c491dcc0))
+*  Async..await in forEach ([dac1250c](https://github.com/fvdm/nodejs-bolcom/commit/dac1250ce5d451ad3b22e50c659dc175830fe618))
+*  API changed interface ([b1777822](https://github.com/fvdm/nodejs-bolcom/commit/b1777822185dfd8563f132e4d2efc3ebde38a87a))
+*  Syntax errors and bad refs ([25dd7fc7](https://github.com/fvdm/nodejs-bolcom/commit/25dd7fc7211fffba2047189ed3f4f6c7a33395c1))
+*  Await inline promises ([44793b8d](https://github.com/fvdm/nodejs-bolcom/commit/44793b8d19892e3feccb5ad19e1995b3f3770f4e))
+*  Syntax typo ([abff0b91](https://github.com/fvdm/nodejs-bolcom/commit/abff0b91ecfca1f585fb62d12f6cfe21004a4339))
+*  Broken response processing ([ba387be9](https://github.com/fvdm/nodejs-bolcom/commit/ba387be98bbb16997b0ba88975193f99f8761e03))
+*  API error handling ([6ef7e60a](https://github.com/fvdm/nodejs-bolcom/commit/6ef7e60aa97906076d1c1ab7c5cb2c25479178c7))
+*  Regex typo ([3438eb87](https://github.com/fvdm/nodejs-bolcom/commit/3438eb87dbff29d5c3867ab32a41563dabc7d59b))
+*  Simpler HTML error handling ([bba1c21d](https://github.com/fvdm/nodejs-bolcom/commit/bba1c21dbdf2d1e0911486d4d83c47a2365bfd00))
+*  Simpler HTML error matching ([aa8c4a14](https://github.com/fvdm/nodejs-bolcom/commit/aa8c4a143d720df77db856540ecf728c1116b098))
+*  Simpler HTML error parsing ([b17fca04](https://github.com/fvdm/nodejs-bolcom/commit/b17fca041c333024a110572f6a24414e55039de9))
+*  Handle HTML formatted errors ([1870b64f](https://github.com/fvdm/nodejs-bolcom/commit/1870b64f9f72469bc4b60844a6e491f0ffcd7c82))
+*  Handle API errors ([f6e3faac](https://github.com/fvdm/nodejs-bolcom/commit/f6e3faace24f884da68061b9aea8b173490afbb9))
+*  Empty method value ([b383fbaf](https://github.com/fvdm/nodejs-bolcom/commit/b383fbaf26ed7735e9c5e3bdec0f9397ba8094f5))
+*  Missing return values ([a92d32f2](https://github.com/fvdm/nodejs-bolcom/commit/a92d32f2add0d282dc2cc856007dd46f49c6900c))
+*  Incorrect method names ([378f81c2](https://github.com/fvdm/nodejs-bolcom/commit/378f81c28b8cc61c756ebadbec2a8b390f7a1780))
+*  Syntax errors and whitespace ([1d35f13e](https://github.com/fvdm/nodejs-bolcom/commit/1d35f13ef6806db962ef32165b91ec8c9efa8fd8))
+*  Syntax typos ([ba6b8a99](https://github.com/fvdm/nodejs-bolcom/commit/ba6b8a99fa5a5392fa30ba668d9cc804b1adb2ac))
+*  upgrade httpreq from 0.4.24 to 0.5.1 ([#25](https://github.com/fvdm/nodejs-bolcom/pull/25)) ([a2eb0013](https://github.com/fvdm/nodejs-bolcom/commit/a2eb001344cf3b958de3ff84bea57141bfec0f0f))
+
+##### Refactors
+
+*  Removed sessionId config ([1ec53610](https://github.com/fvdm/nodejs-bolcom/commit/1ec536108051c8f04072343f19fc845dc2762c7c))
+*  data.products is always an array ([3151b636](https://github.com/fvdm/nodejs-bolcom/commit/3151b636c1a57d9dff7db4d60a427bc7fb9d832c))
+*  Removed accountWishlists ([37e7eeb2](https://github.com/fvdm/nodejs-bolcom/commit/37e7eeb2370d11b38ca45095c2d81ed5db6ac2df))
+*  No conversion in catalogRelatedProducts ([b008e88f](https://github.com/fvdm/nodejs-bolcom/commit/b008e88f10f8737b0a174d70e734b96da5a0b093))
+*  Cleaner _catalogTalk ([e3f8d0c1](https://github.com/fvdm/nodejs-bolcom/commit/e3f8d0c10b22c7f21b888927b24545d508577ce4))
+*  Cleaner catalogOffers ([f3c235df](https://github.com/fvdm/nodejs-bolcom/commit/f3c235df439422592b684c6a2d57f7886494b5c5))
+*  Removed accountSessions ([473f0bc6](https://github.com/fvdm/nodejs-bolcom/commit/473f0bc677a7108a1126edeaff8351ffb0ecbc6e))
+*  Simpeler response handling ([b81521a4](https://github.com/fvdm/nodejs-bolcom/commit/b81521a44fc42de8f6aee944196d12b9b9b2b478))
+
+##### Code Style Changes
+
+* **lint:**  Fix lint errors ([905ca978](https://github.com/fvdm/nodejs-bolcom/commit/905ca978d08b2174d9371b8e3dfa0a064e2c96b7))
+
+##### Tests
+
+*  Default timeout for coverage ([1c8b1ab3](https://github.com/fvdm/nodejs-bolcom/commit/1c8b1ab378b16bcba51ac08ddf5333d61c21cee0))
+*  Fixed data.products array check ([1ec4b597](https://github.com/fvdm/nodejs-bolcom/commit/1ec4b5974ae3d810b40395a45afdadae1e4607ec))
+*  Fixed bad check ([b71d858d](https://github.com/fvdm/nodejs-bolcom/commit/b71d858dff927de5ad96c41671305977caf9a077))
+*  Removed obsolete checks ([0670f789](https://github.com/fvdm/nodejs-bolcom/commit/0670f7891faf1e70c44852fc3abf4c46754b9a09))
+*  retry ([e5cca1af](https://github.com/fvdm/nodejs-bolcom/commit/e5cca1afa9629e4960ece5ff419de9370dcc4ccc))
+*  Always process coverage ([709e7a48](https://github.com/fvdm/nodejs-bolcom/commit/709e7a481fa8ec9ffc1505235226b0f6203e74ec))
+*  Fixed ping response ([cc405f9b](https://github.com/fvdm/nodejs-bolcom/commit/cc405f9b801748604183b86905c6b3b7e5b8e00d))
+*  Added error checks ([c4eaa3b7](https://github.com/fvdm/nodejs-bolcom/commit/c4eaa3b74165536848fbcb4bc8d2bb95ea905420))
+* **config:**
+  *  Update node.js action ([c714d61c](https://github.com/fvdm/nodejs-bolcom/commit/c714d61c8f91fc2632430c15d8cf036220cc7e69))
+  *  Fixed action workflow ([7ad531fb](https://github.com/fvdm/nodejs-bolcom/commit/7ad531fba0cf89270a37c14369719db35ede367a))
+  *  Add good_build anchor to action ([c7defbc4](https://github.com/fvdm/nodejs-bolcom/commit/c7defbc472f7edc7ab1851b37973326ed5ed1dfe))
+  *  Added Github build action ([26a687cd](https://github.com/fvdm/nodejs-bolcom/commit/26a687cd05795ce81e265faf2092f53d5b0c25ce))
+  *  Modern ESLint ([fe96f8ca](https://github.com/fvdm/nodejs-bolcom/commit/fe96f8ca189cdea61ca35235b31aae2ada3ffdf2))
+
 #### 1.2.3 (2017-12-16)
 
 ##### Documentation Changes
