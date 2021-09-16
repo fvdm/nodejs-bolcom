@@ -19,7 +19,9 @@ const bol = new BolAPI ({
   apikey: 'abc123',
 });
 
-bol.catalog.search ({ q: 'node.js' })
+bol.catalogSearch ({
+  q: 'node.js',
+})
   .then (data => {
     for (let p in data.products) {
       product = data.products[p];
@@ -84,7 +86,9 @@ param  | type   | description
 
 
 ```js
-bol.catalogSearch ({ q: 'node.js' })
+bol.catalogSearch ({
+  q: 'node.js',
+})
   .then (data => {
     for (let i in data.products) {
       let product = data.products[p];
@@ -229,9 +233,9 @@ bol.catalogRelatedproducts ({
 
 ## Errors
 
-message          | description
-:----------------|:-----------
-missing apikey   | Credentials are not set
+message        | description
+:--------------|:-----------
+missing apikey | Credentials are not set
 
 
 ## Unlicense
