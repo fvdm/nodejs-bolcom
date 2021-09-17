@@ -164,8 +164,8 @@ module.exports = class BolcomAPI {
       throw error;
     }
 
-    return data;
     // Done
+    return data.terms[1];
   }
 
 

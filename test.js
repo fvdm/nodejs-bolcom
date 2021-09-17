@@ -228,7 +228,8 @@ dotest.add ('searchSuggestions - results', async test => {
   }
 
   test (error)
-    .isObject ('fail', 'data', data)
+    .isArray ('fail', 'data', data)
+    .isNotEmpty ('warn', 'data', data)
     .done()
   ;
 });
