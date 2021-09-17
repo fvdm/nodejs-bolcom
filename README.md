@@ -209,7 +209,7 @@ Get related products for a given product.
 param     | type   | description
 :---------|:-------|:-----------
 productId | string | Product ID
-[props]   | object | Arguments, see API documentation
+[...]   | object | Arguments, see API documentation
 
 
 ```js
