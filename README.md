@@ -231,6 +231,30 @@ bol.catalogRelatedproducts ({
 [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4relatedproducts/)
 
 
+### searchSuggestions
+**({ term, [xcat] })**
+
+Get search suggestions for a keyword.
+
+
+param  | type   | default     | description
+:------|:-------|:------------|:-----------
+term   | string |             | Keyword to search on
+[xcat] | string | `media_all` | Category, see docs 
+
+
+```js
+bol.searchSuggestions ({
+  term: 'potter',
+  xcat: 'books_en',
+})
+  .then (console.table)
+;
+```
+
+[API documentation](https://partnerblog.bol.com/documentatie/open-api/zoeksuggesties/)
+
+
 ## Errors
 
 message        | description
