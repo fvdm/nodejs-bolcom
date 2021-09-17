@@ -148,10 +148,7 @@ module.exports = class BolcomAPI {
     let data = res.body;
 
     // Process JS response without unsave eval()
-    data = data.replace ('{terms:', '{"terms":');
-    data = data.replace (',categories:', ',"categories":');
-    data = data.replace (',brands:', ',"brands":');
-
+    data = data.replace (/(,|\{)([^"]\w+[^"]):(\[|\{)/g, '$1"$2":$3');
     data = JSON.parse (data);
 
     // Process API error
