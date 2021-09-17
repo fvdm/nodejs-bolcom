@@ -76,26 +76,27 @@ module.exports = class BolcomAPI {
     let group;
     let attrib;
 
-    if (product.attributeGroups) {
-      for (let i = 0; i < product.attributeGroups.length; i++) {
-        group = product.attributeGroups[i];
-        groups[group.title] = {
-          title: group.title,
-        };
-
-        if (group.attributes) {
-          groups[group.title].attributes = {};
-
-          for (let a = 0; a < group.attributes.length; a++) {
-            attrib = group.attributes[a];
-            groups[group.title].attributes[attrib.key] = attrib;
-          }
-        }
-      }
-
-      product.attributeGroups = groups;
+    if (!product.attributeGroups) {
+      return product;
     }
 
+    for (let i = 0; i < product.attributeGroups.length; i++) {
+      group = product.attributeGroups[i];
+      groups[group.title] = {
+        title: group.title,
+      };
+
+      if (group.attributes) {
+        groups[group.title].attributes = {};
+
+        for (let a = 0; a < group.attributes.length; a++) {
+          attrib = group.attributes[a];
+          groups[group.title].attributes[attrib.key] = attrib;
+        }
+      }
+    }
+
+    product.attributeGroups = groups;
     return product;
   }
 
