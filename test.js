@@ -38,7 +38,8 @@ function dataProducts (test, err, data) {
     .isObject ('fail', 'data', data)
     .isArray ('fail', 'data.products', products)
     .isObject ('fail', 'data.products[0]', item)
-    .isString ('fail', 'data.products[0].id', item && item.id);
+    .isString ('fail', 'data.products[0].id', item && item.id)
+  ;
 }
 
 
