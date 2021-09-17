@@ -62,7 +62,7 @@ property named `message` with the exact value `Hello world!!`.
 
 ```js
 bol.ping().then (data => {
-  if (data.message === 'Hello world!!') {
+  if (data.Message === 'Hello World!') {
     console.log ('pong');
   }
   else {
@@ -112,6 +112,16 @@ param | type   | description
 [...] | object | Arguments, see API documentation
 
 
+```js
+bol.catalogLists()
+  .then (data => data.products)
+  .then (data => data.filter (itm => itm.rating >= 40))
+  .then (data => data.forEach (itm => {
+    console.log (`${itm.rating} - ${itm.title}`);
+  }))
+;
+```
+
 [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4lists/)
 
 
@@ -135,7 +145,7 @@ bol.catalogProducts ({
   .then (data => {
     for (let p in data.products) {
       let product = data.products[p];
-      console.log (product.title + ' - €' + product.offerData.offers[0].price);
+      console.log (`${product.title} - € ${product.offerData.offers[0].price}`);
     }
   })
 ;
@@ -163,7 +173,7 @@ bol.catalogOffers ({
   .then (data => {
     for (let i in data.offers) {
       let offer = data.offers[i];
-      console.log (offer.price + ' - ' + offer.availabilityDescription);
+      console.log (`${offer.price} - ${offer.availabilityDescription}`);
     }
   })
 ;
@@ -191,7 +201,7 @@ bol.catalogRecommendations ({
   .then (data => {
     for (let i in data) {
       let product = data[i];
-      console.log (product.title + ' - ' + product.rating);
+      console.log (`${product.title} - ${product.rating}`);
     }
   })
 ;
@@ -213,18 +223,10 @@ productId | string | Product ID
 
 
 ```js
-bol.catalogRelatedproducts ({
+bol.catalogRelatedProducts ({
   productId: '9200000010839998',
 })
-  .then (data => data.BINDINGCODE)
-  .then (data => data.productFamilyMembers)
-  .then (data => {
-    for (let m in data) {
-      let mem = data[m];
-
-      console.log (mem.label + ' - ' + mem.productId);
-    }
-  })
+  .then (console.log)
 ;
 ```
 
