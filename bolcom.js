@@ -22,6 +22,7 @@ module.exports = class BolcomAPI {
    * Clean up product URLs
    *
    * @param   {object}  product  Product to clean
+   *
    * @return  {object}           Cleaned product
    */
 
@@ -43,6 +44,7 @@ module.exports = class BolcomAPI {
    * Clean up product images
    *
    * @param   {object}  product  Product to clean
+   *
    * @return  {object}           Cleaned product
    */
 
@@ -68,6 +70,7 @@ module.exports = class BolcomAPI {
    * Clean up product attributeGroups
    *
    * @param   {object}  product  Product to clean
+   *
    * @return  {object}           Cleaned product
    */
 
@@ -105,6 +108,7 @@ module.exports = class BolcomAPI {
    * Clean up product data
    *
    * @param   {object}  product  Object to clean
+   *
    * @return  {object}           Cleaned object
    */
 
@@ -119,11 +123,11 @@ module.exports = class BolcomAPI {
   /**
   * Method: search suggestions
   *
-  * @return  {Promise<object>}
-  *
   * @param   {object}  o
   * @param   {string}  o.term  Search term (fuzzy)
   * @param   {string}  o.xcat  Product catagory
+  *
+  * @return  {Promise<array>}
   */
 
   async searchSuggestions ({
@@ -143,12 +147,14 @@ module.exports = class BolcomAPI {
     const res = await doRequest (options);
     let data = res.body;
 
+    // Process JS response without unsave eval()
     data = data.replace ('{terms:', '{"terms":');
     data = data.replace (',categories:', ',"categories":');
     data = data.replace (',brands:', ',"brands":');
 
     data = JSON.parse (data);
 
+    // Process API error
     if (data.status) {
       const error = new Error (data.title);
 
@@ -159,6 +165,7 @@ module.exports = class BolcomAPI {
     }
 
     return data;
+    // Done
   }
 
 
@@ -252,11 +259,11 @@ module.exports = class BolcomAPI {
 
 
   /**
-   * Method: catalog.search
+   * Method: catalog search
    *
    * @param   {object}  props  Method parameters
    *
-   * @return  {Promise<object>}
+   * @return  {Promise<array>}
    */
 
   async catalogSearch (props) {
@@ -268,7 +275,7 @@ module.exports = class BolcomAPI {
 
 
   /**
-   * Method: catalog.lists
+   * Method: catalog lists
    *
    * @param   {object}  props  Method parameters
    *
@@ -284,7 +291,7 @@ module.exports = class BolcomAPI {
 
 
   /**
-   * Method: catalog.products
+   * Method: catalog products
    *
    * @param   {object}  props            Parameters
    * @param   {string}  props.productId  Product ID
@@ -305,7 +312,7 @@ module.exports = class BolcomAPI {
 
 
   /**
-   * Method: catalog.offers
+   * Method: catalog offers
    *
    * @param   {object}  props            Parameters
    * @param   {string}  props.productId  Product ID
@@ -329,7 +336,7 @@ module.exports = class BolcomAPI {
 
 
   /**
-   * Method: catalog.recommendations
+   * Method: catalog recommendations
    *
    * @param   {object}  props            Parameters
    * @param   {string}  props.productId  Product ID
@@ -350,7 +357,7 @@ module.exports = class BolcomAPI {
 
 
   /**
-   * Method: catalog.relatedproducts
+   * Method: catalog related products
    *
    * @param   {object}  props            Parameters
    * @param   {string}  props.productId  Product ID
