@@ -1,3 +1,41 @@
+### 2.1.0 (2021-10-06)
+
+##### Documentation Changes
+
+*  Fix code examples ([562973c8](https://github.com/fvdm/nodejs-bolcom/commit/562973c8fed9864bf33eaaaa37549d114644e34f))
+*  Added method searchSuggestions ([7593445f](https://github.com/fvdm/nodejs-bolcom/commit/7593445f9bb7c0637af2a3bb0656c5a26ecd3c98))
+*  Minor whitespace fix ([fc2f98fd](https://github.com/fvdm/nodejs-bolcom/commit/fc2f98fd9b09487172d6541a446c15af9d4b5ccf))
+*  Params fixed ([f36341c8](https://github.com/fvdm/nodejs-bolcom/commit/f36341c801138a57488e5c0d4bd7f40e9197c58a))
+*  More examples updated ([7c17c2e5](https://github.com/fvdm/nodejs-bolcom/commit/7c17c2e59790bc8ef882de07349058ff8ca098f1))
+*  Aligned methods to new interface ([a718a86d](https://github.com/fvdm/nodejs-bolcom/commit/a718a86d83dcb1648ce02d0716f0375969352937))
+* **badges:**  Replaced Travis with Github action ([d2e51081](https://github.com/fvdm/nodejs-bolcom/commit/d2e5108167bfb442f8b6ffef086c1edd139c3c45))
+
+##### New Features
+
+*  Added method searchSuggestions ([a285c680](https://github.com/fvdm/nodejs-bolcom/commit/a285c680365a0a26a36794462b310a015e75c174))
+
+##### Refactors
+
+*  Cleaner JS to JSON conversion ([510542af](https://github.com/fvdm/nodejs-bolcom/commit/510542afa5c68b4ef6b39eaadea0e9bdc1ddb4ec))
+*  Only return array on searchSuggestions ([cb10daa5](https://github.com/fvdm/nodejs-bolcom/commit/cb10daa5cefc827510b8773c453c3de29badab41))
+*  Reduced complexity in cleanup functions ([e31502c1](https://github.com/fvdm/nodejs-bolcom/commit/e31502c15135c65286e45cc19d24cefec6394546))
+*  Cleaner methods with object arguments ([5f6655c8](https://github.com/fvdm/nodejs-bolcom/commit/5f6655c86a813fe162178369005ac131a0d67313))
+*  Simplified _config assignment ([12e53a3a](https://github.com/fvdm/nodejs-bolcom/commit/12e53a3a25dca89543c836b40e3c479ad8c9b3cc))
+
+##### Code Style Changes
+
+*  Clean up comments ([1131daba](https://github.com/fvdm/nodejs-bolcom/commit/1131dabad702073d6a198bbd15f30fbe24b0d05c))
+*  Updated intro comment ([47d36803](https://github.com/fvdm/nodejs-bolcom/commit/47d36803304a7243116dd16e08aa698ef1b4db0a))
+
+##### Tests
+
+* **ci:**
+  *  Continue when Coveralls is offline ([232b517a](https://github.com/fvdm/nodejs-bolcom/commit/232b517af342f3e440be368231bf2e3e4db32850))
+  *  Remove obsolete git fetch ([b0ef19fc](https://github.com/fvdm/nodejs-bolcom/commit/b0ef19fc314cc9c753e4c75e280e93e6ce531e3f))
+* **config:**  Modernize ESLint config ([e3665724](https://github.com/fvdm/nodejs-bolcom/commit/e3665724845b3c9d3ce293e578356b737d96db33))
+*  Line break ([50468b18](https://github.com/fvdm/nodejs-bolcom/commit/50468b186e241c4ea42c9bbca4cd99a382955cac))
+*  Aligned methods to interface ([47f32145](https://github.com/fvdm/nodejs-bolcom/commit/47f321452e467716dce0cb667cca2f61b7585c32))
+
 ## 2.0.0 (2021-09-16)
 
 ##### Breaking Changes
