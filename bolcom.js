@@ -395,7 +395,7 @@ module.exports = class BolcomAPI {
     name = '',
     siteId = '',
     logoId = '',
-    lang = 'en';
+    lang = 'en',
   }) {
     let ids = [];
 
