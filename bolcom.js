@@ -379,7 +379,7 @@ module.exports = class BolcomAPI {
    * Generate a link to add products to
    * the user's shopping basket.
    *
-   * @param   {object}  offerId    Items with amount: `{ id: amount }`
+   * @param   {object}  offers     Items with amount: `{ id: amount }`
    * @param   {string}  [url]      Callback URL
    * @param   {string}  [name]     App name
    * @param   {number}  [siteId]   Partner site ID
@@ -390,7 +390,7 @@ module.exports = class BolcomAPI {
    */
 
   async addToBasket ({
-    offerId,
+    offers,
     url = '',
     name = '',
     siteId = '',
@@ -399,8 +399,8 @@ module.exports = class BolcomAPI {
   }) {
     let ids = [];
 
-    for (let id in offerId) {
-      ids.push (id + ':' + offerId[id]);
+    for (let id in offers) {
+      ids.push (id + ':' + offers[id]);
     }
 
     ids = ids.join (',');
