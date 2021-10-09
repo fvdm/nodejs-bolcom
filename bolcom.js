@@ -258,15 +258,15 @@ module.exports = class BolcomAPI {
   /**
    * Method: catalog search
    *
-   * @param   {object}  props  Method parameters
+   * @param   {object}  parameters  Method parameters
    *
    * @return  {Promise<array>}
    */
 
-  async catalogSearch (props) {
+  async catalogSearch (parameters) {
     return this._catalogTalk ({
       method: 'lists',
-      parameters: props,
+      parameters,
     });
   }
 
@@ -274,15 +274,15 @@ module.exports = class BolcomAPI {
   /**
    * Method: catalog lists
    *
-   * @param   {object}  props  Method parameters
+   * @param   {object}  parameters  Method parameters
    *
    * @return  {Promise<object>}
    */
 
-  async catalogLists (props) {
+  async catalogLists (parameters) {
     return this._catalogTalk ({
       method: 'lists',
-      parameters: props,
+      parameters,
     });
   }
 
@@ -372,6 +372,44 @@ module.exports = class BolcomAPI {
       method: `relatedproducts/${productId}`,
       parameters: arguments[0],
     });
+  }
+
+
+  /**
+   * Generate a link to add products to
+   * the user's shopping basket.
+   *
+   * @param   {object}  offerId    Items with amount: `{ id: amount }`
+   * @param   {string}  [url]      Callback URL
+   * @param   {string}  [name]     App name
+   * @param   {number}  [siteId]   Partner site ID
+   * @param   {number}  [logoId]   Partner logo ID
+   * @param   {string}  [lang=en]  Language
+   *
+   * @return  {Promise<string>}
+   */
+
+  async addToBasket ({
+    offerId,
+    url = '',
+    name = '',
+    siteId = '',
+    logoId = '',
+    lang = 'en';
+  }) {
+    let ids = [];
+
+    for (let id in offerId) {
+      ids.push (id + ':' + offerId[id]);
+    }
+
+    ids = ids.join (',');
+    url = encodeURIComponent (url);
+
+    return `https://afrekenen.bol.com/${lang}/winkelwagentje/direct-toevoegen`
+      + `?returnurl=${url}&name=${name}&logoid=${logoId}`
+      + `&id=${ids}&siteid=${siteId}`
+    ;
   }
 
 };

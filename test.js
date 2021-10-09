@@ -19,6 +19,8 @@ const bol = new app ({
   timeout,
 });
 
+let offer;
+
 
 /**
  * Check data and products result
@@ -74,6 +76,7 @@ dotest.add ('catalogSearch', async test => {
 
   try {
     data = await bol.catalogSearch (params);
+    offer = data.products[0].offerData.offers[0];
   }
   catch (err) {
     error = err;
@@ -253,6 +256,31 @@ dotest.add ('searchSuggestions - error', async test => {
     .isUndefined ('fail', 'data', data)
     .done()
   ;
+});
+
+
+dotest.add ('addToBasket - simple', async test => {
+  try {
+    const data = await bol.addToBasket ({
+      offers: {
+        123456789: 2,
+      },
+      lang: 'nl',
+    });
+
+    const str = 'https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen'
+      + '?returnurl=&name=&logoid=&id=123456789:2&siteid='
+    ;
+
+    test()
+      .isExactly ('fail', 'data', data, str)
+      .done()
+    ;
+  }
+
+  catch (err) {
+    test (err).done();
+  }
 });
 
 

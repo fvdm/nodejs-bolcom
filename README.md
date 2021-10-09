@@ -257,6 +257,40 @@ bol.searchSuggestions ({
 [API documentation](https://partnerblog.bol.com/documentatie/open-api/zoeksuggesties/)
 
 
+### addToBasket
+**({ offerId, [url], [name], [logoId], [siteId], [lang] })**
+
+Generate a link to add offers to the user's basket.
+
+
+param    | type   | default | description
+:--------|:-------|:--------|:-----------
+offers   | object |         | Offers to add
+[url]    | string |         | Callback URL
+[name]   | string |         | App title
+[logoId] | number |         | Partner logo ID
+[siteId] | number |         | Partner site ID
+[lang]   | string | en      | Language
+
+
+In the `offers` object the keys are the offer IDs and
+the values are the amount to order for each item.
+
+
+```js
+bol.addToBasket ({
+  offers: {
+    '9200000026739211': 2,
+    '9200000026739197': 4,
+  },
+})
+  .then (link => {
+    console.log (`Add to basket: ${link}`);
+  })
+  .catch (console.error)
+;
+
+
 ## Errors
 
 message        | description
