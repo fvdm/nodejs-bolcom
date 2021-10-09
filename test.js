@@ -74,7 +74,6 @@ dotest.add ('catalogSearch', async test => {
 
   try {
     data = await bol.catalogSearch (params);
-    offer = data.products[0].offerData.offers[0];
   }
   catch (err) {
     error = err;
