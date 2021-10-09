@@ -19,8 +19,6 @@ const bol = new app ({
   timeout,
 });
 
-let offer;
-
 
 /**
  * Check data and products result
@@ -268,9 +266,7 @@ dotest.add ('addToBasket - simple', async test => {
       lang: 'nl',
     });
 
-    const str = 'https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen'
-      + '?returnurl=&name=&logoid=&id=123456789:2&siteid='
-    ;
+    const str = 'https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?returnurl=&name=&logoid=&id=123456789:2&siteid=';
 
     test()
       .isExactly ('fail', 'data', data, str)
