@@ -14,7 +14,10 @@ module.exports = class BolcomAPI {
     apikey,
     timeout = 5000,
   }) {
-    this._config = arguments[0];
+    this._config = {
+      apikey,
+      timeout,
+    };
   }
 
 
