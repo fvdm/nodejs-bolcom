@@ -269,7 +269,7 @@ dotest.add ('addToBasket - simple', async test => {
       lang: 'nl',
     });
 
-    const str = `https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?ids=${cache.offerId}:2&logoid=&name=&returnurl=&siteid=`;
+    const str = `https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?id=${cache.offerId}:2&logoid=&name=&returnurl=&siteid=`;
 
     test()
       .isExactly ('fail', 'data', data, str)
