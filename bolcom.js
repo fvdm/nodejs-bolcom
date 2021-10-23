@@ -247,7 +247,7 @@ module.exports = class BolcomAPI {
     delete arguments[0].endpoint;
 
     const data = await this._talk ({
-      endpoint: `/catalog/v4/${endpoint}`,
+      endpoint,
       parameters: arguments[0],
     });
 
