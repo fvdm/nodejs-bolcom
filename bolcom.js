@@ -174,21 +174,19 @@ module.exports = class BolcomAPI {
    * Communication with API
    *
    * @param   {object}  o
-   * @param   {string}  o.cat           api.bol.com/:CAT/v4/method
-   * @param   {string}  o.method        api.bol.com/cat/v4/:METHOD
    *
+   * @param   {string}  o.endpoint      `api.bol.com/:ENDPOINT`
    * @param   {object}  [o.parameters]  Request paramaters
    *
    * @return  {Promise<object>}
    */
 
   async _talk ({
-    cat,
-    method,
+    endpoint,
     parameters = {},
   }) {
     const options = {
-      url: `https://api.bol.com/${cat}/v4/${method}`,
+      url: `https://api.bol.com${endpoint}`,
       method: 'GET',
       timeout: this._config.timeout,
       parameters: {
@@ -229,8 +227,7 @@ module.exports = class BolcomAPI {
 
   async ping () {
     return this._talk ({
-      cat: 'utils',
-      method: 'ping',
+      endpoint: '/utils/v4/ping',
     });
   }
 
@@ -238,20 +235,19 @@ module.exports = class BolcomAPI {
   /**
    * Generic catalog request handler
    *
-   * @param   {object}  props         Parameters
-   * @param   {string}  props.method  Catalog method name
+   * @param   {object}  props           Parameters
+   * @param   {string}  props.endpoint  Catalog method name
    *
    * @return  {Promise<object>}
    */
 
   async _catalogTalk ({
-    method,
+    endpoint,
   }) {
-    delete arguments[0].method;
+    delete arguments[0].endpoint;
 
     const data = await this._talk ({
-      cat: 'catalog',
-      method,
+      endpoint: `/catalog/v4/${endpoint}`,
       parameters: arguments[0],
     });
 
@@ -273,8 +269,8 @@ module.exports = class BolcomAPI {
 
   async catalogSearch (props) {
     return this._catalogTalk ({
-      method: 'lists',
-      parameters: props,
+      endpoint: '/catalog/v4/lists',
+      parameters,
     });
   }
 
@@ -289,8 +285,8 @@ module.exports = class BolcomAPI {
 
   async catalogLists (props) {
     return this._catalogTalk ({
-      method: 'lists',
-      parameters: props,
+      endpoint: '/catalog/v4/lists',
+      parameters,
     });
   }
 
@@ -310,7 +306,7 @@ module.exports = class BolcomAPI {
     delete arguments[0].productId;
 
     return this._catalogTalk ({
-      method: `products/${productId}`,
+      endpoint: `/catalog/v4/products/${productId}`,
       parameters: arguments[0],
     });
   }
@@ -331,8 +327,7 @@ module.exports = class BolcomAPI {
     delete arguments[0].productId;
 
     return this._talk ({
-      cat: 'catalog',
-      method: `offers/${productId}`,
+      endpoint: `/catalog/v4/offers/${productId}`,
       parameters: arguments[0],
     })
       .then (data => data.offerData)
@@ -355,7 +350,7 @@ module.exports = class BolcomAPI {
     delete arguments[0].productId;
 
     return this._catalogTalk ({
-      method: `recommendations/${productId}`,
+      endpoint: `/catalog/v4/recommendations/${productId}`,
       parameters: arguments[0],
     });
   }
@@ -376,8 +371,7 @@ module.exports = class BolcomAPI {
     delete arguments[0].productId;
 
     return this._talk ({
-      cat: 'catalog',
-      method: `relatedproducts/${productId}`,
+      endpoint: `/catalog/v4/relatedproducts/${productId}`,
       parameters: arguments[0],
     });
   }
