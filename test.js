@@ -268,6 +268,7 @@ dotest.add ('addToBasket - simple', async test => {
     const str = 'https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?ids=123456789:2&logoid=&name=&returnurl=&siteid=';
 
     test()
+      .info (data)
       .info (str)
       .isExactly ('fail', 'data', data, str)
       .done()
