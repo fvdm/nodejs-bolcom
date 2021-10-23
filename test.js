@@ -19,6 +19,8 @@ const bol = new app ({
   timeout,
 });
 
+const cache = {};
+
 
 /**
  * Check data and products result
@@ -157,11 +159,13 @@ dotest.add ('catalogOffers', async test => {
   const offers = data && data.offers;
   const item = offers && offers[0];
 
+  cache.offerId = item.id;
+
   test (error)
     .isObject ('fail', 'data', data)
     .isArray ('fail', 'data.offers', offers)
     .isObject ('fail', 'data.offers[0]', item)
-    .isString ('fail', 'data.offers[0[.id', item && item.id)
+    .isString ('fail', 'data.offers[0].id', item && item.id)
     .done ()
   ;
 });
@@ -260,15 +264,17 @@ dotest.add ('addToBasket - simple', async test => {
   try {
     const data = await bol.addToBasket ({
       offers: {
-        123456789: 2,
+        [cache.offerId]: 2,
       },
       lang: 'nl',
     });
 
-    const str = 'https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?ids=123456789:2&logoid=&name=&returnurl=&siteid=';
+    const str = `https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?ids=${cache.offerId}:2&logoid=&name=&returnurl=&siteid=`;
 
     test()
       .isExactly ('fail', 'data', data, str)
+      .info ('URL for manual check:')
+      .info (data)
       .done()
     ;
   }
