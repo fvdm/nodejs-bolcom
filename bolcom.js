@@ -191,15 +191,16 @@ module.exports = class BolcomAPI {
       url: `https://api.bol.com/${cat}/v4/${method}`,
       method: 'GET',
       timeout: this._config.timeout,
-      parameters,
+      parameters: {
+        ...parameters,
+        apikey: this._config.apikey,
+        format: 'json',
+      },
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'bolcom.js (https://www.npmjs.com/package/bolcom)',
       },
     };
-
-    options.parameters.apikey = this._config.apikey;
-    options.parameters.format = 'json';
 
     // send request
     const res = await doRequest (options);
