@@ -269,7 +269,7 @@ module.exports = class BolcomAPI {
 
   async catalogSearch (parameters) {
     return this._catalogTalk ({
-      endpoint: '/catalog/v4/lists',
+      endpoint: '/catalog/v4/search',
       parameters,
     });
   }
