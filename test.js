@@ -265,14 +265,14 @@ dotest.add ('addToBasket - simple', async test => {
       lang: 'nl',
     });
 
-    const str = 'https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?returnurl=&name=&logoid=&id=123456789:2&siteid=';
+    const str = 'https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?ids=123456789:2&logoid=&name=&returnurl=&siteid=';
 
     test()
+      .info (str)
       .isExactly ('fail', 'data', data, str)
       .done()
     ;
   }
-
   catch (err) {
     test (err).done();
   }
