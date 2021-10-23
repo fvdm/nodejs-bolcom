@@ -262,12 +262,12 @@ module.exports = class BolcomAPI {
   /**
    * Method: catalog search
    *
-   * @param   {object}  props  Method parameters
+   * @param   {object}  parameters  Method parameters
    *
    * @return  {Promise<array>}
    */
 
-  async catalogSearch (props) {
+  async catalogSearch (parameters) {
     return this._catalogTalk ({
       endpoint: '/catalog/v4/lists',
       parameters,
@@ -278,12 +278,12 @@ module.exports = class BolcomAPI {
   /**
    * Method: catalog lists
    *
-   * @param   {object}  props  Method parameters
+   * @param   {object}  parameters  Method parameters
    *
    * @return  {Promise<object>}
    */
 
-  async catalogLists (props) {
+  async catalogLists (parameters) {
     return this._catalogTalk ({
       endpoint: '/catalog/v4/lists',
       parameters,
