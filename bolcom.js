@@ -412,17 +412,15 @@ module.exports = class BolcomAPI {
     returnurl = encodeURIComponent (returnurl);
 
     const link = `https://afrekenen.bol.com/${lang}/winkelwagentje/direct-toevoegen`;
-    const params = new URLSearchParams ({
-      ids,
-      logoid,
-      name,
-      returnurl,
-      siteid,
-    });
+    const params = [
+      'ids=' + ids,
+      'logoid=' + logoid,
+      'name=' + name,
+      'returnurl=' + returnurl,
+      'siteid=' + siteid,
+    ];
 
-    params.sort();
-
-    return `${link}?${params}`;
+    return link + '?' + params.join ('&');
   }
 
 };
