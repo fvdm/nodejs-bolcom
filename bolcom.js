@@ -127,6 +127,7 @@ module.exports = class BolcomAPI {
   * Method: search suggestions
   *
   * @param   {object}  o
+  *
   * @param   {string}  o.term  Search term (fuzzy)
   * @param   {string}  o.xcat  Product catagory
   *
@@ -150,11 +151,11 @@ module.exports = class BolcomAPI {
     const res = await doRequest (options);
     let data = res.body;
 
-    // Process JS response without unsave eval()
+    // Process JS response without unsafe eval()
     data = data.replace (/(,|\{)([^"]\w+[^"]):(\[|\{)/g, '$1"$2":$3');
     data = JSON.parse (data);
 
-    // Process API error
+    // API error
     if (data.status) {
       const error = new Error (data.title);
 
@@ -164,7 +165,7 @@ module.exports = class BolcomAPI {
       throw error;
     }
 
-    // Done
+    // Success
     return data.terms[1];
   }
 
@@ -175,6 +176,7 @@ module.exports = class BolcomAPI {
    * @param   {object}  o
    * @param   {string}  o.cat           api.bol.com/:CAT/v4/method
    * @param   {string}  o.method        api.bol.com/cat/v4/:METHOD
+   *
    * @param   {object}  [o.parameters]  Request paramaters
    *
    * @return  {Promise<object>}
@@ -203,6 +205,7 @@ module.exports = class BolcomAPI {
     const res = await doRequest (options);
     const data = JSON.parse (res.body);
 
+    // API error
     if (data.status) {
       const error = new Error (data.title);
 
@@ -212,6 +215,7 @@ module.exports = class BolcomAPI {
       throw error;
     }
 
+    // success
     return data;
   }
 
