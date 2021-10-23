@@ -258,18 +258,18 @@ bol.searchSuggestions ({
 
 
 ### addToBasket
-**({ offerId, [url], [name], [logoId], [siteId], [lang] })**
+**( params )**
 
 Generate a link to add offers to the user's basket.
 
 
-param    | type   | default | description
+params   | type   | default | description
 :--------|:-------|:--------|:-----------
 offers   | object |         | Offers to add
 [url]    | string |         | Callback URL
 [name]   | string |         | App title
-[logoId] | number |         | Partner logo ID
-[siteId] | number |         | Partner site ID
+[logoid] | number |         | Partner logo ID
+[siteid] | number |         | Partner site ID
 [lang]   | string | en      | Language
 
 
