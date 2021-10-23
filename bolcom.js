@@ -413,7 +413,7 @@ module.exports = class BolcomAPI {
 
     const link = `https://afrekenen.bol.com/${lang}/winkelwagentje/direct-toevoegen`;
     const params = [
-      'ids=' + ids,
+      'id=' + ids,
       'logoid=' + logoid,
       'name=' + name,
       'returnurl=' + returnurl,
