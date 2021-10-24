@@ -1,3 +1,29 @@
+#### 2.1.1 (2021-10-24)
+
+##### Bug Fixes
+
+* **_catalogTalk:**  Parameters incorrectly nested ([4385cb9b](https://github.com/fvdm/nodejs-bolcom/commit/4385cb9bc49d4d464f2f0bdeb08394b4b5acb54b))
+*  some attributeGroups have no key ([2ead45ae](https://github.com/fvdm/nodejs-bolcom/commit/2ead45aea2bf40291638e0855bc84117b88fe89e))
+*  Bad parameters reference ([4545088e](https://github.com/fvdm/nodejs-bolcom/commit/4545088e915818128647765634693f79909cd1cd))
+*  Bad endpoint _catalogTalk() ([896ed9f0](https://github.com/fvdm/nodejs-bolcom/commit/896ed9f0ff3a3fbc55aa4d03ff2c7c137e48f953))
+* **catalogSearch:**  Wrong lists endpoint ([7d65226c](https://github.com/fvdm/nodejs-bolcom/commit/7d65226c694d0630fc8234a67a154427e6c017dc))
+
+##### Refactors
+
+*  Replaced `method` with full `endpoint` ([1c079527](https://github.com/fvdm/nodejs-bolcom/commit/1c0795279c0cca731b91be04762afbab41037b00))
+* **_talk:**  Cleaner parameters in options ([cb6cd9dc](https://github.com/fvdm/nodejs-bolcom/commit/cb6cd9dc39a5c204c469a7f41f49182530374ee7))
+
+##### Code Style Changes
+
+*  Cleaner whitespace and comments ([fad08f6c](https://github.com/fvdm/nodejs-bolcom/commit/fad08f6cfa3f4cfc1053401a1ed54717d80322f2))
+* **lint:**  Fixed reference warning ([d30f3c22](https://github.com/fvdm/nodejs-bolcom/commit/d30f3c222aceae9802f8624933590c9929d4ad32))
+
+##### Tests
+
+*  Minor cleanup ([d51b110f](https://github.com/fvdm/nodejs-bolcom/commit/d51b110f888a166956a2edef1befdfe57bec3b61))
+*  Removed double data.products check ([28f28594](https://github.com/fvdm/nodejs-bolcom/commit/28f285942503e206a7b2b0d0a1f86756c9d3e30c))
+* **ci:**  Renamed `Finish` to `Upload coverage` ([f4bb587f](https://github.com/fvdm/nodejs-bolcom/commit/f4bb587ff26c5e9bf7d1e0f316196466437fe674))
+
 ### 2.1.0 (2021-10-06)
 
 ##### Documentation Changes
