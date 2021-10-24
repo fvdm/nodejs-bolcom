@@ -266,7 +266,31 @@ dotest.add ('addToBasket - simple', async test => {
       lang: 'nl',
     });
 
-    const str = `https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?id=${cache.offerId}:2&logoid=&name=&returnurl=&siteid=`;
+    const str = `https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?id=${cache.offerId}:2`;
+
+    test()
+      .isExactly ('fail', 'data', data, str)
+      .info ('URL for manual check:')
+      .info (data)
+      .done()
+    ;
+  }
+  catch (err) {
+    test (err).done();
+  }
+});
+
+
+dotest.add ('addToBasket - encoding', async test => {
+  try {
+    const data = await bol.addToBasket ({
+      offers: {
+        [cache.offerId]: 2,
+      },
+      name: 'Hello world',
+    });
+
+    const str = `https://afrekenen.bol.com/en/winkelwagentje/direct-toevoegen?id=${cache.offerId}:2&name=Hello%20world`;
 
     test()
       .isExactly ('fail', 'data', data, str)
