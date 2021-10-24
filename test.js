@@ -266,7 +266,7 @@ dotest.add ('addToBasket - simple', async test => {
       lang: 'nl',
     });
 
-    const str = `https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?id=${cache.offerId}:2`;
+    const str = `https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?ids=${cache.offerId}:2`;
 
     test()
       .isExactly ('fail', 'data', data, str)
@@ -290,7 +290,7 @@ dotest.add ('addToBasket - encoding', async test => {
       name: 'Hello world',
     });
 
-    const str = `https://afrekenen.bol.com/en/winkelwagentje/direct-toevoegen?id=${cache.offerId}:2&name=Hello%20world`;
+    const str = `https://afrekenen.bol.com/en/winkelwagentje/direct-toevoegen?ids=${cache.offerId}:2&name=Hello%20world`;
 
     test()
       .isExactly ('fail', 'data', data, str)
