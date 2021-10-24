@@ -389,10 +389,6 @@ module.exports = class BolcomAPI {
    * @param   {object}  o
    *
    * @param   {object}  o.offers     Items with amount: `{ id: amount }`
-   * @param   {string}  [o.url]      Callback URL
-   * @param   {string}  [o.name]     App name
-   * @param   {number}  [o.siteid]   Partner site ID
-   * @param   {number}  [o.logoid]   Partner logo ID
    * @param   {string}  [o.lang=en]  Language
    *
    * @return  {Promise<string>}
@@ -400,32 +396,32 @@ module.exports = class BolcomAPI {
 
   async addToBasket ({
     offers,
-    returnurl = '',
-    name = '',
-    siteid = '',
-    logoid = '',
     lang = 'en',
   }) {
+    delete arguments[0].offers;
+    delete arguments[0].lang;
+
     let ids = [];
 
     for (let id in offers) {
       ids.push (id + ':' + offers[id]);
     }
 
-    ids = ids.sort();
-    ids = ids.join (',');
-    returnurl = encodeURIComponent (returnurl);
+    arguments[0].ids = ids.join (',');
 
-    const link = `https://afrekenen.bol.com/${lang}/winkelwagentje/direct-toevoegen`;
-    const params = [
-      'id=' + ids,
-      'logoid=' + logoid,
-      'name=' + name,
-      'returnurl=' + returnurl,
-      'siteid=' + siteid,
-    ];
+    const params = Object.entries (arguments[0])
+      .filter (([key, val]) => !!val)
+      .map (([key, val]) => {
+        if (key.match (/^(name|returnurl)$/)) {
+          val = encodeURIComponent (val);
+        }
 
-    return link + '?' + params.join ('&');
+        return `${key}=${val}`;
+      })
+      .join ('&')
+    ;
+
+    return `https://afrekenen.bol.com/${lang}/winkelwagentje/direct-toevoegen?${params}`;
   }
 
 };
