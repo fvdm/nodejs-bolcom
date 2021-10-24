@@ -238,20 +238,22 @@ module.exports = class BolcomAPI {
   /**
    * Generic catalog request handler
    *
-   * @param   {object}  props           Parameters
-   * @param   {string}  props.endpoint  Catalog method name
+   * @param   {object}  props
+   * @param   {string}  props.endpoint      Catalog method name
+   * @param   {object}  [props.parameters]  Parameters
    *
    * @return  {Promise<object>}
    */
 
   async _catalogTalk ({
     endpoint,
+    parameters,
   }) {
     delete arguments[0].endpoint;
 
     const data = await this._talk ({
       endpoint,
-      parameters: arguments[0],
+      parameters,
     });
 
     data.products.forEach (async (itm, i) => {
