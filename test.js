@@ -79,9 +79,7 @@ dotest.add ('catalogSearch', async test => {
     error = err;
   }
 
-  dataProducts (test, error, data)
-    .done ()
-  ;
+  dataProducts (test, error, data).done ();
 });
 
 
