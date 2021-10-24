@@ -418,6 +418,7 @@ module.exports = class BolcomAPI {
 
         return `${key}=${val}`;
       })
+      .sort()
       .join ('&')
     ;
 
