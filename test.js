@@ -81,10 +81,7 @@ dotest.add ('catalogSearch', async test => {
     error = err;
   }
 
-  dataProducts (test, error, data)
-    .isArray ('fail', 'data.products', data && data.products)
-    .done ()
-  ;
+  dataProducts (test, error, data).done ();
 });
 
 

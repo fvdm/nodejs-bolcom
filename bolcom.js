@@ -81,6 +81,7 @@ module.exports = class BolcomAPI {
     let groups = {};
     let group;
     let attrib;
+    let key;
 
     if (!product.attributeGroups) {
       return product;
@@ -97,7 +98,9 @@ module.exports = class BolcomAPI {
 
         for (let a = 0; a < group.attributes.length; a++) {
           attrib = group.attributes[a];
-          groups[group.title].attributes[attrib.key] = attrib;
+          key = attrib.key || attrib.label;
+
+          groups[group.title].attributes[key] = attrib;
         }
       }
     }
@@ -235,20 +238,22 @@ module.exports = class BolcomAPI {
   /**
    * Generic catalog request handler
    *
-   * @param   {object}  props           Parameters
-   * @param   {string}  props.endpoint  Catalog method name
+   * @param   {object}  props
+   * @param   {string}  props.endpoint      Catalog method name
+   * @param   {object}  [props.parameters]  Parameters
    *
    * @return  {Promise<object>}
    */
 
   async _catalogTalk ({
     endpoint,
+    parameters,
   }) {
     delete arguments[0].endpoint;
 
     const data = await this._talk ({
       endpoint,
-      parameters: arguments[0],
+      parameters,
     });
 
     data.products.forEach (async (itm, i) => {
@@ -269,7 +274,7 @@ module.exports = class BolcomAPI {
 
   async catalogSearch (parameters) {
     return this._catalogTalk ({
-      endpoint: '/catalog/v4/lists',
+      endpoint: '/catalog/v4/search',
       parameters,
     });
   }
