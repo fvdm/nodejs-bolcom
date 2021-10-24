@@ -81,6 +81,7 @@ module.exports = class BolcomAPI {
     let groups = {};
     let group;
     let attrib;
+    let key;
 
     if (!product.attributeGroups) {
       return product;
@@ -97,7 +98,9 @@ module.exports = class BolcomAPI {
 
         for (let a = 0; a < group.attributes.length; a++) {
           attrib = group.attributes[a];
-          groups[group.title].attributes[attrib.key] = attrib;
+          key = attrib.key || attrib.label;
+
+          groups[group.title].attributes[key] = attrib;
         }
       }
     }
