@@ -60,7 +60,6 @@
     "linebreak-style": ["error", "unix"],
     "max-nested-callbacks": ["warn", 3],
     "new-cap": "off",
-    "newline-after-var": ["error", "always"],
     "no-alert": "error",
     "no-caller": "error",
     "no-catch-shadow": "error",
@@ -133,6 +132,19 @@
     "one-var": ["error", "never"],
     "operator-assignment": ["error", "always"],
     "operator-linebreak": ["error", "before"],
+    "padding-line-between-statements": [
+      "error",
+      {
+        blankLine: "always",
+        prev: ["const", "let", "var"],
+        next: "*"
+      },
+      {
+        blankLine: "any",
+        prev: ["const", "let", "var"],
+        next: ["const", "let", "var"]
+      }
+    ],
     "quote-props": ["error", "consistent"],
     "quotes": ["error", "single", "avoid-escape"],
     "radix": "error",
