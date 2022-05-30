@@ -1,3 +1,10 @@
+#### 2.1.3 (2022-05-30)
+
+##### Documentation Changes
+
+*  Added deprecation announcement ([de40489a](https://github.com/fvdm/nodejs-bolcom/commit/de40489a0c00e1ef0a8703ba287c8c9955626d26))
+*  Removed old methods ([3e9e63c8](https://github.com/fvdm/nodejs-bolcom/commit/3e9e63c8cc3ebe19f4312d4ec84e29fd1b9504c7))
+
 #### 2.1.2 (2022-05-30)
 
 ##### Chores
