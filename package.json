@@ -36,6 +36,7 @@
   ],
   "license": "Unlicense",
   "scripts": {
-    "test": "dotest"
+    "test": "dotest",
+    "clean": "rm -rf coverage node_modules package-lock.json"
   }
 }
