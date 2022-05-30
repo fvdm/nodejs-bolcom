@@ -43,6 +43,22 @@ function dataProducts (test, err, data) {
 }
 
 
+dotest.add ('credentials', async test => {
+  if (!apikey) {
+    test()
+      .fail ('Env var BOLCOM_APIKEY is missing\n')
+      .exit()
+    ;
+  }
+  else {
+    test()
+      .good ('Env var BOLCOM_APIKEY is set')
+      .done()
+    ;
+  }
+});
+
+
 dotest.add ('ping', async test => {
   let error;
   let data;
