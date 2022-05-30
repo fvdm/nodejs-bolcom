@@ -1,3 +1,22 @@
+#### 2.1.2 (2022-05-30)
+
+##### Chores
+
+* **package:**  Update dependencies ([a80ee597](https://github.com/fvdm/nodejs-bolcom/commit/a80ee597eef39968c267826620beff9d8c339b30))
+
+##### Refactors
+
+*  Removed catalogOffers ([911f96b2](https://github.com/fvdm/nodejs-bolcom/commit/911f96b208dc57e1bdcdd1cd5fec86dcc430ff99))
+*  Removed searchSuggestions ([74db989d](https://github.com/fvdm/nodejs-bolcom/commit/74db989dfbaff3d1e02e9b323ab7a85cbb835685))
+* **package:**  Added 'npm run clean' command ([4cc8dd0f](https://github.com/fvdm/nodejs-bolcom/commit/4cc8dd0fcc862a016c3e94ab8f757d757af59d0b))
+
+##### Tests
+
+*  Check API credentials before tests ([b284158f](https://github.com/fvdm/nodejs-bolcom/commit/b284158fa7c12c69e894bbbdeeb1d7666aa74f42))
+* **ci:**
+  *  Require full coverage of functions ([3a97043d](https://github.com/fvdm/nodejs-bolcom/commit/3a97043db5a167f97d764cdb9955f7006b8dd447))
+  *  Set ESLint padding-line-between-statements ([23a9b961](https://github.com/fvdm/nodejs-bolcom/commit/23a9b96112628905312fa67906e12c3cc277c1a7))
+
 #### 2.1.1 (2021-10-24)
 
 ##### Bug Fixes
