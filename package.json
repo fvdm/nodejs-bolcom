@@ -6,7 +6,7 @@
   },
   "name": "bolcom",
   "description": "Access Bol.com Open API service",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/fvdm/nodejs-bolcom.git"
