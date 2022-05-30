@@ -271,29 +271,6 @@ module.exports = class BolcomAPI {
 
 
   /**
-   * Method: catalog offers
-   *
-   * @param   {object}  props            Parameters
-   * @param   {string}  props.productId  Product ID
-   *
-   * @return  {Promise<object>}
-   */
-
-  async catalogOffers ({
-    productId,
-  }) {
-    delete arguments[0].productId;
-
-    return this._talk ({
-      endpoint: `/catalog/v4/offers/${productId}`,
-      parameters: arguments[0],
-    })
-      .then (data => data.offerData)
-    ;
-  }
-
-
-  /**
    * Method: catalog recommendations
    *
    * @param   {object}  props            Parameters

@@ -154,32 +154,6 @@ dotest.add ('catalogLists', async test => {
 });
 
 
-dotest.add ('catalogOffers', async test => {
-  let error;
-  let data;
-
-  try {
-    data = await bol.catalogOffers ({
-      productId: '9200000023292527',
-    });
-  }
-  catch (err) {
-    error = err;
-  }
-
-  const offers = data && data.offers;
-  const item = offers && offers[0];
-
-  test (error)
-    .isObject ('fail', 'data', data)
-    .isArray ('fail', 'data.offers', offers)
-    .isObject ('fail', 'data.offers[0]', item)
-    .isString ('fail', 'data.offers[0[.id', item && item.id)
-    .done ()
-  ;
-});
-
-
 dotest.add ('catalogRecommendations', async test => {
   let error;
   let data;
