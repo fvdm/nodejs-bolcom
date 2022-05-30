@@ -226,49 +226,6 @@ dotest.add ('catalogRelatedProducts', async test => {
 });
 
 
-dotest.add ('searchSuggestions - results', async test => {
-  let error;
-  let data;
-
-  try {
-    data = await bol.searchSuggestions ({
-      term: 'potter',
-      xcat: 'books_en',
-    });
-  }
-  catch (err) {
-    error = err;
-  }
-
-  test (error)
-    .isArray ('fail', 'data', data)
-    .isNotEmpty ('warn', 'data', data)
-    .done()
-  ;
-});
-
-
-dotest.add ('searchSuggestions - error', async test => {
-  let error;
-  let data;
-
-  try {
-    data = await bol.searchSuggestions ({
-      term: '',
-    });
-  }
-  catch (err) {
-    error = err;
-  }
-
-  test ()
-    .isError ('fail', 'error', error)
-    .isUndefined ('fail', 'data', data)
-    .done()
-  ;
-});
-
-
 dotest.add ('API error', async test => {
   const tmp = new app ({
     apikey: '',

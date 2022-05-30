@@ -127,53 +127,6 @@ module.exports = class BolcomAPI {
 
 
   /**
-  * Method: search suggestions
-  *
-  * @param   {object}  o
-  *
-  * @param   {string}  o.term  Search term (fuzzy)
-  * @param   {string}  o.xcat  Product catagory
-  *
-  * @return  {Promise<array>}
-  */
-
-  async searchSuggestions ({
-    term,
-    xcat = 'media_all',
-  }) {
-    const options = {
-      url: `https://zoeksuggesties.s-bol.com/extern/qs/OpenSearch/${xcat}/${term}`,
-      method: 'GET',
-      timeout: this._config.timeout,
-      headers: {
-        'Accept': 'application/json',
-        'User-Agent': 'bolcom.js (https://www.npmjs.com/package/bolcom)',
-      },
-    };
-
-    const res = await doRequest (options);
-    let data = res.body;
-
-    // Process JS response without unsafe eval()
-    data = data.replace (/(,|\{)([^"]\w+[^"]):(\[|\{)/g, '$1"$2":$3');
-    data = JSON.parse (data);
-
-    // API error
-    if (data.status) {
-      const error = new Error (data.title);
-
-      error.status = data.status;
-      error.detail = data.type;
-
-      throw error;
-    }
-
-    // Success
-    return data.terms[1];
-  }
-
-
-  /**
    * Communication with API
    *
    * @param   {object}  o
