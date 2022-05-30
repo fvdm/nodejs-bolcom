@@ -154,34 +154,6 @@ bol.catalogProducts ({
 [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4products/)
 
 
-### catalogOffers
-**({ productId, [...] })**
-
-Get available offers for a given product.
-
-
-param     | type   | description
-:---------|:-------|:-----------
-productId | string | Product ID
-[...]     | object | Arguments, see API documentation
-
-
-```js
-bol.catalogOffers ({
-  productId: '9200000023292527',
-})
-  .then (data => {
-    for (let i in data.offers) {
-      let offer = data.offers[i];
-      console.log (`${offer.price} - ${offer.availabilityDescription}`);
-    }
-  })
-;
-```
-
-[API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4offers/)
-
-
 ### catalogRecommendations
 **({ productId, [...] })**
 
@@ -231,30 +203,6 @@ bol.catalogRelatedProducts ({
 ```
 
 [API documentation](https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4relatedproducts/)
-
-
-### searchSuggestions
-**({ term, [xcat] })**
-
-Get search suggestions for a keyword.
-
-
-param  | type   | default     | description
-:------|:-------|:------------|:-----------
-term   | string |             | Keyword to search on
-[xcat] | string | `media_all` | Category, see docs 
-
-
-```js
-bol.searchSuggestions ({
-  term: 'potter',
-  xcat: 'books_en',
-})
-  .then (console.table)
-;
-```
-
-[API documentation](https://partnerblog.bol.com/documentatie/open-api/zoeksuggesties/)
 
 
 ## Errors
